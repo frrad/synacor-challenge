@@ -1,4 +1,8 @@
-1787:reg 0 is the address to write user input
+1769:output starts at (reg1) len, i,n,p,u,t,...
+1775:end save registers
 1800:is input a newline?
 1804:if so, jump
 1807:store user input
+1819:was last input char a newline?
+1823:if so, jump
+1830:restore registers
