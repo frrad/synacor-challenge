@@ -1,0 +1,4 @@
+1787:reg 0 is the address to write user input
+1800:is input a newline?
+1804:if so, jump
+1807:store user input
