@@ -1,5 +1,16 @@
 import sys
 
+
+def error(message):
+    sys.exit("ERROR: " + message)
+
+
+def debug(message, level=1):
+    debug_level = 5
+
+    if level >= debug_level:
+        print message
+
 modulus = 32768
 
 
@@ -11,27 +22,19 @@ class terminal_in:
 
     def __init__(self):
         self.__buffer = ""
+        self.log = []
 
     def get_char(self):
         if self.__buffer == "":
-            self.__buffer = raw_input() + "\n"
+            user_input = raw_input()
+            self.log.append(user_input)
+            self.__buffer = user_input + "\n"
         answer = self.__buffer[0]
         self.__buffer = self.__buffer[1:]
         return answer
 
 
 terminal_in = terminal_in()
-
-
-def error(message):
-    sys.exit("ERROR: " + message)
-
-
-def debug(message, level=1):
-    debug_level = 5
-
-    if level >= debug_level:
-        print message
 
 
 class stack:
@@ -44,6 +47,9 @@ class stack:
 
     def pop(self):
         return self.__stack.pop()
+
+    def debug(self):
+        return str(self.__stack)
 
 
 class memory:
@@ -567,6 +573,24 @@ ops = {0: halt, 1: set_op, 2: push, 3: pop, 4: eq, 5: gt, 6: jmp,
 # end op definitions
 
 
+# begin cheat instructions
+def dump_memory(filename, memory, registers, pointer, stack):
+    with open(filename, 'w') as f:
+        f.write('memory')
+        for address in xrange(2**15):
+            f.write(str(address) + ':')
+            f.write(str(memory.read(address)))
+        f.write('registers')
+        f.write(str(registers))
+        f.write('pointer')
+        f.write(str(pointer))
+        f.write('stack')
+        f.write(stack.debug())
+
+
+# end cheat instructions
+
+
 # initialize
 mem = memory()
 stack = stack()
@@ -578,9 +602,20 @@ mem.load_file("challenge.bin")
 # mem.load_list([9, 32768, 32769, 4, 19, 32768])
 
 
+processed = False
 while True:
     opcode = mem.read(pointer)
     if opcode not in ops:
         error("opcode %d not in opcode table" % opcode)
     op = ops[opcode]
     pointer = op(mem, registers, pointer, stack)
+
+    if len(terminal_in.log) > 0 and terminal_in.log[-1][0] == '!' and not processed:
+        cheatword = terminal_in.log[-1]
+        print "got instruction", cheatword
+        processed = True
+
+        if cheatword[:len('!dump')] == '!dump':
+            filename = cheatword[len('!dump '):]
+            print 'dumping to filename:', filename
+            dump_memory(filename, mem, registers, pointer, stack)
