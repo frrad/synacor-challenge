@@ -1,12 +1,21 @@
+import sys
+
 modulus = 32768
 
 
+def terminal_out(character):
+    sys.stdout.write(character)
+
+
 def error(message):
-    print message
+    sys.exit("ERROR: " + message)
 
 
-def debug(message):
-    print message
+def debug(message, level=1):
+    debug_level = 2
+
+    if level >= debug_level:
+        print message
 
 
 class memory:
@@ -23,17 +32,17 @@ class memory:
             byte = f.read(2)
             while byte != "":
                 self.write(address,  int(
-                    ''.join(reversed(byte)).encode('hex'), 16))
+                    ''.join(reversed(byte)).encode('hex'), 16), -1)
                 address += 1
                 byte = f.read(2)
 
     def load_list(self, input):
         debug("begin loading list")
         for address, value in enumerate(input):
-            self.write(address, value)
+            self.write(address, value, level=-1)
         debug("list loaded")
 
-    def write(self, address, value):
+    def write(self, address, value, level=0):
         if address >= self.__address_space:
             error("address out of bounds %d > %d" %
                   (address, self.__address_space))
@@ -43,7 +52,8 @@ class memory:
                   (value, self.__address_space))
             return
 
-        debug("writing %d to memory address %d" % (value, address))
+        debug("writing %d to memory address %d" %
+              (value, address), 1 + level)
         self.__memory[address] = value
 
     def read(self, address):
@@ -54,7 +64,7 @@ class memory:
         return self.__memory[address]
 
     def inspect(self, start, end):
-        error(self.__memory[start:end])
+        debug(self.__memory[start:end])
 
 
 def resolve(value, registers):
@@ -117,7 +127,33 @@ def add(memory, registers, pointer):
     return pointer
 
 
-ops = {9: add}
+def out(memory, registers, pointer):
+    if memory.read(pointer) != 19:
+        error("operation at %d not an out" % pointer)
+    pointer += 1
+    character_code = memory.read(pointer)
+    pointer += 1
+
+    character_code = resolve(character_code, registers)
+    character = chr(character_code)
+
+    debug("writing character %s (%d) to terminal" %
+          (character, character_code))
+    terminal_out(character)
+
+    return pointer
+
+
+def noop(memory, registers, pointer):
+    if memory.read(pointer) != 21:
+        error("operation at %d not a noop" % pointer)
+
+    debug("noop")
+    pointer += 1
+    return pointer
+
+
+ops = {9: add, 19: out, 21: noop}
 
 # end op definitions
 
@@ -128,11 +164,13 @@ registers = [0] * 8
 pointer = 0
 
 # load program
-# mem.load_file("challenge.bin")
-mem.load_list([9, 32768, 32769, 4, 19, 32768])
+mem.load_file("challenge.bin")
+# mem.load_list([9, 32768, 32769, 4, 19, 32768])
 
 
-mem.inspect(0, 6)
-opcode = mem.read(pointer)
-op = ops[opcode]
-pointer = op(mem, registers, pointer)
+while True:
+    opcode = mem.read(pointer)
+    if opcode not in ops:
+        error("opcode %d not in opcode table" % opcode)
+    op = ops[opcode]
+    pointer = op(mem, registers, pointer)
