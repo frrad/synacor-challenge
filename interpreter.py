@@ -581,9 +581,9 @@ def dump_memory(filename, memory, registers, pointer, stack):
         f.write(str(registers))
         f.write('\npointer\n')
         f.write(str(pointer))
-        f.write('stack\n')
+        f.write('\nstack\n')
         f.write(stack.debug())
-        f.write('memory\n')
+        f.write('\nmemory\n')
         for address in xrange(2**15):
             f.write(str(address) + ':')
             f.write(str(memory.read(address)))
@@ -605,10 +605,13 @@ mem.load_file("challenge.bin")
 
 
 def cheat_out():
+    print '====STACK===='
+    print stack.debug()
     print '=========='
+    print mem.inspect(2670, 2670)
     print mem.inspect(2732, 2733)
+    print mem.inspect(3726, 3726)
     print mem.inspect(25974, 25988)
-
     print '=========='
 terminal_in.output_fn = cheat_out
 
