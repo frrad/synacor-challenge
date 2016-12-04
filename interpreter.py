@@ -26,6 +26,7 @@ class terminal_in:
 
     def get_char(self):
         if self.__buffer == "":
+            self.output_fn()
             user_input = raw_input()
             self.log.append(user_input)
             self.__buffer = user_input + "\n"
@@ -98,7 +99,7 @@ class memory:
         return self.__memory[address]
 
     def inspect(self, start, end):
-        debug(self.__memory[start:end])
+        return self.__memory[start:end + 1]
 
 
 def resolve(value, registers):
@@ -576,16 +577,17 @@ ops = {0: halt, 1: set_op, 2: push, 3: pop, 4: eq, 5: gt, 6: jmp,
 # begin cheat instructions
 def dump_memory(filename, memory, registers, pointer, stack):
     with open(filename, 'w') as f:
-        f.write('memory')
+        f.write('registers\n')
+        f.write(str(registers))
+        f.write('\npointer\n')
+        f.write(str(pointer))
+        f.write('stack\n')
+        f.write(stack.debug())
+        f.write('memory\n')
         for address in xrange(2**15):
             f.write(str(address) + ':')
             f.write(str(memory.read(address)))
-        f.write('registers')
-        f.write(str(registers))
-        f.write('pointer')
-        f.write(str(pointer))
-        f.write('stack')
-        f.write(stack.debug())
+            f.write('\n')
 
 
 # end cheat instructions
@@ -602,7 +604,17 @@ mem.load_file("challenge.bin")
 # mem.load_list([9, 32768, 32769, 4, 19, 32768])
 
 
-processed = False
+def cheat_out():
+    print '=========='
+    print mem.inspect(2732, 2733)
+    print mem.inspect(25974, 25988)
+
+    print '=========='
+terminal_in.output_fn = cheat_out
+
+
+side_input = 0
+side_output = 0
 while True:
     opcode = mem.read(pointer)
     if opcode not in ops:
@@ -610,10 +622,10 @@ while True:
     op = ops[opcode]
     pointer = op(mem, registers, pointer, stack)
 
-    if len(terminal_in.log) > 0 and terminal_in.log[-1][0] == '!' and not processed:
+    if len(terminal_in.log) > 0 and len(terminal_in.log[-1]) > 0 and terminal_in.log[-1][0] == '!' and side_input < len(terminal_in.log):
         cheatword = terminal_in.log[-1]
         print "got instruction", cheatword
-        processed = True
+        side_input = len(terminal_in.log)
 
         if cheatword[:len('!dump')] == '!dump':
             filename = cheatword[len('!dump '):]
