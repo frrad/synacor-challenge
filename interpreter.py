@@ -569,7 +569,9 @@ def noop(memory, registers, pointer, stack):
 
 
 ops = {0: halt, 1: set_op, 2: push, 3: pop, 4: eq, 5: gt, 6: jmp,
-       7: jt, 8: jf,  9: add, 10: mult, 11: mod, 12: and_op, 13: or_op, 14: not_op, 15: rmem, 16: wmem, 17: call, 18: ret, 19: out, 20: in_op, 21: noop}
+       7: jt, 8: jf,  9: add, 10: mult, 11: mod, 12: and_op,
+       13: or_op, 14: not_op, 15: rmem, 16: wmem, 17: call, 18: ret,
+       19: out, 20: in_op, 21: noop}
 
 # end op definitions
 
@@ -613,11 +615,11 @@ def cheat_out():
     print mem.inspect(3726, 3726)
     print mem.inspect(25974, 25988)
     print '=========='
+
 terminal_in.output_fn = cheat_out
 
 
 side_input = 0
-side_output = 0
 while True:
     opcode = mem.read(pointer)
     if opcode not in ops:
