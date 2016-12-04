@@ -7,12 +7,28 @@ def terminal_out(character):
     sys.stdout.write(character)
 
 
+class terminal_in:
+
+    def __init__(self):
+        self.__buffer = ""
+
+    def get_char(self):
+        if self.__buffer == "":
+            self.__buffer = raw_input() + "\n"
+        answer = self.__buffer[0]
+        self.__buffer = self.__buffer[1:]
+        return answer
+
+
+terminal_in = terminal_in()
+
+
 def error(message):
     sys.exit("ERROR: " + message)
 
 
 def debug(message, level=1):
-    debug_level = 2
+    debug_level = 5
 
     if level >= debug_level:
         print message
@@ -86,14 +102,14 @@ def resolve(value, registers):
     if value < 0 or value > max_literal + num_registers:
         error("cannot resolve value %d" % value)
     if value <= max_literal:
-        debug("resolved value %d: literal" % value)
+        debug("resolved value %d: literal" % value, 0)
         return value
 
     register = value - max_literal - 1
     new_value = registers[register]
 
     debug("resolved value %d: register %d = %d" %
-          (value, register, new_value))
+          (value, register, new_value), 0)
     return new_value
 
 
@@ -102,7 +118,7 @@ def store(address, value, registers, memory):
     num_registers = 8
 
     if address <= max_address:
-        memory.write(address, value)
+        memory.write(address, value, -1)
         return
 
     register_number = address - max_address - 1
@@ -110,7 +126,7 @@ def store(address, value, registers, memory):
         error("trying to write to invalid register %d" % register_number)
         return
 
-    debug("writing %d to register %d" % (value, register_number))
+    debug("writing %d to register %d" % (value, register_number), 0)
     registers[register_number] = value
 
 
@@ -139,7 +155,7 @@ def set_op(memory, registers, pointer, stack):
     value = resolve(memory.read(pointer), registers)
     pointer += 1
 
-    debug("storing %d in %d" % (value, destination))
+    debug("set : storing %d in %d" % (value, destination))
     store(destination, value, registers, memory)
 
     return pointer
@@ -295,7 +311,7 @@ def add(memory, registers, pointer, stack):
 
     total = (summand_1 + summand_2) % modulus
 
-    debug("add: %d + %d = %d (storing in %d)" %
+    debug("add : %d + %d = %d (storing in %d)" %
           (summand_1, summand_2, total, destination))
     store(destination, total, registers, memory)
 
@@ -365,7 +381,7 @@ def and_op(memory, registers, pointer, stack):
 
     result = lhs & rhs
 
-    debug("bitwise and of %d and %d is %d" % (lhs, rhs, result))
+    debug("and : bitwise and of %d and %d is %d" % (lhs, rhs, result))
 
     store(output, result, registers, memory)
 
@@ -389,7 +405,7 @@ def or_op(memory, registers, pointer, stack):
 
     result = lhs | rhs
 
-    debug("bitwise or of %d and %d is %d" % (lhs, rhs, result))
+    debug("or  : bitwise or of %d and %d is %d" % (lhs, rhs, result))
 
     store(output, result, registers, memory)
 
@@ -411,7 +427,7 @@ def not_op(memory, registers, pointer, stack):
 
     result = to_invert ^ (2**15 - 1)
 
-    debug("bitwise inverse of %d is %d" % (to_invert, result))
+    debug("not : bitwise inverse of %d is %d" % (to_invert, result))
 
     store(output, result, registers, memory)
 
@@ -433,7 +449,7 @@ def rmem(memory, registers, pointer, stack):
 
     result = memory.read(source)
 
-    debug("writing %d to %d" % (result, output))
+    debug("rmem: writing %d to %d" % (result, output))
     store(output, result, registers, memory)
 
     return pointer
@@ -452,8 +468,8 @@ def wmem(memory, registers, pointer, stack):
     value = resolve(memory.read(pointer), registers)
     pointer += 1
 
-    debug("writing %d to %d" % (value, address))
-    memory.write(address, value)
+    debug("wmem: writing %d to %d" % (value, address))
+    memory.write(address, value, -1)
 
     return pointer
 
@@ -469,7 +485,7 @@ def call(memory, registers, pointer, stack):
     output = resolve(memory.read(pointer), registers)
     pointer += 1
 
-    debug("writing %d to stack, jumping to %d" % (pointer, output))
+    debug("call: writing %d to stack, jumping to %d" % (pointer, output))
     stack.push(pointer)
 
     return output
@@ -484,7 +500,7 @@ def ret(memory, registers, pointer, stack):
 
     dest = stack.pop()
 
-    debug("returning to %d" % dest)
+    debug("ret : returning to %d" % dest)
 
     return dest
 
@@ -509,11 +525,28 @@ def out(memory, registers, pointer, stack):
     return pointer
 
 
-# in: 20 a
-# read a character from the terminal and write its ascii code to <a>; it
-# can be assumed that once input starts, it will continue until a newline
-# is encountered; this means that you can safely read whole lines from the
-# keyboard and trust that they will be fully read
+def in_op(memory, registers, pointer, stack):
+    """in: 20 a
+    read a character from the terminal and write its ascii code to <a>; it
+    can be assumed that once input starts, it will continue until a newline
+    is encountered; this means that you can safely read whole lines from the
+    keyboard and trust that they will be fully read
+    """
+    if memory.read(pointer) != 20:
+        error("operation at %d not an in" % pointer)
+    pointer += 1
+    dest = memory.read(pointer)
+    pointer += 1
+
+    input = terminal_in.get_char()
+    input_ascii = ord(input)
+
+    debug("writing ascii %s (%d) in" %
+          (input, input_ascii))
+
+    store(dest, input_ascii,  registers, memory)
+
+    return pointer
 
 
 def noop(memory, registers, pointer, stack):
@@ -529,7 +562,7 @@ def noop(memory, registers, pointer, stack):
 
 
 ops = {0: halt, 1: set_op, 2: push, 3: pop, 4: eq, 5: gt, 6: jmp,
-       7: jt, 8: jf,  9: add, 10: mult, 11: mod, 12: and_op, 13: or_op, 14: not_op, 15: rmem, 16: wmem, 17: call, 18: ret, 19: out, 21: noop}
+       7: jt, 8: jf,  9: add, 10: mult, 11: mod, 12: and_op, 13: or_op, 14: not_op, 15: rmem, 16: wmem, 17: call, 18: ret, 19: out, 20: in_op, 21: noop}
 
 # end op definitions
 
