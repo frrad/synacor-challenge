@@ -1,23 +1,41 @@
+#!/usr/bin/python
+
 with open('logs/boot.log', 'r') as f:
     contents = f.readlines()
 contents = [int(line.strip().split(':')[1]) for line in contents[7:]]
 
 function_names = {}
-
 with open('functions.txt', 'r') as f:
     for line in f:
+        if len(line) == 0 or line[0] == '#' or line == '\n':
+            continue
         a = line.strip().split(':')
         function_names[int(a[0])] = a[1]
+
+
+decode_lines = set()
+with open('text.txt', 'r') as f:
+    for line in f:
+        if len(line) == 0 or line[0] == '#' or line == '\n':
+            continue
+        a = [int(j) for j in line.strip().split(':')]
+        for i in xrange(a[0], a[1]):
+            decode_lines.add(i)
+
 
 notes = {}
 with open('notes.txt', 'r') as f:
     for line in f:
+        if len(line) == 0 or line[0] == '#' or line == '\n':
+            continue
         a = line.strip().split(':')
         notes[int(a[0])] = a[1]
 
 var_names = {}
 with open('vars.txt', 'r') as f:
     for line in f:
+        if len(line) == 0 or line[0] == '#' or line == '\n':
+            continue
         a = line.strip().split(':')
         min_line = int(a[0])
         max_line = int(a[1])
@@ -28,8 +46,9 @@ with open('vars.txt', 'r') as f:
                 var_names[x] = {}
             var_names[x][reg] = name
 
+
 for i in function_names:
-    notes[i] = notes.get(i, '') + 'function: ' + function_names[i]
+    notes[i] = 'function: ' + function_names[i] + ' ' + notes.get(i, '')
 
 
 def disp_out(arg):
@@ -88,18 +107,22 @@ while i < len(contents):
     if i in notes:
         suffix = '// ' + notes[i]
 
-    if here < 22:
+    if here < 22 and i not in decode_lines:
         op = opcodes[here]
         print op[0],
         args = []
         for j in xrange(op[1]):
             i += 1
             args.append(contents[i])
-        print "%33s" % ' '.join([decode_registers(arg, i) for arg in args]),
+        names = [decode_registers(arg, i + k - op[1] + 1)
+                 for k, arg in enumerate(args)]
+        print "%38s" % ' '.join(names),
         if len(op) > 2:
             op[2](args)
     else:
-        print here,
+        print "%-38d" % here,
+        if i in decode_lines and here < 256:
+            print chr(here),
 
     print '    ' + suffix
 

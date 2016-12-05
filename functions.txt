@@ -1,17 +1,20 @@
 1285:unknown
-1458:unknown
-1518:unknown
-1543:unknown
-1571:unknown
+1458:call_repeatedly(start_ptr,fn_ptr)
+1518:print_string(start_ptr)
+1528:print_char(char_ptr)
+1531:unknown
+1543:call_repeatedly_sentinel(start_ptr,fn_ptr,worked_val)
+1571:repeatedly_cmp_sentinel( ,worked_val, )
 1588:unknown
+1605:cmp_0_2(x,y,z)
 1667:unknown
 1723:unknown
-1767:user_input
+1767:user_input(max_len,out_start)
 1841:unknown
 2001:unknown
 2125:unknown
-2248:unknown
-2281:unknown
+2248:x_plus_2_count(x,count)
+2281:two_x_plus_1_max_14(input)
 25061:unknown
 2964:unknown
 3727:unknown

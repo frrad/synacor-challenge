@@ -1,4 +1,30 @@
-1769:output starts at (reg1) len, i,n,p,u,t,...
+1043:self-test complete, all tests pass
+
+# call_repeatedly
+1460:input starts at (reg0) len, i,n,p,u,t,...
+1466:end save registers
+1480:while
+1488:return safely
+1504:end while
+1507:restore registers
+1515: return (_,count)
+
+#
+1547:if input len 0
+1550:return -1
+1555:if(count) return -1
+1561:return safely
+1563:return -1
+1566:return safely
+1570:return 
+
+
+1609:return (0,y,z)
+1612:(1,y,y)
+1615:return (1,-1,y)
+
+# user_input
+1769:output starts at (reg1) len, o,u,t,p,u,t,...
 1775:end save registers
 1800:is input a newline?
 1804:if so, jump
@@ -6,3 +32,48 @@
 1819:was last input char a newline?
 1823:if so, jump
 1830:restore registers
+
+#
+2252:return safely
+2255:-1
+2259:16384 = 1<<15
+2267:if top bit unset, continue
+2276:return safely
+
+
+
+# two_x_plus_1_max_14(input)
+2283:if input <=14 return 2*input+1. otherwise return MAX_INT. in place.
+2287:return MAX_INT
+2296:return safely
+2299:-1
+2312:restore registers
+2309:MAX_INT
+
+4246:As you enter the room, the symbol on the floor briefly flashes
+4256:. The orb begins subtly glowing 
+
+4560:the number on the vault door flashes black
+
+
+# strings
+6080:begin string 6080+35=6115
+6081:self-test complete, all tests pass
+6129:begin string 6129+12=6141
+26024:begin string 26024+63=26087
+26025:As you enter the room, the symbol on the floor briefly flashes
+26088:begin string 26088+33=26121
+26089:. The orb begins subtly glowing 
+26122:begin string 26122+47=26169
+26123:As you enter the room, the orb briefly flashes 
+26170:begin string 26170+64=26234
+26171:. The number on the floor vibrates strangely beneath your feet 
+26235:begin string 26235+31=26266
+26236:  The orb seems to get heavier
+26267:begin string
+26299:begin string
+26321:begin string
+26354:begin string
+26398:begin string
+26354:begin string 26354+43=26397
+26355:the number on the vault door flashes black
