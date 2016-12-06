@@ -1,41 +1,10 @@
+#!/usr/bin/python
+
 import sys
 
 
 def error(message):
     sys.exit("ERROR: " + message)
-
-
-def debug(message, level=1):
-    debug_level = 5
-
-    if level >= debug_level:
-        print message
-
-modulus = 32768
-
-
-def terminal_out(character):
-    sys.stdout.write(character)
-
-
-class terminal_in:
-
-    def __init__(self):
-        self.__buffer = ""
-        self.log = []
-
-    def get_char(self):
-        if self.__buffer == "":
-            self.output_fn()
-            user_input = raw_input()
-            self.log.append(user_input)
-            self.__buffer = user_input + "\n"
-        answer = self.__buffer[0]
-        self.__buffer = self.__buffer[1:]
-        return answer
-
-
-terminal_in = terminal_in()
 
 
 class stack:
@@ -72,10 +41,8 @@ class memory:
                 byte = f.read(2)
 
     def load_list(self, input):
-        debug("begin loading list")
         for address, value in enumerate(input):
             self.write(address, value, level=-1)
-        debug("list loaded")
 
     def write(self, address, value, level=0):
         if address >= self.__address_space:
@@ -87,8 +54,6 @@ class memory:
                   (value, self.__address_space))
             return
 
-        debug("writing %d to memory address %d" %
-              (value, address), 1 + level)
         self.__memory[address] = value
 
     def read(self, address):
@@ -102,537 +67,453 @@ class memory:
         return self.__memory[start:end + 1]
 
 
-def resolve(value, registers):
-    max_literal = 32767
-    num_registers = 8
+class vm:
+
+    def __init__(self, in_fn, out_fn):
+        self.out_fn = out_fn
+        self.in_fn = in_fn
+
+        self.__modulus = 2**15
+        self.__max_literal = self.__modulus - 1
+        self.__num_registers = 8
+
+        self.memory = memory()
+        self.stack = stack()
+        self.registers = [0] * self.__num_registers
+        self.pointer = 0
+
+        self.__ops = {0: self.__HALT, 1: self.__SET, 2: self.__PUSH,
+                      3: self.__POP, 4: self.__EQ, 5: self.__GT,
+                      6: self.__JMP, 7: self.__JT, 8: self.__JF,
+                      9: self.__ADD, 10: self.__MULT, 11: self.__MOD,
+                      12: self.__AND, 13: self.__OR, 14: self.__NOT,
+                      15: self.__RMEM, 16: self.__WMEM, 17: self.__CALL,
+                      18: self.__RET, 19: self.__OUT, 20: self.__IN,
+                      21: self.__NOOP}
+
+    def dump_state(self, filename):
+        with open(filename, 'w') as f:
+            f.write('registers\n')
+            f.write(str(self.registers))
+            f.write('\npointer\n')
+            f.write(str(self.pointer))
+            f.write('\nstack\n')
+            f.write(self.stack.debug())
+            f.write('\nmemory\n')
+            for address in xrange(2**15):
+                f.write(str(address) + ':')
+                f.write(str(memory.read(address)))
+                f.write('\n')
+
+    def step(self):
+        opcode = self.memory.read(self.pointer)
+        if opcode not in self.__ops:
+            error("opcode %d not in opcode table" % opcode)
+        op = self.__ops[opcode]
+        op()
+
+    def load_binary(self, path):
+        self.memory.load_file(path)
+
+    # op helper functions
+    def resolve(self, value):
+        registers = self.registers
+
+        if value < 0 or value > self.__max_literal + self.__num_registers:
+            error("cannot resolve value %d" % value)
+        if value <= self.__max_literal:
+
+            return value
+
+        register = value - self.__max_literal - 1
+        new_value = self.registers[register]
+
+        return new_value
+
+    def set_register(self, destination, value):
+        if destination <= self.__max_literal:
+            error("try to set non-register")
+
+        register_number = destination - self.__max_literal - 1
+        if register_number >= self.__num_registers:
+            error("trying to write to invalid register %d" % register_number)
+
+        self.registers[register_number] = value
+
+    # begin op definitions
+    def __HALT(self):
+        """halt: 0
+        stop execution and terminate the program
+        """
+        if self.memory.read(self.pointer) != 0:
+            error("operation at %d not a halt" % self.pointer)
+
+        sys.exit()
+
+    def __SET(self):
+        """set: 1 a b
+        set register <a> to the value of <b>
+        """
+        if self.memory.read(self.pointer) != 1:
+            error("operation at %d not a set" % pointer)
+
+        self.pointer += 1
+        destination = self.memory.read(self.pointer)
+        self.pointer += 1
+        value = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        self.set_register(destination, value)
+
+    def __PUSH(self):
+        """push: 2 a
+        push <a> onto the stack
+        """
+        if self.memory.read(self.pointer) != 2:
+            error("operation at %d not a push" % pointer)
+
+        self.pointer += 1
+        value = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        self.stack.push(value)
+
+    def __POP(self):
+        """pop: 3 a
+        remove the top element from the stack and write it into <a>; empty stack
+        = error
+        """
+        if self.memory.read(self.pointer) != 3:
+            error("operation at %d not a pop" % pointer)
+
+        self.pointer += 1
+        destination = self.memory.read(self.pointer)
+        self.pointer += 1
+
+        self.set_register(destination, self.stack.pop())
+
+    def __EQ(self):
+        """eq: 4 a b c
+        set <a> to 1 if <b> is equal to <c>; set it to 0 otherwise
+        """
+        if self.memory.read(self.pointer) != 4:
+            error("operation at %d not an eq" % pointer)
+
+        self.pointer += 1
+        output = self.memory.read(self.pointer)
+        self.pointer += 1
+        lhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        rhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        if lhs == rhs:
+            self.set_register(output, 1)
+        else:
+            self.set_register(output, 0)
+
+    def __GT(self):
+        """gt: 5 a b c
+        set <a> to 1 if <b> is greater than <c>; set it to 0 otherwise
+        """
+        if self.memory.read(self.pointer) != 5:
+            error("operation at %d not a gt" % pointer)
+
+        self.pointer += 1
+        output = self.memory.read(self.pointer)
+        self.pointer += 1
+        lhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        rhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        if lhs > rhs:
+            self.set_register(output, 1)
+        else:
+            self.set_register(output, 0)
+
+    def __JMP(self):
+        """jmp: 6 a
+        jump to <a>
+        """
+        if self.memory.read(self.pointer) != 6:
+            error("operation at %d not a jmp" % self.pointer)
+
+        self.pointer += 1
+        destination = self.resolve(self.memory.read(self.pointer))
+        self.pointer = destination
+
+    def __JT(self):
+        """jt: 7 a b
+        if <a> is nonzero, jump to <b>
+        """
+        if self.memory.read(self.pointer) != 7:
+            error("operation at %d not a jt" % pointer)
+
+        self.pointer += 1
+        test = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        destination = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        if test != 0:
+            self.pointer = destination
+
+    def __JF(self):
+        """jf: 8 a b
+        if <a> is zero, jump to <b>
+        """
+        if self.memory.read(self.pointer) != 8:
+            error("operation at %d not a jf" % self.pointer)
+
+        self.pointer += 1
+        test = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        destination = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        if test == 0:
+            self.pointer = destination
+
+    def __ADD(self):
+        ''' add: 9 a b c
+       assign into <a> the sum of <b> and <c> (modulo 32768)'''
+
+        if self.memory.read(self.pointer) != 9:
+            error("operation at %d not an add" % self.pointer)
+        self.pointer += 1
+        destination = self.memory.read(self.pointer)
+        self.pointer += 1
+        summand_1 = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        summand_2 = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        total = (summand_1 + summand_2) % self.__modulus
+
+        self.set_register(destination, total)
+
+    def __MULT(self):
+        """mult: 10 a b c
+        store into <a> the product of <b> and <c> (modulo 32768)
+        """
+        if self.memory.read(self.pointer) != 10:
+            error("operation at %d not a mult" % pointer)
+        self.pointer += 1
+        destination = self.memory.read(self.pointer)
+        self.pointer += 1
+        multiplicand_1 = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        multiplicand_2 = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        total = (multiplicand_1 * multiplicand_2) % self.__modulus
+
+        self.set_register(destination, total)
+
+    def __MOD(self):
+        """mod: 11 a b c
+        store into <a> the remainder of <b> divided by <c>
+        """
+        if self.memory.read(self.pointer) != 11:
+            error("operation at %d not a mod" % pointer)
+        self.pointer += 1
+        destination = self.memory.read(self.pointer)
+        self.pointer += 1
+        dividend = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        divisor = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        result = dividend % divisor
+
+        self.set_register(destination, result)
+
+    def __AND(self):
+        """and: 12 a b c
+        stores into <a> the bitwise and of <b> and <c>
+        """
+        if self.memory.read(self.pointer) != 12:
+            error("operation at %d not a and" % pointer)
+
+        self.pointer += 1
+        output = self.memory.read(self.pointer)
+        self.pointer += 1
+        lhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        rhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        result = lhs & rhs
+
+        self.set_register(output, result)
+
+    def __OR(self):
+        """or: 13 a b c
+        stores into <a> the bitwise or of <b> and <c>
+        """
+        if self.memory.read(self.pointer) != 13:
+            error("operation at %d not an or" % pointer)
+
+        self.pointer += 1
+        output = self.memory.read(self.pointer)
+        self.pointer += 1
+        lhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        rhs = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        result = lhs | rhs
+
+        self.set_register(output, result)
+
+    def __NOT(self):
+        """not: 14 a b
+        stores 15-bit bitwise inverse of <b> in <a>
+        """
+        if self.memory.read(self.pointer) != 14:
+            error("operation at %d not a not" % pointer)
+
+        self.pointer += 1
+        output = self.memory.read(self.pointer)
+        self.pointer += 1
+        to_invert = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        result = to_invert ^ (2**15 - 1)
+
+        self.set_register(output, result)
+
+    def __RMEM(self):
+        """rmem: 15 a b
+        read memory at address <b> and write it to <a>
+        """
+        if self.memory.read(self.pointer) != 15:
+            error("operation at %d not an rmem" % pointer)
+
+        self.pointer += 1
+        output = self.memory.read(self.pointer)
+        self.pointer += 1
+        source = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        result = self.memory.read(source)
+
+        self.set_register(output, result)
+
+    def __WMEM(self):
+        """wmem: 16 a b
+        write the value from <b> into memory at address <a>
+        """
+        if self.memory.read(self.pointer) != 16:
+            error("operation at %d not a wmem" % pointer)
+
+        self.pointer += 1
+        address = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+        value = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        self.memory.write(address, value, -1)
+
+    def __CALL(self):
+        """call: 17 a
+        write the address of the next instruction to the stack and jump to <a>
+        """
+        if self.memory.read(self.pointer) != 17:
+            error("operation at %d not a call" % pointer)
+
+        self.pointer += 1
+        output = self.resolve(self.memory.read(self.pointer))
+        self.pointer += 1
+
+        self.stack.push(self.pointer)
+
+        self.pointer = output
+
+    def __RET(self):
+        """ret: 18
+        remove the top element from the stack and jump to it; empty stack = halt
+        """
+        if self.memory.read(self.pointer) != 18:
+            error("operation at %d not a ret" % pointer)
+
+        dest = self.stack.pop()
+
+        self.pointer = dest
+
+    def __OUT(self):
+        """ out: 19 a
+        write the character represented by ascii code <a> to the terminal
+        """
+        if self.memory.read(self.pointer) != 19:
+            error("operation at %d not an out" % pointer)
+        self.pointer += 1
+        character_code = self.memory.read(self.pointer)
+        self.pointer += 1
+
+        character_code = self.resolve(character_code)
+        character = chr(character_code)
+
+        self.out_fn(character)
+
+    def __IN(self):
+        """in: 20 a
+        read a character from the terminal and write its ascii code to <a>; it
+        can be assumed that once input starts, it will continue until a newline
+        is encountered; this means that you can safely read whole lines from the
+        keyboard and trust that they will be fully read
+        """
+        if self.memory.read(self.pointer) != 20:
+            error("operation at %d not an in" % pointer)
+        self.pointer += 1
+        dest = self.memory.read(self.pointer)
+        self.pointer += 1
+
+        input = self.in_fn()
+        input_ascii = ord(input)
+
+        self.set_register(dest, input_ascii)
+
+    def __NOOP(self):
+        """noop: 21
+          no operation
+        """
+        if self.memory.read(self.pointer) != 21:
+            error("operation at %d not a noop" % pointer)
+
+        self.pointer += 1
+
+
+#########
+#########
+
+
+class terminal_in:
+
+    def __init__(self):
+        self.__buffer = ""
+
+    def get_char(self):
+        if self.__buffer == "":
+            user_input = raw_input()
+            self.__buffer = user_input + "\n"
+        answer = self.__buffer[0]
+        self.__buffer = self.__buffer[1:]
+        return answer
+
+
+terminal = terminal_in()
+in_fn = terminal.get_char
+
+
+def terminal_out(character):
+    sys.stdout.write(character)
+
+
+emulator = vm(in_fn, terminal_out)
+emulator.load_binary("challenge.bin")
 
-    if value < 0 or value > max_literal + num_registers:
-        error("cannot resolve value %d" % value)
-    if value <= max_literal:
-        debug("resolved value %d: literal" % value, 0)
-        return value
 
-    register = value - max_literal - 1
-    new_value = registers[register]
-
-    debug("resolved value %d: register %d = %d" %
-          (value, register, new_value), 0)
-    return new_value
-
-
-def store(address, value, registers, memory):
-    max_address = 32767
-    num_registers = 8
-
-    if address <= max_address:
-        memory.write(address, value, -1)
-        return
-
-    register_number = address - max_address - 1
-    if register_number >= num_registers:
-        error("trying to write to invalid register %d" % register_number)
-        return
-
-    debug("writing %d to register %d" % (value, register_number), 0)
-    registers[register_number] = value
-
-
-# begin op definitions
-
-def halt(memory, registers, pointer, stack):
-    if memory.read(pointer) != 0:
-        error("operation at %d not a halt" % pointer)
-    """halt: 0
-    stop execution and terminate the program
-    """
-    debug("halting")
-    sys.exit()
-
-
-def set_op(memory, registers, pointer, stack):
-    """set: 1 a b
-    set register <a> to the value of <b>
-    """
-    if memory.read(pointer) != 1:
-        error("operation at %d not a set" % pointer)
-
-    pointer += 1
-    destination = memory.read(pointer)
-    pointer += 1
-    value = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    debug("set : storing %d in %d" % (value, destination))
-    store(destination, value, registers, memory)
-
-    return pointer
-
-
-def push(memory, registers, pointer, stack):
-    """push: 2 a
-    push <a> onto the stack
-    """
-    if memory.read(pointer) != 2:
-        error("operation at %d not a push" % pointer)
-
-    pointer += 1
-    value = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    stack.push(value)
-
-    return pointer
-
-
-def pop(memory, registers, pointer, stack):
-    """pop: 3 a
-    remove the top element from the stack and write it into <a>; empty stack
-    = error
-    """
-    if memory.read(pointer) != 3:
-        error("operation at %d not a pop" % pointer)
-
-    pointer += 1
-    destination = memory.read(pointer)
-    pointer += 1
-
-    store(destination, stack.pop(), registers, memory)
-
-    return pointer
-
-
-def eq(memory, registers, pointer, stack):
-    """eq: 4 a b c
-    set <a> to 1 if <b> is equal to <c>; set it to 0 otherwise
-    """
-    if memory.read(pointer) != 4:
-        error("operation at %d not an eq" % pointer)
-
-    pointer += 1
-    output = memory.read(pointer)
-    pointer += 1
-    lhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-    rhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    if lhs == rhs:
-        store(output, 1, registers, memory)
-    else:
-        store(output, 0, registers, memory)
-
-    return pointer
-
-
-def gt(memory, registers, pointer, stack):
-    """gt: 5 a b c
-    set <a> to 1 if <b> is greater than <c>; set it to 0 otherwise
-    """
-    if memory.read(pointer) != 5:
-        error("operation at %d not a gt" % pointer)
-
-    pointer += 1
-    output = memory.read(pointer)
-    pointer += 1
-    lhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-    rhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    if lhs > rhs:
-        store(output, 1, registers, memory)
-    else:
-        store(output, 0, registers, memory)
-
-    return pointer
-
-
-def jmp(memory, registers, pointer, stack):
-    """jmp: 6 a
-    jump to <a>
-    """
-    if memory.read(pointer) != 6:
-        error("operation at %d not a jmp" % pointer)
-
-    pointer += 1
-    destination = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    return destination
-
-
-def jt(memory, registers, pointer, stack):
-    """jt: 7 a b
-    if <a> is nonzero, jump to <b>
-    """
-    if memory.read(pointer) != 7:
-        error("operation at %d not a jt" % pointer)
-
-    pointer += 1
-    test = resolve(memory.read(pointer), registers)
-    pointer += 1
-    destination = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    if test != 0:
-        return destination
-
-    return pointer
-
-
-def jf(memory, registers, pointer, stack):
-    """jf: 8 a b
-    if <a> is zero, jump to <b>
-    """
-    if memory.read(pointer) != 8:
-        error("operation at %d not a jf" % pointer)
-
-    pointer += 1
-    test = resolve(memory.read(pointer), registers)
-    pointer += 1
-    destination = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    if test == 0:
-        return destination
-
-    return pointer
-
-
-def add(memory, registers, pointer, stack):
-    ''' add: 9 a b c
-   assign into <a> the sum of <b> and <c> (modulo 32768)'''
-
-    if memory.read(pointer) != 9:
-        error("operation at %d not an add" % pointer)
-    pointer += 1
-    destination = memory.read(pointer)
-    pointer += 1
-    summand_1 = memory.read(pointer)
-    pointer += 1
-    summand_2 = memory.read(pointer)
-    pointer += 1
-
-    summand_1 = resolve(summand_1, registers)
-    summand_2 = resolve(summand_2, registers)
-
-    total = (summand_1 + summand_2) % modulus
-
-    debug("add : %d + %d = %d (storing in %d)" %
-          (summand_1, summand_2, total, destination))
-    store(destination, total, registers, memory)
-
-    return pointer
-
-
-def mult(memory, registers, pointer, stack):
-    """mult: 10 a b c
-    store into <a> the product of <b> and <c> (modulo 32768)
-    """
-    if memory.read(pointer) != 10:
-        error("operation at %d not a mult" % pointer)
-    pointer += 1
-    destination = memory.read(pointer)
-    pointer += 1
-    multiplicand_1 = resolve(memory.read(pointer), registers)
-    pointer += 1
-    multiplicand_2 = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    total = (multiplicand_1 * multiplicand_2) % modulus
-
-    debug("mult: %d * %d = %d (storing in %d)" %
-          (multiplicand_1, multiplicand_2, total, destination))
-    store(destination, total, registers, memory)
-
-    return pointer
-
-
-def mod(memory, registers, pointer, stack):
-    """mod: 11 a b c
-    store into <a> the remainder of <b> divided by <c>
-    """
-    if memory.read(pointer) != 11:
-        error("operation at %d not a mod" % pointer)
-    pointer += 1
-    destination = memory.read(pointer)
-    pointer += 1
-    dividend = resolve(memory.read(pointer), registers)
-    pointer += 1
-    divisor = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    result = dividend % divisor
-
-    debug("mod: %d mod %d = %d (storing in %d)" %
-          (dividend, divisor, result, destination))
-    store(destination, result, registers, memory)
-
-    return pointer
-
-
-def and_op(memory, registers, pointer, stack):
-    """and: 12 a b c
-    stores into <a> the bitwise and of <b> and <c>
-    """
-    if memory.read(pointer) != 12:
-        error("operation at %d not a and" % pointer)
-
-    pointer += 1
-    output = memory.read(pointer)
-    pointer += 1
-    lhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-    rhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    result = lhs & rhs
-
-    debug("and : bitwise and of %d and %d is %d" % (lhs, rhs, result))
-
-    store(output, result, registers, memory)
-
-    return pointer
-
-
-def or_op(memory, registers, pointer, stack):
-    """or: 13 a b c
-    stores into <a> the bitwise or of <b> and <c>
-    """
-    if memory.read(pointer) != 13:
-        error("operation at %d not an or" % pointer)
-
-    pointer += 1
-    output = memory.read(pointer)
-    pointer += 1
-    lhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-    rhs = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    result = lhs | rhs
-
-    debug("or  : bitwise or of %d and %d is %d" % (lhs, rhs, result))
-
-    store(output, result, registers, memory)
-
-    return pointer
-
-
-def not_op(memory, registers, pointer, stack):
-    """not: 14 a b
-    stores 15-bit bitwise inverse of <b> in <a>
-    """
-    if memory.read(pointer) != 14:
-        error("operation at %d not a not" % pointer)
-
-    pointer += 1
-    output = memory.read(pointer)
-    pointer += 1
-    to_invert = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    result = to_invert ^ (2**15 - 1)
-
-    debug("not : bitwise inverse of %d is %d" % (to_invert, result))
-
-    store(output, result, registers, memory)
-
-    return pointer
-
-
-def rmem(memory, registers, pointer, stack):
-    """rmem: 15 a b
-    read memory at address <b> and write it to <a>
-    """
-    if memory.read(pointer) != 15:
-        error("operation at %d not an rmem" % pointer)
-
-    pointer += 1
-    output = memory.read(pointer)
-    pointer += 1
-    source = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    result = memory.read(source)
-
-    debug("rmem: writing %d to %d" % (result, output))
-    store(output, result, registers, memory)
-
-    return pointer
-
-
-def wmem(memory, registers, pointer, stack):
-    """wmem: 16 a b
-    write the value from <b> into memory at address <a>
-    """
-    if memory.read(pointer) != 16:
-        error("operation at %d not a wmem" % pointer)
-
-    pointer += 1
-    address = resolve(memory.read(pointer), registers)
-    pointer += 1
-    value = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    debug("wmem: writing %d to %d" % (value, address))
-    memory.write(address, value, -1)
-
-    return pointer
-
-
-def call(memory, registers, pointer, stack):
-    """call: 17 a
-    write the address of the next instruction to the stack and jump to <a>
-    """
-    if memory.read(pointer) != 17:
-        error("operation at %d not a call" % pointer)
-
-    pointer += 1
-    output = resolve(memory.read(pointer), registers)
-    pointer += 1
-
-    debug("call: writing %d to stack, jumping to %d" % (pointer, output))
-    stack.push(pointer)
-
-    return output
-
-
-def ret(memory, registers, pointer, stack):
-    """ret: 18
-    remove the top element from the stack and jump to it; empty stack = halt
-    """
-    if memory.read(pointer) != 18:
-        error("operation at %d not a ret" % pointer)
-
-    dest = stack.pop()
-
-    debug("ret : returning to %d" % dest)
-
-    return dest
-
-
-def out(memory, registers, pointer, stack):
-    """ out: 19 a
-    write the character represented by ascii code <a> to the terminal
-    """
-    if memory.read(pointer) != 19:
-        error("operation at %d not an out" % pointer)
-    pointer += 1
-    character_code = memory.read(pointer)
-    pointer += 1
-
-    character_code = resolve(character_code, registers)
-    character = chr(character_code)
-
-    debug("writing character %s (%d) to terminal" %
-          (character, character_code))
-    terminal_out(character)
-
-    return pointer
-
-
-def in_op(memory, registers, pointer, stack):
-    """in: 20 a
-    read a character from the terminal and write its ascii code to <a>; it
-    can be assumed that once input starts, it will continue until a newline
-    is encountered; this means that you can safely read whole lines from the
-    keyboard and trust that they will be fully read
-    """
-    if memory.read(pointer) != 20:
-        error("operation at %d not an in" % pointer)
-    pointer += 1
-    dest = memory.read(pointer)
-    pointer += 1
-
-    input = terminal_in.get_char()
-    input_ascii = ord(input)
-
-    debug("writing ascii %s (%d) in" %
-          (input, input_ascii))
-
-    store(dest, input_ascii,  registers, memory)
-
-    return pointer
-
-
-def noop(memory, registers, pointer, stack):
-    """noop: 21
-      no operation
-    """
-    if memory.read(pointer) != 21:
-        error("operation at %d not a noop" % pointer)
-
-    debug("noop")
-    pointer += 1
-    return pointer
-
-
-ops = {0: halt, 1: set_op, 2: push, 3: pop, 4: eq, 5: gt, 6: jmp,
-       7: jt, 8: jf,  9: add, 10: mult, 11: mod, 12: and_op,
-       13: or_op, 14: not_op, 15: rmem, 16: wmem, 17: call, 18: ret,
-       19: out, 20: in_op, 21: noop}
-
-# end op definitions
-
-
-# begin cheat instructions
-def dump_memory(filename, memory, registers, pointer, stack):
-    with open(filename, 'w') as f:
-        f.write('registers\n')
-        f.write(str(registers))
-        f.write('\npointer\n')
-        f.write(str(pointer))
-        f.write('\nstack\n')
-        f.write(stack.debug())
-        f.write('\nmemory\n')
-        for address in xrange(2**15):
-            f.write(str(address) + ':')
-            f.write(str(memory.read(address)))
-            f.write('\n')
-
-
-# end cheat instructions
-
-
-# initialize
-mem = memory()
-stack = stack()
-registers = [0] * 8
-pointer = 0
-
-# load program
-mem.load_file("challenge.bin")
-# mem.load_list([9, 32768, 32769, 4, 19, 32768])
-
-
-def cheat_out():
-    print '====STACK===='
-    print stack.debug()
-    print '=========='
-    print mem.inspect(2670, 2670)
-    print mem.inspect(2732, 2733)
-    print mem.inspect(3726, 3726)
-    print mem.inspect(25974, 25988)
-    print '=========='
-
-terminal_in.output_fn = cheat_out
-
-
-side_input = 0
 while True:
-    opcode = mem.read(pointer)
-    if opcode not in ops:
-        error("opcode %d not in opcode table" % opcode)
-    op = ops[opcode]
-    pointer = op(mem, registers, pointer, stack)
-
-    if len(terminal_in.log) > 0 and len(terminal_in.log[-1]) > 0 and terminal_in.log[-1][0] == '!' and side_input < len(terminal_in.log):
-        cheatword = terminal_in.log[-1]
-        print "got instruction", cheatword
-        side_input = len(terminal_in.log)
-
-        if cheatword[:len('!dump')] == '!dump':
-            filename = cheatword[len('!dump '):]
-            print 'dumping to filename:', filename
-            dump_memory(filename, mem, registers, pointer, stack)
+    emulator.step()
