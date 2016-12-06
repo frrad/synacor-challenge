@@ -23,6 +23,35 @@
 1612:(1,y,y)
 1615:return (1,-1,y)
 
+#1619
+1621:(a,b,c,c+1)
+1625:(a,b,c,a+c+1)
+1629:(a,b,c,rmem(a+c+1))
+1632:(a,b,c,a=rmem(a+c+1))
+1636:if a=rmem(a+c+1) return noop
+1639:(a,b,b,a=rmem(a+c+1))
+1642:(a,-1,b,a=rmem(a+c+1))
+1647:returns (a,-1,b) if a!=rmem(a+c+1) else nothing
+
+#1648
+1650:(a,c,c)
+
+# 1667
+# if rmem(a)!=rmem(b) return 0
+# if rmem(a)=rmem(b)=0 return 1
+# 
+1675:(a,b,c,rmem(a),e)
+1678:(a,b,c,rmem(a),rmem(b))
+1681:(a,b,rmem(a)=rmem(b),rmem(a),rmem(b))
+1685:if rmem(a)!=rmem(b) return 0
+1688:(a,b,rmem(a)|rmem(b),rmem(a),rmem(b))
+1692:if rmem(a)=rmem(b)=0 return 1
+1695:(a,b,b,rmem(a),rmem(b))
+1698:(a,1619,b,rmem(a),rmem(b))
+1706:return 1
+1711:return 0
+
+
 # user_input
 1769:output starts at (reg1) len, o,u,t,p,u,t,...
 1775:end save registers
@@ -32,6 +61,12 @@
 1819:was last input char a newline?
 1823:if so, jump
 1830:restore registers
+
+#XOR
+2129:(x,y,x&y)
+2133:(x,y,^(x&y))
+2136:(x|y,y,^(x&y))
+2140:((x|y) & ^(x&y),y,^(x&y))
 
 #
 2252:return safely
@@ -50,10 +85,40 @@
 2312:restore registers
 2309:MAX_INT
 
+#3400
+
 4246:As you enter the room, the symbol on the floor briefly flashes
 4256:. The orb begins subtly glowing 
 
 4560:the number on the vault door flashes black
+
+#5846
+5850:(a,b,c,rmem(2732))
+5853:(a,b,c,rmem(2732),c+2)
+5857:(a,b,c,rmem(2732),rmem(c+2))
+5860:(a,b,c,rmem(2732)=rmem(c+2),rmem(c+2))
+5864:if rmem(2732)!=rmem(c+2) return noop
+5867:(a,b,c+1,rmem(2732)=rmem(c+2),rmem(c+2))
+
+#5893
+5895:(a,b,c,a+2)
+5899:(a,b,c,rmem(a+2))
+5902:(a,b,c,c=rmem(a+2))
+5906:if c!=rmem(a+2) return NOOP
+5909:!!! weird 
+5913:(rmem(a),b,c,c=rmem(a+2))
+
+
+#5921
+5925:(a,b,a)
+5928:(27381,b,a)
+5931:(27381,5964,a)
+
+#5964
+5966:(a,c,c)
+5969:!!! self modifying? why is this here?
+5973:(rmem(a),c,c)
+
 
 
 # strings
@@ -77,3 +142,4 @@
 26398:begin string
 26354:begin string 26354+43=26397
 26355:the number on the vault door flashes black
+27532:XOR with 14587

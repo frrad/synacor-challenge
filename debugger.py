@@ -4,18 +4,10 @@ import sys
 from interpreter import vm as vm
 
 
-class terminal_in:
+class terminal:
 
     def __init__(self):
         self.__buffer = ""
-
-    def cheat(self, input_str):
-        def dump(args):
-            self.vm.dump_state(args[1])
-
-        commands = {'!dump': dump}
-        args = input_str.split(' ')
-        commands[args[0]](args)
 
     def get_char(self):
         if self.__buffer == "":
@@ -23,29 +15,102 @@ class terminal_in:
             while len(user_input) > 0 and user_input[0] == '!':
                 user_input = raw_input()
                 if len(user_input) > 0 and user_input[0] == '!':
-                    self.cheat(user_input)
+                    self.debugger.process_command(user_input)
 
             self.__buffer = user_input + "\n"
         answer = self.__buffer[0]
         self.__buffer = self.__buffer[1:]
         return answer
 
+    def print_char(self, character):
+        sys.stdout.write(character)
 
-terminal = terminal_in()
+
+class debugger:
+
+    def __init__(self, vm):
+        self.vm = vm
+        self.__function_names = {}
+        with open('notes/functions.txt', 'r') as f:
+            for line in f:
+                if len(line) == 0 or line[0] == '#' or line == '\n':
+                    continue
+                a = line.strip().split(':')
+                self.__function_names[int(a[0])] = a[1]
+
+        self.__debugging = False
+        self.op_names = {0: ['halt', 0],
+                         1: ['set ', 2],
+                         2: ['push', 1],
+                         3: ['pop ', 1],
+                         4: ['eq  ', 3],
+                         5: ['gt  ', 3],
+                         6: ['jmp ', 1],
+                         7: ['jt  ', 2],
+                         8: ['jf  ', 2],
+                         9: ['add ', 3],
+                         10: ['add ', 3],
+                         11: ['mod ', 3],
+                         12: ['and ', 3],
+                         13: ['or  ', 3],
+                         14: ['not ', 2],
+                         15: ['rmem', 2],
+                         16: ['wmem', 2],
+                         17: ['call', 1],
+                         18: ['ret ', 0],
+                         19: ['out ', 1],
+                         20: ['in  ', 1],
+                         21: ['noop', 0]}
+
+    def process_command(self, input_str):
+        def dump(args):
+            self.vm.dump_state(args[1])
+
+        def start(args):
+            self.__debugging = True
+
+        def stop(args):
+            self.__debugging = False
+
+        commands = {'!dump': dump, '!start': start, '!stop': stop}
+        args = input_str.split(' ')
+        commands[args[0]](args)
+
+    def print_current(self):
+        pointer = self.vm.pointer
+
+        current_op = self.vm.memory.read(pointer)
+
+        [op_name, num_args] = self.op_names[current_op]
+
+        args = [self.vm.memory.read(pointer + 1 + i) for i in
+                xrange(num_args)]
+
+        def call(args):
+            callee = self.vm.resolve(args[0])
+            name = self.__function_names.get(callee, '')
+            return 'call %d %s' % (callee, name)
+
+        style_op = {'call': call}
+
+        print str(pointer) + ': ' + style_op[op_name](args)
+
+    def step(self):
+        if self.__debugging and self.vm.memory.read(self.vm.pointer) == 17:
+            self.print_current()
+
+terminal = terminal()
 in_fn = terminal.get_char
+out_fn = terminal.print_char
 
-
-def terminal_out(character):
-    sys.stdout.write(character)
-
-
-emulator = vm(in_fn, terminal_out)
+emulator = vm(in_fn, out_fn)
+debugger = debugger(emulator)
 
 # terminal needs reference for access in cheatmode
-terminal.vm = emulator
+terminal.debugger = debugger
 
 emulator.load_binary("challenge.bin")
 
-
 while True:
     emulator.step()
+    debugger.step()

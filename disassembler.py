@@ -1,11 +1,14 @@
 #!/usr/bin/python
 
+
+import sys
+
 with open('logs/boot.log', 'r') as f:
     contents = f.readlines()
 contents = [int(line.strip().split(':')[1]) for line in contents[7:]]
 
 function_names = {}
-with open('functions.txt', 'r') as f:
+with open('notes/functions.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
             continue
@@ -13,18 +16,18 @@ with open('functions.txt', 'r') as f:
         function_names[int(a[0])] = a[1]
 
 
-decode_lines = set()
-with open('text.txt', 'r') as f:
+decode_lines = {}
+with open('notes/text.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
             continue
         a = [int(j) for j in line.strip().split(':')]
-        for i in xrange(a[0], a[1]):
-            decode_lines.add(i)
+        for i in xrange(a[0], a[1] + 1):
+            decode_lines[i] = int(a[2])
 
 
 notes = {}
-with open('notes.txt', 'r') as f:
+with open('notes/notes.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
             continue
@@ -32,7 +35,7 @@ with open('notes.txt', 'r') as f:
         notes[int(a[0])] = a[1]
 
 var_names = {}
-with open('vars.txt', 'r') as f:
+with open('notes/vars.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
             continue
@@ -63,7 +66,7 @@ def disp_out(arg):
 def disp_call(arg):
     address = arg[0]
     if address in function_names:
-        print function_names[address],
+        print '    ' + function_names[address],
 
 
 def decode_registers(arg, i):
@@ -99,15 +102,27 @@ opcodes = {0: ['halt', 0],
            21: ['noop', 0]}
 
 i = 0
-while i < len(contents):
+while i < len(contents) and i < 30050:
     here = contents[i]
+
+    if i in decode_lines and (here ^ decode_lines[i]) < 256:
+        sys.stdout.write(chr(here ^ decode_lines[i]))
+        i += 1
+        continue
+
+    if i in decode_lines:
+        print 'ERROR:', i
+        sys.exit(i)
+    if i - 1 in decode_lines:
+        print ''
+
     print i, "\t:",
 
     suffix = ''
     if i in notes:
         suffix = '// ' + notes[i]
 
-    if here < 22 and i not in decode_lines:
+    if here < 22:
         op = opcodes[here]
         print op[0],
         args = []
@@ -121,8 +136,6 @@ while i < len(contents):
             op[2](args)
     else:
         print "%-38d" % here,
-        if i in decode_lines and here < 256:
-            print chr(here),
 
     print '    ' + suffix
 
