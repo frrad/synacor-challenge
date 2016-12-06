@@ -102,7 +102,7 @@ class vm:
             f.write('\nmemory\n')
             for address in xrange(2**15):
                 f.write(str(address) + ':')
-                f.write(str(memory.read(address)))
+                f.write(str(self.memory.read(address)))
                 f.write('\n')
 
     def step(self):
@@ -483,37 +483,3 @@ class vm:
             error("operation at %d not a noop" % pointer)
 
         self.pointer += 1
-
-
-#########
-#########
-
-
-class terminal_in:
-
-    def __init__(self):
-        self.__buffer = ""
-
-    def get_char(self):
-        if self.__buffer == "":
-            user_input = raw_input()
-            self.__buffer = user_input + "\n"
-        answer = self.__buffer[0]
-        self.__buffer = self.__buffer[1:]
-        return answer
-
-
-terminal = terminal_in()
-in_fn = terminal.get_char
-
-
-def terminal_out(character):
-    sys.stdout.write(character)
-
-
-emulator = vm(in_fn, terminal_out)
-emulator.load_binary("challenge.bin")
-
-
-while True:
-    emulator.step()
