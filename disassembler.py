@@ -7,24 +7,6 @@ with open('logs/boot.log', 'r') as f:
     contents = f.readlines()
 contents = [int(line.strip().split(':')[1]) for line in contents[7:]]
 
-function_names = {}
-with open('notes/functions.txt', 'r') as f:
-    for line in f:
-        if len(line) == 0 or line[0] == '#' or line == '\n':
-            continue
-        a = line.strip().split(':')
-        function_names[int(a[0])] = a[1]
-
-
-decode_lines = {}
-with open('notes/text.txt', 'r') as f:
-    for line in f:
-        if len(line) == 0 or line[0] == '#' or line == '\n':
-            continue
-        a = [int(j) for j in line.strip().split(':')]
-        for i in xrange(a[0], a[1] + 1):
-            decode_lines[i] = int(a[2])
-
 
 notes = {}
 with open('notes/notes.txt', 'r') as f:
@@ -33,6 +15,35 @@ with open('notes/notes.txt', 'r') as f:
             continue
         a = line.strip().split(':')
         notes[int(a[0])] = a[1]
+
+
+decode_lines = {}
+with open('notes/text.txt', 'r') as f:
+    for line in f:
+        if len(line) == 0 or line[0] == '#' or line == '\n':
+            continue
+        a = [int(j) for j in line.strip().split(':')]
+
+        line_before = a[0] - 1
+        if a[2] != 0:
+            notes[line_before] = notes.get(
+                line_before, "") + "string XOR with %d" % int(a[2])
+        else:
+            notes[line_before] = notes.get(
+                line_before, "") + "start string"
+
+        for i in xrange(a[0], a[1] + 1):
+            decode_lines[i] = int(a[2])
+
+
+function_names = {}
+with open('notes/functions.txt', 'r') as f:
+    for line in f:
+        if len(line) == 0 or line[0] == '#' or line == '\n':
+            continue
+        a = line.strip().split(':')
+        function_names[int(a[0])] = a[1]
+
 
 var_names = {}
 with open('notes/vars.txt', 'r') as f:

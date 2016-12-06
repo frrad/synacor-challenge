@@ -118,28 +118,3 @@
 5966:(a,c,c)
 5969:!!! self modifying? why is this here?
 5973:(rmem(a),c,c)
-
-
-
-# strings
-6080:begin string 6080+35=6115
-6081:self-test complete, all tests pass
-6129:begin string 6129+12=6141
-26024:begin string 26024+63=26087
-26025:As you enter the room, the symbol on the floor briefly flashes
-26088:begin string 26088+33=26121
-26089:. The orb begins subtly glowing 
-26122:begin string 26122+47=26169
-26123:As you enter the room, the orb briefly flashes 
-26170:begin string 26170+64=26234
-26171:. The number on the floor vibrates strangely beneath your feet 
-26235:begin string 26235+31=26266
-26236:  The orb seems to get heavier
-26267:begin string
-26299:begin string
-26321:begin string
-26354:begin string
-26398:begin string
-26354:begin string 26354+43=26397
-26355:the number on the vault door flashes black
-27532:XOR with 14587
