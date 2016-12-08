@@ -129,6 +129,36 @@
 2478:"Ruins"
 2483:"Ruins"
 
+2563:"Vault Lock"
+2568:"Vault Lock"
+2573:"Vault Lock"
+2578:"Vault Door"
+2583:"Vault Lock"
+2588:"Vault Lock"
+2593:"Vault Lock"
+2598:"Vault Lock"
+2603:"Vault Lock"
+2608:"Vault Lock"
+2613:"Vault Lock"
+2618:"Vault Lock"
+2623:"Vault Antechamber"
+2498:"Beach"
+2628:"Vault Lock"
+2503:"Beach"
+2633:"Vault Lock"
+2508:"Beach"
+2638:"Vault Lock"
+2513:"Tropical Island"
+2643:"Vault"
+2518:"Tropical Island"
+2523:"Tropical Island"
+2528:"Tropical Island"
+2533:"Tropical Island"
+2538:"Tropical Cave"
+2543:"Tropical Cave"
+2548:"Tropical Cave"
+2553:"Tropical Cave Alcove"
+2558:"Tropical Cave"
 
 
 2732:pointer to current location
@@ -189,6 +219,10 @@
 4256:. The orb begins subtly glowing 
 
 4560:the number on the vault door flashes black
+
+4574:the number on the vault door flashes white
+
+4638:leave
 
 #use_tablet
 4740:(28369,1531,2148)

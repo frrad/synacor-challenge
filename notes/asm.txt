@@ -1164,152 +1164,152 @@
 2495 	: 27135                                      
 2496 	: 27137                                      
 2497 	: halt                                            
-2498 	: 11726                                      
+2498 	: 11726                                      // "Beach"
 2499 	: 11732                                      
 2500 	: 27139                                      
 2501 	: 27143                                      
 2502 	: halt                                            
-2503 	: 11919                                      
+2503 	: 11919                                      // "Beach"
 2504 	: 11925                                      
 2505 	: 27147                                      
 2506 	: 27150                                      
 2507 	: halt                                            
-2508 	: 12199                                      
+2508 	: 12199                                      // "Beach"
 2509 	: 12205                                      
 2510 	: 27153                                      
 2511 	: 27156                                      
 2512 	: halt                                            
-2513 	: 12459                                      
+2513 	: 12459                                      // "Tropical Island"
 2514 	: 12475                                      
 2515 	: 27159                                      
 2516 	: 27163                                      
 2517 	: halt                                            
-2518 	: 12691                                      
+2518 	: 12691                                      // "Tropical Island"
 2519 	: 12707                                      
 2520 	: 27167                                      
 2521 	: 27171                                      
 2522 	: halt                                            
-2523 	: 12847                                      
+2523 	: 12847                                      // "Tropical Island"
 2524 	: 12863                                      
 2525 	: 27175                                      
 2526 	: 27178                                      
 2527 	: halt                                            
-2528 	: 13106                                      
+2528 	: 13106                                      // "Tropical Island"
 2529 	: 13122                                      
 2530 	: 27181                                      
 2531 	: 27184                                      
 2532 	: halt                                            
-2533 	: 13420                                      
+2533 	: 13420                                      // "Tropical Island"
 2534 	: 13436                                      
 2535 	: 27187                                      
 2536 	: 27190                                      
 2537 	: halt                                            
-2538 	: 13694                                      
+2538 	: 13694                                      // "Tropical Cave"
 2539 	: 13708                                      
 2540 	: 27193                                      
 2541 	: 27196                                      
 2542 	: halt                                            
-2543 	: 13941                                      
+2543 	: 13941                                      // "Tropical Cave"
 2544 	: 13955                                      
 2545 	: 27199                                      
 2546 	: 27202                                      
 2547 	: halt                                            
-2548 	: 14090                                      
+2548 	: 14090                                      // "Tropical Cave"
 2549 	: 14104                                      
 2550 	: 27205                                      
 2551 	: 27209                                      
 2552 	: halt                                            
-2553 	: 14444                                      
+2553 	: 14444                                      // "Tropical Cave Alcove"
 2554 	: 14465                                      
 2555 	: 27213                                      
 2556 	: 27215                                      
 2557 	: halt                                            
-2558 	: 14634                                      
+2558 	: 14634                                      // "Tropical Cave"
 2559 	: 14648                                      
 2560 	: 27217                                      
 2561 	: 27220                                      
 2562 	: 4611                                       
-2563 	: 14765                                      
+2563 	: 14765                                      // "Vault Lock"
 2564 	: 14776                                      
 2565 	: 27223                                      
 2566 	: 27226                                      
 2567 	: 3958                                       
-2568 	: 14916                                      
+2568 	: 14916                                      // "Vault Lock"
 2569 	: 14927                                      
 2570 	: 27229                                      
 2571 	: 27233                                      
 2572 	: 3975                                       
-2573 	: 15074                                      
+2573 	: 15074                                      // "Vault Lock"
 2574 	: 15085                                      
 2575 	: 27237                                      
 2576 	: 27241                                      
 2577 	: 3992                                       
-2578 	: 15230                                      
+2578 	: 15230                                      // "Vault Door"
 2579 	: 15241                                      
 2580 	: 27245                                      
 2581 	: 27249                                      
 2582 	: 4009                                       
-2583 	: 15505                                      
+2583 	: 15505                                      // "Vault Lock"
 2584 	: 15516                                      
 2585 	: 27253                                      
 2586 	: 27257                                      
 2587 	: 4028                                       
-2588 	: 15664                                      
+2588 	: 15664                                      // "Vault Lock"
 2589 	: 15675                                      
 2590 	: 27261                                      
 2591 	: 27266                                      
 2592 	: 4045                                       
-2593 	: 15826                                      
+2593 	: 15826                                      // "Vault Lock"
 2594 	: 15837                                      
 2595 	: 27271                                      
 2596 	: 27276                                      
 2597 	: 4062                                       
-2598 	: 15991                                      
+2598 	: 15991                                      // "Vault Lock"
 2599 	: 16002                                      
 2600 	: 27281                                      
 2601 	: 27285                                      
 2602 	: 4079                                       
-2603 	: 16148                                      
+2603 	: 16148                                      // "Vault Lock"
 2604 	: 16159                                      
 2605 	: 27289                                      
 2606 	: 27293                                      
 2607 	: 4096                                       
-2608 	: 16305                                      
+2608 	: 16305                                      // "Vault Lock"
 2609 	: 16316                                      
 2610 	: 27297                                      
 2611 	: 27302                                      
 2612 	: 4113                                       
-2613 	: 16469                                      
+2613 	: 16469                                      // "Vault Lock"
 2614 	: 16480                                      
 2615 	: 27307                                      
 2616 	: 27312                                      
 2617 	: 4130                                       
-2618 	: 16631                                      
+2618 	: 16631                                      // "Vault Lock"
 2619 	: 16642                                      
 2620 	: 27317                                      
 2621 	: 27321                                      
 2622 	: 4147                                       
-2623 	: 16791                                      
+2623 	: 16791                                      // "Vault Antechamber"
 2624 	: 16809                                      
 2625 	: 27325                                      
 2626 	: 27329                                      
 2627 	: 4164                                       
-2628 	: 16971                                      
+2628 	: 16971                                      // "Vault Lock"
 2629 	: 16982                                      
 2630 	: 27333                                      
 2631 	: 27337                                      
 2632 	: 4167                                       
-2633 	: 17127                                      
+2633 	: 17127                                      // "Vault Lock"
 2634 	: 17138                                      
 2635 	: 27341                                      
 2636 	: 27345                                      
 2637 	: 4184                                       
-2638 	: 17285                                      
+2638 	: 17285                                      // "Vault Lock"
 2639 	: 17296                                      
 2640 	: 27349                                      
 2641 	: 27352                                      
 2642 	: 4201                                       
-2643 	: 17436                                      
+2643 	: 17436                                      // "Vault"
 2644 	: 17442                                      
 2645 	: 27355                                      
 2646 	: 27357                                      
@@ -2093,7 +2093,7 @@
 4385 	: out                                      10 \n     
 4387 	: out                                      10 \n     
 4389 	: jmp                                    4398     
-4391 	: call                                   4660     unknown 9     
+4391 	: call                                   4660     set_codes(x)     
 4393 	: set                           (reg:0) 26299     
 4396 	: call                                   1518     print_string(start_ptr)     
 4398 	: pop                                 (reg:2)     
@@ -2161,9 +2161,9 @@
 4563 	: call                                   1518     print_string(start_ptr)     
 4565 	: set                           (reg:0) 26398     
 4568 	: call                                   1518     print_string(start_ptr)     
-4570 	: call                                   4660     unknown 9     
+4570 	: call                                   4660     set_codes(x)     
 4572 	: jmp                                    4608     
-4574 	: set                           (reg:0) 26440     
+4574 	: set                           (reg:0) 26440     // the number on the vault door flashes white
 4577 	: call                                   1518     print_string(start_ptr)     
 4579 	: rmem                           (reg:0) 3954     
 4582 	: add                       (reg:0) (reg:0) 1     
@@ -2186,17 +2186,17 @@
 4628 	: rmem                           (reg:0) 2732     
 4631 	: eq                     (reg:0) (reg:0) 2623     
 4635 	: jt                             (reg:0) 4645     
-4638 	: set                           (reg:0) 26725     
+4638 	: set                           (reg:0) 26725     // leave
 4641 	: call                                   1518     print_string(start_ptr)     
 4643 	: jmp                                    4650     
 4645 	: set                           (reg:0) 26731     
 4648 	: call                                   1518     print_string(start_ptr)     
 4650 	: set                           (reg:0) 26737     
 4653 	: call                                   1518     print_string(start_ptr)     
-4655 	: call                                   4660     unknown 9     
+4655 	: call                                   4660     set_codes(x)     
 4657 	: pop                                 (reg:0)     
 4659 	: ret                                             
-4660 	: push                                (reg:0)     // function: unknown 9 
+4660 	: push                                (reg:0)     // function: set_codes(x) 
 4662 	: wmem                                3952 22     
 4665 	: wmem                                 3953 0     
 4668 	: wmem                                 3954 0     
@@ -2935,9 +2935,13 @@ Day 144: We are abandoning the mission.  None of us can work out the solution to
 
  As you approach the vault door, +the number on the vault door flashes black.)  The orb evaporates out of your hands.
 
-+the number on the vault door flashes white!c  The hourglass has already run out.  It flashes black and flips over, restarting the flow of sand.„  The hourglass is still running!  It flashes white!  You hear a click from the vault door.  The orb evaporates out of hour hands.
 
-As you leaveenterV the room, the orb evaporates out of your hands!  It rematerializes on its pedestal.
+26440 	: 43                                         // start string
+the number on the vault door flashes white!c  The hourglass has already run out.  It flashes black and flips over, restarting the flow of sand.„  The hourglass is still running!  It flashes white!  You hear a click from the vault door.  The orb evaporates out of hour hands.
+
+As you 
+26725 	: 5                                          // start string
+leaveenterV the room, the orb evaporates out of your hands!  It rematerializes on its pedestal.
 
 The vault door is sealed.
 0

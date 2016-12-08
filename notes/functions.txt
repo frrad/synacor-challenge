@@ -29,7 +29,7 @@
 4515:unknown 6
 4533:unknown 7
 4611:unknown 8
-4660:unknown 9
+4660:set_codes(x)
 4720:use_tablet
 4799:use_can
 4885:use_lantern

@@ -51,13 +51,13 @@ class room:
         return zip(self.exit_vec, [room.name for room in self.dest_vec])
 
 collection = dict()
-foothills = room(2317, collection)
-
-for addr in collection:
-    room = collection[addr]
-    print room.name, room.children_names()
-
+foothills = room(2553, collection)
 
 # for addr in collection:
 #     room = collection[addr]
-#     print "%d:\"%s\"" % (addr, room.name)
+#     print room.name, room.children_names()
+
+
+for addr in collection:
+    room = collection[addr]
+    print "%d:\"%s\"" % (addr, room.name)
