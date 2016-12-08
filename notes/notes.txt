@@ -184,6 +184,8 @@
 2724:"strange book"
 2728:"journal"
 
+2950:do what user input
+
 #2964
 3032:(<2732>
 3035:<2732> top of stack
@@ -211,6 +213,8 @@
 3150:r0=<2732>+2
 3157:r0=<<<2732>+2>>
 3160:r0 = num_exits
+
+3597:use item
 
 3825:Chiseled on the wall of.....
 3852:////////

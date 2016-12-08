@@ -32,3 +32,4 @@ else:
         answer = int(raw_input("answer please").strip())
     else:
         answer = list(keys)[0]
+    print "%d:%d:%d" % (start + 1, start + size, answer)
