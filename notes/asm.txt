@@ -983,9 +983,9 @@
 2312 	: pop                                 (reg:1)     // restore registers
 2314 	: ret                                             
 2315 	: jmp                                    2734     
-2317 	: 6142                                       
-2318 	: 6152                                       
-2319 	: 26900                                      
+2317 	: 6142                                       // "Foothills"
+2318 	: 6152                                       // description
+2319 	: 26900                                      // exit name vector
 2320 	: 26903                                      
 2321 	: halt                                            
 2322 	: 6350                                       
@@ -993,7 +993,7 @@
 2324 	: 26906                                      
 2325 	: 26908                                      
 2326 	: halt                                            
-2327 	: 6441                                       
+2327 	: 6441                                       // "Dark cave"
 2328 	: 6451                                       
 2329 	: 26910                                      
 2330 	: 26913                                      
@@ -1334,71 +1334,71 @@
 2665 	: 27379                                      
 2666 	: 27380                                      
 2667 	: 3701                                       
-2668 	: 18062                                      
-2669 	: 18069                                      
-2670 	: 2317                                       
+2668 	: 18062                                      // "tablet"
+2669 	: 18069                                      // tablet description
+2670 	: 2317                                       // tablet location?
 2671 	: 4720                                       
-2672 	: 18206                                      
-2673 	: 18220                                      
+2672 	: 18206                                      // "empty lantern"
+2673 	: 18220                                      // empty lantern description
 2674 	: 2357                                       
 2675 	: halt                                            
-2676 	: 18344                                      
+2676 	: 18344                                      // "lantern"
 2677 	: 18352                                      
 2678 	: 32767                                      
 2679 	: 4885                                       
-2680 	: 18468                                      
+2680 	: 18468                                      // "lit lantern"
 2681 	: 18480                                      
 2682 	: 32767                                      
 2683 	: 4931                                       
-2684 	: 18568                                      
+2684 	: 18568                                      // "can"
 2685 	: 18572                                      
 2686 	: 2417                                       
 2687 	: 4799                                       
-2688 	: 18618                                      
+2688 	: 18618                                      // "red coin"
 2689 	: 18627                                      
 2690 	: 2452                                       
 2691 	: 5360                                       
-2692 	: 18691                                      
+2692 	: 18691                                      // "corroded coin"
 2693 	: 18705                                      
 2694 	: 2473                                       
 2695 	: 5377                                       
-2696 	: 18769                                      
-2697 	: 18780                                      
+2696 	: 18769                                      // "shiny coin"
+2697 	: 18780                                      // shiny coin description
 2698 	: 2483                                       
 2699 	: 5394                                       
-2700 	: 18852                                      
+2700 	: 18852                                      // "concave coin"
 2701 	: 18865                                      
 2702 	: 2468                                       
 2703 	: 5411                                       
-2704 	: 18953                                      
+2704 	: 18953                                      // "blue coin"
 2705 	: 18963                                      
 2706 	: 2478                                       
 2707 	: 5428                                       
-2708 	: 19029                                      
+2708 	: 19029                                      // "teleporter"
 2709 	: 19040                                      
 2710 	: 2463                                       
 2711 	: 5445                                       
-2712 	: 19113                                      
+2712 	: 19113                                      // "business card"
 2713 	: 19127                                      
 2714 	: 2488                                       
 2715 	: halt                                            
-2716 	: 19192                                      
+2716 	: 19192                                      // "orb"
 2717 	: 19196                                      
 2718 	: 2623                                       
 2719 	: halt                                            
-2720 	: 19258                                      
+2720 	: 19258                                      // "mirror"
 2721 	: 19265                                      
 2722 	: 2643                                       
 2723 	: 5721                                       
-2724 	: 19384                                      
+2724 	: 19384                                      // "strange book"
 2725 	: 19397                                      
 2726 	: 2488                                       
 2727 	: halt                                            
-2728 	: 22093                                      
+2728 	: 22093                                      // "journal"
 2729 	: 22101                                      
 2730 	: 2553                                       
 2731 	: halt                                            
-2732 	: 2317                                       
+2732 	: 2317                                       // pointer to current location
 2733 	: 2317                                       
 2734 	: push                                (reg:0)     
 2736 	: push                                (reg:1)     
@@ -1489,7 +1489,7 @@
 2976 	: call                                   5921     unknown(a,b,c)     
 2978 	: jf                             (reg:0) 3006     
 2981 	: push                                (reg:0)     
-2983 	: call                                   5990     unknown     
+2983 	: call                                   5990     compare_xplus2_2732(<a>)     
 2985 	: set                         (reg:1) (reg:0)     
 2988 	: pop                                 (reg:0)     
 2990 	: jf                             (reg:1) 3006     
@@ -1509,56 +1509,56 @@
 3026 	: pop                                 (reg:1)     
 3028 	: pop                                 (reg:0)     
 3030 	: jmp                                    3238     
-3032 	: rmem                           (reg:0) 2732     
-3035 	: push                                (reg:0)     
+3032 	: rmem                           (reg:0) 2732     // (<2732>
+3035 	: push                                (reg:0)     // <2732> top of stack
 3037 	: out                                      61 =     
 3039 	: out                                      61 =     
 3041 	: out                                      32       
-3043 	: add                       (reg:0) (reg:0) 0     
-3047 	: rmem                        (reg:0) (reg:0)     
+3043 	: add                       (reg:0) (reg:0) 0     // suspicious?
+3047 	: rmem                        (reg:0) (reg:0)     // <<2732>> = name of location string addr
 3050 	: call                                   1518     print_string(start_ptr)     
 3052 	: out                                      32       
 3054 	: out                                      61 =     
 3056 	: out                                      61 =     
 3058 	: out                                      10 \n     
-3060 	: pop                                 (reg:0)     
-3062 	: push                                (reg:0)     
-3064 	: add                       (reg:0) (reg:0) 1     
-3068 	: rmem                        (reg:0) (reg:0)     
-3071 	: rmem                        (reg:1) (reg:0)     
-3074 	: eq                        (reg:1) (reg:1) 2     
-3078 	: jf                             (reg:1) 3104     
-3081 	: push                                (reg:0)     
+3060 	: pop                                 (reg:0)     // r0 = <2732>
+3062 	: push                                (reg:0)     // <2732> top of stack
+3064 	: add                       (reg:0) (reg:0) 1     // (<2732>+1
+3068 	: rmem                        (reg:0) (reg:0)     // (<<2732>+1>
+3071 	: rmem                        (reg:1) (reg:0)     // (<<2732>+1>, <<<2732>+1>>
+3074 	: eq                        (reg:1) (reg:1) 2     // (<<2732>+1>,
+3078 	: jf                             (reg:1) 3104     // IF <<<2732>+1>> != 2
+3081 	: push                                (reg:0)     // {
 3083 	: set                            (reg:0) 2680     
-3086 	: call                                   5990     unknown     
+3086 	: call                                   5990     compare_xplus2_2732(<a>)     
 3088 	: set                         (reg:1) (reg:0)     
-3091 	: pop                                 (reg:0)     
+3091 	: pop                                 (reg:0)     // }
 3093 	: add                       (reg:0) (reg:0) 1     
 3097 	: add                 (reg:0) (reg:0) (reg:1)     
 3101 	: rmem                        (reg:0) (reg:0)     
-3104 	: call                                   1518     print_string(start_ptr)     
+3104 	: call                                   1518     print_string(start_ptr)     // ENDIF
 3106 	: out                                      10 \n     
-3108 	: pop                                 (reg:0)     
-3110 	: push                                (reg:0)     
-3112 	: call                                   5823     unknown     
+3108 	: pop                                 (reg:0)     // r0 = <2732>
+3110 	: push                                (reg:0)     // <2732> top of stack
+3112 	: call                                   5823     count_num_items_present     
 3114 	: jf                             (reg:0) 3146     // r0=num_items
 3117 	: push                                (reg:0)     
 3119 	: push                                (reg:1)     
-3121 	: push                                (reg:2)     
+3121 	: push                                (reg:2)     // {
 3123 	: set                           (reg:0) 27455     // "Things of interest here" address
-3126 	: set                            (reg:1) 1531     // address of xor_print(x, ,y)
-3129 	: add                      (reg:2) 4301 28446     // "Things of interest here" key
+3126 	: set                            (reg:1) 1531     // address of print_xor(x, ,y)
+3129 	: add                      (reg:2) 4301 28446     // key
 3133 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
-3135 	: pop                                 (reg:2)     
+3135 	: pop                                 (reg:2)     // }
 3137 	: pop                                 (reg:1)     
 3139 	: pop                                 (reg:0)     
 3141 	: rmem                           (reg:2) 2732     
-3144 	: call                                   5876     print_str_loc_from_mem_after_check(r2)     
+3144 	: call                                   5876     print_item_list?(r2=<2732>)     
 3146 	: pop                                 (reg:0)     
-3148 	: push                                (reg:0)     // r0 from stack
-3150 	: add                       (reg:0) (reg:0) 2     // r0=s+2
+3148 	: push                                (reg:0)     // r0 = <2732>
+3150 	: add                       (reg:0) (reg:0) 2     // r0=<2732>+2
 3154 	: rmem                        (reg:0) (reg:0)     
-3157 	: rmem                        (reg:0) (reg:0)     // r0=rmem(rmem(s+2))
+3157 	: rmem                        (reg:0) (reg:0)     // r0=<<<2732>+2>>
 3160 	: eq                        (reg:2) (reg:0) 1     // r0 = num_exits
 3164 	: out                                      10 \n     
 3166 	: out                                      84 T     
@@ -1656,7 +1656,7 @@
 3386 	: pop                                 (reg:1)     
 3388 	: pop                                 (reg:0)     
 3390 	: set                               (reg:2) 0     
-3393 	: call                                   5876     print_str_loc_from_mem_after_check(r2)     
+3393 	: call                                   5876     print_item_list?(r2=<2732>)     
 3395 	: pop                                 (reg:2)     
 3397 	: pop                                 (reg:0)     
 3399 	: ret                                             
@@ -1769,7 +1769,7 @@
 3658 	: push                                (reg:1)     
 3660 	: push                                (reg:2)     
 3662 	: set                            (reg:0) 2680     
-3665 	: call                                   5990     unknown     
+3665 	: call                                   5990     compare_xplus2_2732(<a>)     
 3667 	: jt                             (reg:0) 3694     
 3670 	: add                          (reg:0) 2676 2     
 3674 	: wmem                          (reg:0) 32767     
@@ -2321,7 +2321,7 @@
 4971 	: wmem                                 2733 0     
 4974 	: pop                                 (reg:0)     
 4976 	: ret                                             
-4977 	: push                                (reg:2)     // function: unknown 
+4977 	: push                                (reg:2)     // function: unknown 11 
 4979 	: push                                (reg:3)     
 4981 	: rmem                           (reg:2) 2732     
 4984 	: eq                     (reg:2) (reg:2) 2457     
@@ -2458,7 +2458,7 @@
 5362 	: push                                (reg:1)     
 5364 	: set                            (reg:0) 2688     
 5367 	: set                               (reg:1) 2     
-5370 	: call                                   4977     unknown     
+5370 	: call                                   4977     unknown 11     
 5372 	: pop                                 (reg:1)     
 5374 	: pop                                 (reg:0)     
 5376 	: ret                                             
@@ -2466,7 +2466,7 @@
 5379 	: push                                (reg:1)     
 5381 	: set                            (reg:0) 2692     
 5384 	: set                               (reg:1) 3     
-5387 	: call                                   4977     unknown     
+5387 	: call                                   4977     unknown 11     
 5389 	: pop                                 (reg:1)     
 5391 	: pop                                 (reg:0)     
 5393 	: ret                                             
@@ -2474,7 +2474,7 @@
 5396 	: push                                (reg:1)     
 5398 	: set                            (reg:0) 2696     
 5401 	: set                               (reg:1) 5     
-5404 	: call                                   4977     unknown     
+5404 	: call                                   4977     unknown 11     
 5406 	: pop                                 (reg:1)     
 5408 	: pop                                 (reg:0)     
 5410 	: ret                                             
@@ -2482,7 +2482,7 @@
 5413 	: push                                (reg:1)     
 5415 	: set                            (reg:0) 2700     
 5418 	: set                               (reg:1) 7     
-5421 	: call                                   4977     unknown     
+5421 	: call                                   4977     unknown 11     
 5423 	: pop                                 (reg:1)     
 5425 	: pop                                 (reg:0)     
 5427 	: ret                                             
@@ -2490,7 +2490,7 @@
 5430 	: push                                (reg:1)     
 5432 	: set                            (reg:0) 2704     
 5435 	: set                               (reg:1) 9     
-5438 	: call                                   4977     unknown     
+5438 	: call                                   4977     unknown 11     
 5440 	: pop                                 (reg:1)     
 5442 	: pop                                 (reg:0)     
 5444 	: ret                                             
@@ -2650,28 +2650,28 @@
 5818 	: call                                   1518     print_string(start_ptr)     
 5820 	: out                                      10 \n     
 5822 	: ret                                             
-5823 	: push                                (reg:1)     // function: unknown 
-5825 	: push                                (reg:2)     
-5827 	: set                           (reg:0) 27381     
+5823 	: push                                (reg:1)     // function: count_num_items_present 
+5825 	: push                                (reg:2)     // count and return how many of vector
+5827 	: set                           (reg:0) 27381     // starting 27381 have <2732> = <x+2>
 5830 	: set                            (reg:1) 5846     
-5833 	: set                               (reg:2) 0     
+5833 	: set                               (reg:2) 0     // (27381,5846,0)
 5836 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
 5838 	: set                         (reg:0) (reg:2)     
 5841 	: pop                                 (reg:2)     
 5843 	: pop                                 (reg:1)     
 5845 	: ret                                             
-5846 	: push                                (reg:3)     // function: location_smth(a,b,c) 
+5846 	: push                                (reg:3)     // function: increment_c_if_<2732>=<a+2>(a,b,c) 
 5848 	: push                                (reg:4)     
-5850 	: rmem                           (reg:3) 2732     // (a,b,c,rmem(2732))
-5853 	: add                       (reg:4) (reg:0) 2     // (a,b,c,rmem(2732),c+2)
-5857 	: rmem                        (reg:4) (reg:4)     // (a,b,c,rmem(2732),rmem(c+2))
-5860 	: eq                  (reg:3) (reg:3) (reg:4)     // (a,b,c,rmem(2732)=rmem(c+2),rmem(c+2))
-5864 	: jf                             (reg:3) 5871     // if rmem(2732)!=rmem(c+2) return noop
-5867 	: add                       (reg:2) (reg:2) 1     // (a,b,c+1,rmem(2732)=rmem(c+2),rmem(c+2))
-5871 	: pop                                 (reg:4)     
+5850 	: rmem                           (reg:3) 2732     // (a,b,c,<2732>)
+5853 	: add                       (reg:4) (reg:0) 2     // (a,b,c,<2732>,a+2)
+5857 	: rmem                        (reg:4) (reg:4)     // (a,b,c,<2732>,<a+2>)
+5860 	: eq                  (reg:3) (reg:3) (reg:4)     // (a,b,c,<2732>=<a+2>,<a+2>)
+5864 	: jf                             (reg:3) 5871     // if <2732>!=<a+2> return noop
+5867 	: add                       (reg:2) (reg:2) 1     // (a,b,c+1,<2732>=<a+2>,<a+2>)
+5871 	: pop                                 (reg:4)     // return (a,b,c+1)
 5873 	: pop                                 (reg:3)     
 5875 	: ret                                             
-5876 	: push                                (reg:0)     // function: print_str_loc_from_mem_after_check(r2) 
+5876 	: push                                (reg:0)     // function: print_item_list?(r2=<2732>) 
 5878 	: push                                (reg:1)     
 5880 	: set                           (reg:0) 27381     
 5883 	: set                            (reg:1) 5893     // print_string(<27381>) if r2 = <27383>
@@ -2715,17 +2715,17 @@
 5983 	: set                         (reg:2) (reg:1)     
 5986 	: set                           (reg:1) 32767     
 5989 	: ret                                             
-5990 	: push                                (reg:1)     // function: unknown 
+5990 	: push                                (reg:1)     // function: compare_xplus2_2732(<a>) 
 5992 	: push                                (reg:2)     
-5994 	: add                       (reg:0) (reg:0) 2     
-5998 	: rmem                        (reg:0) (reg:0)     
-6001 	: jf                             (reg:0) 6019     
-6004 	: rmem                           (reg:1) 2732     
-6007 	: eq                  (reg:1) (reg:0) (reg:1)     
-6011 	: jt                             (reg:1) 6019     
-6014 	: set                               (reg:0) 0     
+5994 	: add                       (reg:0) (reg:0) 2     // (a+2,b)
+5998 	: rmem                        (reg:0) (reg:0)     // (<a+2>,b)
+6001 	: jf                             (reg:0) 6019     // if <a+2> = 0 return 1
+6004 	: rmem                           (reg:1) 2732     // (<a+2>, <2732>)
+6007 	: eq                  (reg:1) (reg:0) (reg:1)     // (<a+2>,<a+2>=<2732>)
+6011 	: jt                             (reg:1) 6019     // if <a+2>=<2732> return 1
+6014 	: set                               (reg:0) 0     // return 0
 6017 	: jmp                                    6022     
-6019 	: set                               (reg:0) 1     
+6019 	: set                               (reg:0) 1     // return 1
 6022 	: pop                                 (reg:2)     
 6024 	: pop                                 (reg:1)     
 6026 	: ret                                             
@@ -2746,7 +2746,17 @@
 6065 	: call                                   6027     unknown     
 6067 	: ret                                             // start string
 Test string#self-test complete, all tests pass
-complete               	Foothills∑You find yourself standing at the base of an enormous mountain.  At its base to the north, there is a massive doorway.  A sign nearby reads "Keep out!  Definitely no treasure within!"doorwaysouth	FoothillsJAs you begin to leave, you feel the urge for adventure pulling you back...north	Dark caveÖThis seems to be the mouth of a deep cave.  As you peer north into the darkness, you think you hear the echoes of bats deeper within.northsouth	Dark cave[The cave is somewhat narrow here, and the light from the doorway to the south is quite dim.northsouth	Dark caveªThe cave acoustics dramatically change as you find yourself at a legde above a large chasm.  There is barely enough light here to notice a rope bridge leading out into the dark emptiness.bridgesouthRope bridgeyThis rope bridge creaks as you walk along it.  You aren't sure how old it is, or whether it can even support your weight.continuebackFalling through the air!©As you continue along the bridge, it snaps!  You try to grab the bridge, but it evades your grasp in the darkness.  You are plummeting quickly downward into the chasm...downMoss cavern—You are standing in a large cavern full of bioluminescent moss.  It must have broken your fall!  The cavern extends to the east and west; at the west end, you think you see a passage leading out of the cavern.westeastMoss cavern`You are standing in a large cavern full of bioluminescent moss.  The cavern extends to the west.westMoss cavernùYou are standing in a large cavern full of bioluminescent moss.  The cavern extends to the east.  There is a crevise in the rocks which opens into a passage.eastpassagePassage∞You are in a crevise on the west wall of the moss cavern.  A dark passage leads further west.  There is a ladder here which leads down into a smaller, moss-filled cavern below.cavernladderdarknessPassage9It is pitch black.  You are likely to be eaten by a grue.KYou feel that your light source is more than sufficient to keep grues away.continuebackTwisty passages{You are in a maze of twisty little passages, all dimly lit by more bioluminescent moss.  There is a ladder here leading up.laddernorthsoutheastwestTwisty passages7You are in a twisty maze of little passages, all alike.northsouthwestTwisty passages7You are in a maze of little twisty passages, all alike.northsoutheastTwisty passages|You are in a maze of alike little passages, all twisty.
+complete               
+6142 	: 9                                          // start string
+Foothills
+6152 	: 183                                        // start string
+You find yourself standing at the base of an enormous mountain.  At its base to the north, there is a massive doorway.  A sign nearby reads "Keep out!  Definitely no treasure within!"
+6336 	: 7                                          // start string
+doorway
+6344 	: 5                                          // start string
+south	FoothillsJAs you begin to leave, you feel the urge for adventure pulling you back...north
+6441 	: 9                                          // start string
+Dark caveÖThis seems to be the mouth of a deep cave.  As you peer north into the darkness, you think you hear the echoes of bats deeper within.northsouth	Dark cave[The cave is somewhat narrow here, and the light from the doorway to the south is quite dim.northsouth	Dark caveªThe cave acoustics dramatically change as you find yourself at a legde above a large chasm.  There is barely enough light here to notice a rope bridge leading out into the dark emptiness.bridgesouthRope bridgeyThis rope bridge creaks as you walk along it.  You aren't sure how old it is, or whether it can even support your weight.continuebackFalling through the air!©As you continue along the bridge, it snaps!  You try to grab the bridge, but it evades your grasp in the darkness.  You are plummeting quickly downward into the chasm...downMoss cavern—You are standing in a large cavern full of bioluminescent moss.  It must have broken your fall!  The cavern extends to the east and west; at the west end, you think you see a passage leading out of the cavern.westeastMoss cavern`You are standing in a large cavern full of bioluminescent moss.  The cavern extends to the west.westMoss cavernùYou are standing in a large cavern full of bioluminescent moss.  The cavern extends to the east.  There is a crevise in the rocks which opens into a passage.eastpassagePassage∞You are in a crevise on the west wall of the moss cavern.  A dark passage leads further west.  There is a ladder here which leads down into a smaller, moss-filled cavern below.cavernladderdarknessPassage9It is pitch black.  You are likely to be eaten by a grue.KYou feel that your light source is more than sufficient to keep grues away.continuebackTwisty passages{You are in a maze of twisty little passages, all dimly lit by more bioluminescent moss.  There is a ladder here leading up.laddernorthsoutheastwestTwisty passages7You are in a twisty maze of little passages, all alike.northsouthwestTwisty passages7You are in a maze of little twisty passages, all alike.northsoutheastTwisty passages|You are in a maze of alike little passages, all twisty.
 
 The passage to the east looks very dark; you think you hear a Grue.northsouthwesteastTwisty passages7You are in a little maze of twisty passages, all alike.northsoutheastTwisty passagesÉYou are in a twisty alike of little passages, all maze.
 
@@ -2805,9 +2815,43 @@ Vault LockÇYou are in a grid of rooms that control the door to the vault.
 The floor of this room is a large mosaic depicting the number '9'.northeastwest
 Vault LockÄYou are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '*' symbol.northwestVault‘This vault contains incredible riches!  Piles of gold and platinum coins surround you, and the walls are adorned with topazes, rubies, sapphires, emeralds, opals, dilithium crystals, elerium-115, and unobtainium.leaveFumbling around in the darknesscWithout a source of light, you have become hopelessly lost and are fumbling around in the darkness.forwardbackFumbling around in the darkness^You can't seem to find your way.  However, you do think you hear low growling in the distance.runinvestigatePanicked and lostIThe growling is getting louder.  Did I mention there are Grues down here?runwaithideeaten tabletàThe tablet seems appropriate for use as a writing surface but is unfortunately blank.  Perhaps you should USE it as a writing surface...empty lantern{The lantern seems to have quite a bit of wear but appears otherwise functional.  It is, however, sad that it is out of oil.lanternsThe lantern seems to have quite a bit of wear but appears otherwise functional.  It is off but happily full of oil.lit lanternWThe lantern seems to have quite a bit of wear.  It is lit and producing a bright light.can-This can is full of high-quality lantern oil.red coin?This coin is made of a red metal.  It has two dots on one side.corroded coin?This coin is somewhat corroded.  It has a triangle on one side.
-shiny coinGThis coin is somehow still quite shiny.  It has a pentagon on one side.concave coinWThis coin is slightly rounded, almost like a tiny bowl.  It has seven dots on one side.	blue coinAThis coin is made of a blue metal.  It has nine dots on one side.
-teleporterHThis small device has a button on it and reads "teleporter" on the side.business card@This business card has "synacor.com" printed in red on one side.orb=This is a clear glass sphere about the size of a tennis ball.mirrorvThis is a rather mundane hand-held mirror from the otherwise magnificent vault room.  What USE could it possibly have?strange book
+The floor of this room is a large mosaic depicting a '*' symbol.northwestVault‘This vault contains incredible riches!  Piles of gold and platinum coins surround you, and the walls are adorned with topazes, rubies, sapphires, emeralds, opals, dilithium crystals, elerium-115, and unobtainium.leaveFumbling around in the darknesscWithout a source of light, you have become hopelessly lost and are fumbling around in the darkness.forwardbackFumbling around in the darkness^You can't seem to find your way.  However, you do think you hear low growling in the distance.runinvestigatePanicked and lostIThe growling is getting louder.  Did I mention there are Grues down here?runwaithideeaten 
+18062 	: 6                                          // start string
+tablet
+18069 	: 136                                        // start string
+The tablet seems appropriate for use as a writing surface but is unfortunately blank.  Perhaps you should USE it as a writing surface...
+18206 	: 13                                         // start string
+empty lantern
+18220 	: 123                                        // start string
+The lantern seems to have quite a bit of wear but appears otherwise functional.  It is, however, sad that it is out of oil.
+18344 	: 7                                          // start string
+lanternsThe lantern seems to have quite a bit of wear but appears otherwise functional.  It is off but happily full of oil.
+18468 	: 11                                         // start string
+lit lanternWThe lantern seems to have quite a bit of wear.  It is lit and producing a bright light.
+18568 	: 3                                          // start string
+can-This can is full of high-quality lantern oil.
+18618 	: 8                                          // start string
+red coin?This coin is made of a red metal.  It has two dots on one side.
+18691 	: 13                                         // start string
+corroded coin?This coin is somewhat corroded.  It has a triangle on one side.
+18769 	: 10                                         // start string
+shiny coin
+18780 	: 71                                         // start string
+This coin is somehow still quite shiny.  It has a pentagon on one side.
+18852 	: 12                                         // start string
+concave coinWThis coin is slightly rounded, almost like a tiny bowl.  It has seven dots on one side.
+18953 	: 9                                          // start string
+blue coinAThis coin is made of a blue metal.  It has nine dots on one side.
+19029 	: 10                                         // start string
+teleporterHThis small device has a button on it and reads "teleporter" on the side.
+19113 	: 13                                         // start string
+business card@This business card has "synacor.com" printed in red on one side.
+19192 	: 3                                          // start string
+orb=This is a clear glass sphere about the size of a tennis ball.
+19258 	: 6                                          // start string
+mirrorvThis is a rather mundane hand-held mirror from the otherwise magnificent vault room.  What USE could it possibly have?
+19384 	: 12                                         // start string
+strange book
 19397 	: 2695                                       // start string
 The cover of this book subtly swirls with colors.  It is titled "A Brief Introduction to Interdimensional Physics".  It reads:
 
@@ -2851,7 +2895,9 @@ bypass the confirmation mechanism.  If the eighth register is set correctly, no
 anomalies should be experienced, but beware - if it is set incorrectly, the
 now-bypassed confirmation mechanism will not protect you!
 
-Of course, since teleportation is impossible, this is all totally ridiculous.journal
+Of course, since teleportation is impossible, this is all totally ridiculous.
+22093 	: 7                                          // start string
+journal
 22101 	: 3764                                       // start string
 Fireflies were using this dusty old journal as a resting spot until you scared them off.  It reads:
 
@@ -2935,9 +2981,11 @@ Day 144: We are abandoning the mission.  None of us can work out the solution to
 26897 	: 12200                                      
 26898 	: 12273                                      
 26899 	: 12273                                      
-26900 	: push                                   6336     
+26900 	: 2                                          // vector of exit names from Foothills
+26901 	: 6336                                       
 26902 	: 6344                                       
-26903 	: push                                   2327     
+26903 	: 2                                          // vector of exits ptrs Foothills
+26904 	: 2327                                       
 26905 	: 2322                                       
 26906 	: set                                  6435 1     
 26909 	: 2317                                       
@@ -3239,7 +3287,9 @@ Day 144: We are abandoning the mission.  None of us can work out the solution to
 27378 	: 2663                                       
 27379 	: halt                                            
 27380 	: halt                                            
-27381 	: wmem                              2668 2672     
+27381 	: 16                                         // item vector?
+27382 	: 2668                                       
+27383 	: 2672                                       
 27384 	: 2676                                       
 27385 	: 2680                                       
 27386 	: 2684                                       

@@ -36,6 +36,20 @@ with open('notes/text.txt', 'r') as f:
             decode_lines[i] = int(a[2])
 
 
+data_lines = set()
+with open('notes/data.txt', 'r') as f:
+    for line in f:
+        if len(line) == 0 or line[0] == '#' or line == '\n':
+            continue
+        a = [int(j) for j in line.strip().split(':')]
+
+        if len(a) == 2:
+            for i in xrange(a[0], a[1] + 1):
+                data_lines.add(i)
+        if len(a) == 1:
+            data_lines.add(a[0])
+
+
 function_names = {}
 with open('notes/functions.txt', 'r') as f:
     for line in f:
@@ -133,7 +147,7 @@ while i < len(contents) and i < 30050:
     if i in notes:
         suffix = '// ' + notes[i]
 
-    if here < 22:
+    if here < 22 and i not in data_lines:
         op = opcodes[here]
         print op[0],
         args = []

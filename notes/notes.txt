@@ -92,30 +92,96 @@
 2312:restore registers
 2309:MAX_INT
 
+2317:"Foothills"
+2318:description
+2319:exit name vector
+2327:"Dark cave"
+
+2732:pointer to current location
+
+2668:"tablet"
+2669:tablet description
+2670:tablet location?
+2672:"empty lantern"
+2673:empty lantern description
+2676:"lantern"
+2680:"lit lantern"
+2684:"can"
+2688:"red coin"
+2692:"corroded coin"
+2696:"shiny coin"
+2697:shiny coin description
+2700:"concave coin"
+2704:"blue coin"
+2708:"teleporter"
+2712:"business card"
+2716:"orb"
+2720:"mirror"
+2724:"strange book"
+2728:"journal"
+
 #2964
+3032:(<2732>
+3035:<2732> top of stack
+3043:suspicious?
+3047:<<2732>> = name of location string addr
+3060:r0 = <2732>
+3062:<2732> top of stack
+3064:(<2732>+1
+3068:(<<2732>+1>
+3071:(<<2732>+1>, <<<2732>+1>>
+3074:(<<2732>+1>, 
+3078:IF <<<2732>+1>> != 2
+3081:{
+3091:}
+3104:ENDIF
+3108:r0 = <2732>
+3110:<2732> top of stack
 3114:r0=num_items
+3121:{
 3123:"Things of interest here" address
-3126:address of xor_print(x, ,y)
-3129:"Things of interest here" key
-3148:r0 from stack
-3150:r0=s+2
-3157:r0=rmem(rmem(s+2))
+3126:address of print_xor(x, ,y)
+3129:key
+3135:}
+3148:r0 = <2732>
+3150:r0=<2732>+2
+3157:r0=<<<2732>+2>>
 3160:r0 = num_exits
 
 #3400
+
+#3665
+
 
 4246:As you enter the room, the symbol on the floor briefly flashes
 4256:. The orb begins subtly glowing 
 
 4560:the number on the vault door flashes black
 
+#5823
+5825:count and return how many of vector
+5827:starting 27381 have <2732> = <x+2>
+5833:(27381,5846,0)
+
+
 #5846
-5850:(a,b,c,rmem(2732))
-5853:(a,b,c,rmem(2732),c+2)
-5857:(a,b,c,rmem(2732),rmem(c+2))
-5860:(a,b,c,rmem(2732)=rmem(c+2),rmem(c+2))
-5864:if rmem(2732)!=rmem(c+2) return noop
-5867:(a,b,c+1,rmem(2732)=rmem(c+2),rmem(c+2))
+5850:(a,b,c,<2732>)
+5853:(a,b,c,<2732>,a+2)
+5857:(a,b,c,<2732>,<a+2>)
+5860:(a,b,c,<2732>=<a+2>,<a+2>)
+5864:if <2732>!=<a+2> return noop
+5867:(a,b,c+1,<2732>=<a+2>,<a+2>)
+5871:return (a,b,c+1)
+
+#5990
+5994:(a+2,b)
+5998:(<a+2>,b)
+6001:if <a+2> = 0 return 1
+6004:(<a+2>, <2732>)
+6007:(<a+2>,<a+2>=<2732>)
+6011:if <a+2>=<2732> return 1
+6014:return 0
+6019:return 1
 
 
 5883:print_string(<27381>) if r2 = <27383>
@@ -138,3 +204,8 @@
 5966:(a,c,c)
 5969:!!! self modifying? why is this here?
 5973:(rmem(a),c,c)
+
+
+27381:item vector?
+26900:vector of exit names from Foothills
+26903:vector of exits ptrs Foothills

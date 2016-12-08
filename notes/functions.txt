@@ -31,15 +31,15 @@
 4611:unknown 8
 4660:unknown 9
 4720:unknown 10
-4977:unknown
+4977:unknown 11
 5814:print_string_2(start_ptr)
-5823:unknown
-5846:location_smth(a,b,c)
-5876:print_str_loc_from_mem_after_check(r2)
+5823:count_num_items_present
+5846:increment_c_if_<2732>=<a+2>(a,b,c)
+5876:print_item_list?(r2=<2732>)
 5893:maybe_print(<a>)
 5921:unknown(a,b,c)
 5964:unknown(a,b,c)
-5990:unknown
+5990:compare_xplus2_2732(<a>)
 6027:unknown
 80:unknown
 86 :unknown
