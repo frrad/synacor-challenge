@@ -95,7 +95,41 @@
 2317:"Foothills"
 2318:description
 2319:exit name vector
+2320:exit ptr vector
+2322:"Foothills"
 2327:"Dark cave"
+2332:"Dark cave"
+2337:"Dark cave"
+2342:"Rope bridge"
+2347:"Falling through the air!"
+2352:"Moss cavern"
+2357:"Moss cavern"
+2362:"Moss cavern"
+2367:"Passage"
+2372:"Passage"
+2377:"Twisty passages"
+2382:"Twisty passages"
+2387:"Twisty passages"
+2392:"Twisty passages"
+2397:"Twisty passages"
+2402:"Twisty passages"
+2407:"Twisty passages"
+2412:"Twisty passages"
+2422:"Twisty passages"
+2427:"Dark passage"
+2432:"Dark passage"
+2437:"Dark passage"
+2442:"Dark passage"
+2447:"Ruins"
+2452:"Ruins"
+2457:"Ruins"
+2463:"Ruins"
+2468:"Ruins"
+2473:"Ruins"
+2478:"Ruins"
+2483:"Ruins"
+
+
 
 2732:pointer to current location
 
@@ -157,6 +191,11 @@
 4256:. The orb begins subtly glowing 
 
 4560:the number on the vault door flashes black
+
+#use_tablet
+4740:(28369,1531,2148)
+4761:(4242,25866,32767,28397)
+4778:(28401,1531,12513)
 
 #5823
 5825:count and return how many of vector

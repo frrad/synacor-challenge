@@ -12,7 +12,7 @@
 1667:unknown(a,b)_a_is_a_pointer
 1723:unknown
 1767:user_input(max_len,out_start)
-1841:decrypt?
+1841:print_decrypted(a,b,c,d)
 2001:print_num_exits(?)
 2125:XOR(x,y)
 2248:x_plus_2_count(x,count)
@@ -30,7 +30,7 @@
 4533:unknown 7
 4611:unknown 8
 4660:unknown 9
-4720:unknown 10
+4720:use_tablet
 4977:unknown 11
 5814:print_string_2(start_ptr)
 5823:count_num_items_present
