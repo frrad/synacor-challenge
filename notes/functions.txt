@@ -1,3 +1,5 @@
+80:unknown
+86:unknown
 1285:unknown
 1458:call_repeatedly(start_ptr,fn_ptr)
 1518:print_string(start_ptr)
@@ -22,22 +24,55 @@
 3245:?????
 3400:unknown(a,b,c)
 3568:unknown 1
-3727:???lantern???
+3656:enter_dark_passage
+3656:enter_dark_passage_2
+3656:enter_dark_passage_3
+3656:enter_dark_passage_4
+3656:enter_twisty_passages_6
+3701:enter_eaten
+3727:twisty_passage_wrapper
+3742:enter_twisty_passages
+3746:enter_twisty_passages_2
+3756:enter_twisty_passages_3
+3766:enter_twisty_passages_4
+3776:enter_twisty_passages_7
+3786:enter_twisty_passages_8
+3796:enter_twisty_passages_5
+3806:enter_twisty_passages_9
+3893:enter_ruins_4
+3958:enter_vault_lock_3
+3975:enter_vault_lock_4
+3992:enter_vault_lock_5
+4009:enter_vault_door
+4028:enter_vault_lock_2
+4045:enter_vault_lock_12
+4062:enter_vault_lock_11
+4079:enter_vault_lock_6
+4096:enter_vault_lock
+4113:enter_vault_lock_13
+4130:enter_vault_lock_10
+4147:enter_vault_lock_7
+4164:enter_vault_antechamber
+4167:enter_vault_lock_14
+4184:enter_vault_lock_9
+4201:enter_vault_lock_8
 4218:unknown 3
 4279:unknown 4
 4405:unknown 5
 4515:unknown 6
 4533:unknown 7
+4611:enter_tropical_cave_4
 4611:unknown 8
 4660:set_codes(x)
+4690:enter_vault
 4720:use_tablet
 4799:use_can
 4885:use_lantern
 4931:use_lit_lantern
 4977:use_coin
 5360:use_red_coin
-5394:use_shiny_coin
 5377:use_corroded_coin
+5394:use_shiny_coin
 5411:use_concave_coin
 5428:use_blue_coin
 5445:use_teleporter
@@ -51,5 +86,3 @@
 5964:unknown(a,b,c)
 5990:compare_xplus2_2732(<a>)
 6027:unknown
-80:unknown
-86 :unknown

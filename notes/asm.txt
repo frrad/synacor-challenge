@@ -983,354 +983,354 @@
 2312 	: pop                                 (reg:1)     // restore registers
 2314 	: ret                                             
 2315 	: jmp                                    2734     
-2317 	: 6142                                       // "Foothills"
-2318 	: 6152                                       // description
+2317 	: 6142                                       // "Foothills" 2
+2318 	: 6152                                       // You find yourself standing at ...
 2319 	: 26900                                      // exit name vector
 2320 	: 26903                                      // exit ptr vector
 2321 	: halt                                            
 2322 	: 6350                                       // "Foothills"
-2323 	: 6360                                       
+2323 	: 6360                                       // As you begin to leave, you fee...
 2324 	: 26906                                      
 2325 	: 26908                                      
 2326 	: halt                                            
 2327 	: 6441                                       // "Dark cave"
-2328 	: 6451                                       
+2328 	: 6451                                       // This seems to be the mouth of ...
 2329 	: 26910                                      
 2330 	: 26913                                      
 2331 	: halt                                            
-2332 	: 6597                                       // "Dark cave"
-2333 	: 6607                                       
+2332 	: 6597                                       // "Dark cave" 2
+2333 	: 6607                                       // The cave is somewhat narrow he...
 2334 	: 26916                                      
 2335 	: 26919                                      
 2336 	: halt                                            
-2337 	: 6711                                       // "Dark cave"
-2338 	: 6721                                       
+2337 	: 6711                                       // "Dark cave" 3
+2338 	: 6721                                       // The cave acoustics dramaticall...
 2339 	: 26922                                      
 2340 	: 26925                                      
 2341 	: halt                                            
 2342 	: 6922                                       // "Rope bridge"
-2343 	: 6934                                       
+2343 	: 6934                                       // This rope bridge creaks as you...
 2344 	: 26928                                      
 2345 	: 26931                                      
 2346 	: halt                                            
 2347 	: 7070                                       // "Falling through the air!"
-2348 	: 7095                                       
+2348 	: 7095                                       // As you continue along the brid...
 2349 	: 26934                                      
 2350 	: 26936                                      
 2351 	: halt                                            
 2352 	: 7270                                       // "Moss cavern"
-2353 	: 7282                                       
+2353 	: 7282                                       // You are standing in a large ca...
 2354 	: 26938                                      
 2355 	: 26941                                      
 2356 	: halt                                            
-2357 	: 7502                                       // "Moss cavern"
-2358 	: 7514                                       
+2357 	: 7502                                       // "Moss cavern" 3
+2358 	: 7514                                       // You are standing in a large ca...
 2359 	: 26944                                      
 2360 	: 26946                                      
 2361 	: halt                                            
-2362 	: 7616                                       // "Moss cavern"
-2363 	: 7628                                       
+2362 	: 7616                                       // "Moss cavern" 2
+2363 	: 7628                                       // You are standing in a large ca...
 2364 	: 26948                                      
 2365 	: 26951                                      
 2366 	: halt                                            
 2367 	: 7799                                       // "Passage"
-2368 	: 7807                                       
+2368 	: 7807                                       // You are in a crevise on the we...
 2369 	: 26954                                      
 2370 	: 26958                                      
 2371 	: halt                                            
-2372 	: 8007                                       // "Passage"
-2373 	: 26962                                      
+2372 	: 8007                                       // "Passage" 2
+2373 	: 26962                                      // ...
 2374 	: 26965                                      
 2375 	: 26968                                      
 2376 	: halt                                            
 2377 	: 8163                                       // "Twisty passages"
-2378 	: 8179                                       
+2378 	: 8179                                       // You are in a maze of twisty li...
 2379 	: 26971                                      
 2380 	: 26977                                      
 2381 	: 3742                                       
-2382 	: 8332                                       // "Twisty passages"
-2383 	: 8348                                       
+2382 	: 8332                                       // "Twisty passages" 2
+2383 	: 8348                                       // You are in a twisty maze of li...
 2384 	: 26983                                      
 2385 	: 26987                                      
 2386 	: 3746                                       
-2387 	: 8421                                       // "Twisty passages"
-2388 	: 8437                                       
+2387 	: 8421                                       // "Twisty passages" 3
+2388 	: 8437                                       // You are in a maze of little tw...
 2389 	: 26991                                      
 2390 	: 26995                                      
 2391 	: 3756                                       
-2392 	: 8510                                       // "Twisty passages"
-2393 	: 8526                                       
+2392 	: 8510                                       // "Twisty passages" 4
+2393 	: 8526                                       // You are in a maze of alike lit...
 2394 	: 26999                                      
 2395 	: 27004                                      
 2396 	: 3766                                       
-2397 	: 8673                                       // "Twisty passages"
-2398 	: 8689                                       
+2397 	: 8673                                       // "Twisty passages" 7
+2398 	: 8689                                       // You are in a little maze of tw...
 2399 	: 27009                                      
 2400 	: 27013                                      
 2401 	: 3776                                       
-2402 	: 8762                                       // "Twisty passages"
-2403 	: 8778                                       
+2402 	: 8762                                       // "Twisty passages" 8
+2403 	: 8778                                       // You are in a twisty alike of l...
 2404 	: 27017                                      
 2405 	: 27022                                      
 2406 	: 3786                                       
-2407 	: 8932                                       // "Twisty passages"
-2408 	: 8948                                       
+2407 	: 8932                                       // "Twisty passages" 5
+2408 	: 8948                                       // You are in a maze of alike twi...
 2409 	: 27027                                      
 2410 	: 27031                                      
 2411 	: 3796                                       
-2412 	: 9021                                       // "Twisty passages"
-2413 	: 9037                                       
+2412 	: 9021                                       // "Twisty passages" 9
+2413 	: 9037                                       // You are in a maze of twisty li...
 2414 	: 27035                                      
 2415 	: 27037                                      
 2416 	: 3806                                       
-2417 	: 9098                                       
-2418 	: 9114                                       
+2417 	: 9098                                       // "Twisty passages" 10
+2418 	: 9114                                       // You are in a maze of twisty li...
 2419 	: 27039                                      
 2420 	: 27041                                      
 2421 	: halt                                            
-2422 	: 9175                                       // "Twisty passages"
-2423 	: 9191                                       
+2422 	: 9175                                       // "Twisty passages" 6
+2423 	: 9191                                       // You are in a twisty maze of li...
 2424 	: 27043                                      
 2425 	: 27046                                      
 2426 	: 3656                                       
 2427 	: 9259                                       // "Dark passage"
-2428 	: 9272                                       
+2428 	: 9272                                       // You are in a narrow passage.  ...
 2429 	: 27049                                      
 2430 	: 27052                                      
 2431 	: 3656                                       
-2432 	: 9397                                       // "Dark passage"
-2433 	: 9410                                       
+2432 	: 9397                                       // "Dark passage" 2
+2433 	: 9410                                       // You are in a dark, narrow pass...
 2434 	: 27055                                      
 2435 	: 27058                                      
 2436 	: 3656                                       
-2437 	: 9455                                       // "Dark passage"
-2438 	: 9468                                       
+2437 	: 9455                                       // "Dark passage" 3
+2438 	: 9468                                       // You are in a dark, narrow pass...
 2439 	: 27061                                      
 2440 	: 27064                                      
 2441 	: 3656                                       
-2442 	: 9513                                       // "Dark passage"
-2443 	: 9526                                       
+2442 	: 9513                                       // "Dark passage" 4
+2443 	: 9526                                       // You are in a dark, narrow pass...
 2444 	: 27067                                      
 2445 	: 27070                                      
 2446 	: 3656                                       
 2447 	: 9637                                       // "Ruins"
-2448 	: 9643                                       
+2448 	: 9643                                       // You stand in a large cavern wi...
 2449 	: 27073                                      
 2450 	: 27076                                      
 2451 	: halt                                            
-2452 	: 9903                                       // "Ruins"
-2453 	: 9909                                       
+2452 	: 9903                                       // "Ruins" 2
+2453 	: 9909                                       // You are in the once-opulent fo...
 2454 	: 27079                                      
 2455 	: 27082                                      
 2456 	: halt                                            
-2457 	: 10103                                      // "Ruins"
-2458 	: 10109                                      
+2457 	: 10103                                      // "Ruins" 3
+2458 	: 10109                                      // You stand in the massive centr...
 2459 	: 27085                                      
 2460 	: 27090                                      
 2461 	: halt                                            
 2462 	: halt                                            
-2463 	: 10425                                      // "Ruins"
-2464 	: 10431                                      
+2463 	: 10425                                      // "Ruins" 4
+2464 	: 10431                                      // Because it has been so well-pr...
 2465 	: 27107                                      
 2466 	: 27109                                      
 2467 	: 3893                                       
-2468 	: 10605                                      // "Ruins"
-2469 	: 10611                                      
+2468 	: 10605                                      // "Ruins" 5
+2469 	: 10611                                      // You stand in what seems to hav...
 2470 	: 27111                                      
 2471 	: 27114                                      
 2472 	: halt                                            
-2473 	: 10760                                      // "Ruins"
-2474 	: 10766                                      
+2473 	: 10760                                      // "Ruins" 6
+2474 	: 10766                                      // This seems to be a kitchen; th...
 2475 	: 27117                                      
 2476 	: 27119                                      
 2477 	: halt                                            
-2478 	: 10892                                      // "Ruins"
-2479 	: 10898                                      
+2478 	: 10892                                      // "Ruins" 7
+2479 	: 10898                                      // You find yourself in what was ...
 2480 	: 27121                                      
 2481 	: 27124                                      
 2482 	: halt                                            
-2483 	: 11086                                      // "Ruins"
-2484 	: 11092                                      
+2483 	: 11086                                      // "Ruins" 8
+2484 	: 11092                                      // This was long ago a lavish thr...
 2485 	: 27127                                      
 2486 	: 27129                                      
 2487 	: halt                                            
-2488 	: 11267                                      
-2489 	: 11288                                      
+2488 	: 11267                                      // "Synacor Headquarters"
+2489 	: 11288                                      // You stand in the lobby of what...
 2490 	: 27131                                      
 2491 	: 27133                                      
 2492 	: halt                                            
-2493 	: 11552                                      
-2494 	: 11573                                      
+2493 	: 11552                                      // "Synacor Headquarters" 2
+2494 	: 11573                                      // It's a warm, sunny day!  While...
 2495 	: 27135                                      
 2496 	: 27137                                      
 2497 	: halt                                            
 2498 	: 11726                                      // "Beach"
-2499 	: 11732                                      
+2499 	: 11732                                      // This is a sandy beach in a cov...
 2500 	: 27139                                      
 2501 	: 27143                                      
 2502 	: halt                                            
-2503 	: 11919                                      // "Beach"
-2504 	: 11925                                      
+2503 	: 11919                                      // "Beach" 2
+2504 	: 11925                                      // This is a sandy beach in a cov...
 2505 	: 27147                                      
 2506 	: 27150                                      
 2507 	: halt                                            
-2508 	: 12199                                      // "Beach"
-2509 	: 12205                                      
+2508 	: 12199                                      // "Beach" 3
+2509 	: 12205                                      // This is a sandy beach in a cov...
 2510 	: 27153                                      
 2511 	: 27156                                      
 2512 	: halt                                            
 2513 	: 12459                                      // "Tropical Island"
-2514 	: 12475                                      
+2514 	: 12475                                      // The large trees here seem to b...
 2515 	: 27159                                      
 2516 	: 27163                                      
 2517 	: halt                                            
-2518 	: 12691                                      // "Tropical Island"
-2519 	: 12707                                      
+2518 	: 12691                                      // "Tropical Island" 5
+2519 	: 12707                                      // The east embankment of the cov...
 2520 	: 27167                                      
 2521 	: 27171                                      
 2522 	: halt                                            
-2523 	: 12847                                      // "Tropical Island"
-2524 	: 12863                                      
+2523 	: 12847                                      // "Tropical Island" 2
+2524 	: 12863                                      // The embankment of the cove com...
 2525 	: 27175                                      
 2526 	: 27178                                      
 2527 	: halt                                            
-2528 	: 13106                                      // "Tropical Island"
-2529 	: 13122                                      
+2528 	: 13106                                      // "Tropical Island" 3
+2529 	: 13122                                      // You are on a narrow path betwe...
 2530 	: 27181                                      
 2531 	: 27184                                      
 2532 	: halt                                            
-2533 	: 13420                                      // "Tropical Island"
-2534 	: 13436                                      
+2533 	: 13420                                      // "Tropical Island" 4
+2534 	: 13436                                      // The narrow path slopes downwar...
 2535 	: 27187                                      
 2536 	: 27190                                      
 2537 	: halt                                            
 2538 	: 13694                                      // "Tropical Cave"
-2539 	: 13708                                      
+2539 	: 13708                                      // You stand at the entrance to a...
 2540 	: 27193                                      
 2541 	: 27196                                      
 2542 	: halt                                            
-2543 	: 13941                                      // "Tropical Cave"
-2544 	: 13955                                      
+2543 	: 13941                                      // "Tropical Cave" 2
+2544 	: 13955                                      // Fireflies slowly drift around ...
 2545 	: 27199                                      
 2546 	: 27202                                      
 2547 	: halt                                            
-2548 	: 14090                                      // "Tropical Cave"
-2549 	: 14104                                      
+2548 	: 14090                                      // "Tropical Cave" 3
+2549 	: 14104                                      // The cave is a little wider her...
 2550 	: 27205                                      
 2551 	: 27209                                      
 2552 	: halt                                            
 2553 	: 14444                                      // "Tropical Cave Alcove"
-2554 	: 14465                                      
+2554 	: 14465                                      // At the back of this alcove, th...
 2555 	: 27213                                      
 2556 	: 27215                                      
 2557 	: halt                                            
-2558 	: 14634                                      // "Tropical Cave"
-2559 	: 14648                                      
+2558 	: 14634                                      // "Tropical Cave" 4
+2559 	: 14648                                      // This tunnel slopes deeper unde...
 2560 	: 27217                                      
 2561 	: 27220                                      
 2562 	: 4611                                       
-2563 	: 14765                                      // "Vault Lock"
-2564 	: 14776                                      
+2563 	: 14765                                      // "Vault Lock" 3
+2564 	: 14776                                      // You are in a grid of rooms tha...
 2565 	: 27223                                      
 2566 	: 27226                                      
 2567 	: 3958                                       
-2568 	: 14916                                      // "Vault Lock"
-2569 	: 14927                                      
+2568 	: 14916                                      // "Vault Lock" 4
+2569 	: 14927                                      // You are in a grid of rooms tha...
 2570 	: 27229                                      
 2571 	: 27233                                      
 2572 	: 3975                                       
-2573 	: 15074                                      // "Vault Lock"
-2574 	: 15085                                      
+2573 	: 15074                                      // "Vault Lock" 5
+2574 	: 15085                                      // You are in a grid of rooms tha...
 2575 	: 27237                                      
 2576 	: 27241                                      
 2577 	: 3992                                       
 2578 	: 15230                                      // "Vault Door"
-2579 	: 15241                                      
+2579 	: 15241                                      // You stand before the door to t...
 2580 	: 27245                                      
 2581 	: 27249                                      
 2582 	: 4009                                       
-2583 	: 15505                                      // "Vault Lock"
-2584 	: 15516                                      
+2583 	: 15505                                      // "Vault Lock" 2
+2584 	: 15516                                      // You are in a grid of rooms tha...
 2585 	: 27253                                      
 2586 	: 27257                                      
 2587 	: 4028                                       
-2588 	: 15664                                      // "Vault Lock"
-2589 	: 15675                                      
+2588 	: 15664                                      // "Vault Lock" 12
+2589 	: 15675                                      // You are in a grid of rooms tha...
 2590 	: 27261                                      
 2591 	: 27266                                      
 2592 	: 4045                                       
-2593 	: 15826                                      // "Vault Lock"
-2594 	: 15837                                      
+2593 	: 15826                                      // "Vault Lock" 11
+2594 	: 15837                                      // You are in a grid of rooms tha...
 2595 	: 27271                                      
 2596 	: 27276                                      
 2597 	: 4062                                       
-2598 	: 15991                                      // "Vault Lock"
-2599 	: 16002                                      
+2598 	: 15991                                      // "Vault Lock" 6
+2599 	: 16002                                      // You are in a grid of rooms tha...
 2600 	: 27281                                      
 2601 	: 27285                                      
 2602 	: 4079                                       
 2603 	: 16148                                      // "Vault Lock"
-2604 	: 16159                                      
+2604 	: 16159                                      // You are in a grid of rooms tha...
 2605 	: 27289                                      
 2606 	: 27293                                      
 2607 	: 4096                                       
-2608 	: 16305                                      // "Vault Lock"
-2609 	: 16316                                      
+2608 	: 16305                                      // "Vault Lock" 13
+2609 	: 16316                                      // You are in a grid of rooms tha...
 2610 	: 27297                                      
 2611 	: 27302                                      
 2612 	: 4113                                       
-2613 	: 16469                                      // "Vault Lock"
-2614 	: 16480                                      
+2613 	: 16469                                      // "Vault Lock" 10
+2614 	: 16480                                      // You are in a grid of rooms tha...
 2615 	: 27307                                      
 2616 	: 27312                                      
 2617 	: 4130                                       
-2618 	: 16631                                      // "Vault Lock"
-2619 	: 16642                                      
+2618 	: 16631                                      // "Vault Lock" 7
+2619 	: 16642                                      // You are in a grid of rooms tha...
 2620 	: 27317                                      
 2621 	: 27321                                      
 2622 	: 4147                                       
 2623 	: 16791                                      // "Vault Antechamber"
-2624 	: 16809                                      
+2624 	: 16809                                      // You are in the antechamber to ...
 2625 	: 27325                                      
 2626 	: 27329                                      
 2627 	: 4164                                       
-2628 	: 16971                                      // "Vault Lock"
-2629 	: 16982                                      
+2628 	: 16971                                      // "Vault Lock" 14
+2629 	: 16982                                      // You are in a grid of rooms tha...
 2630 	: 27333                                      
 2631 	: 27337                                      
 2632 	: 4167                                       
-2633 	: 17127                                      // "Vault Lock"
-2634 	: 17138                                      
+2633 	: 17127                                      // "Vault Lock" 9
+2634 	: 17138                                      // You are in a grid of rooms tha...
 2635 	: 27341                                      
 2636 	: 27345                                      
 2637 	: 4184                                       
-2638 	: 17285                                      // "Vault Lock"
-2639 	: 17296                                      
+2638 	: 17285                                      // "Vault Lock" 8
+2639 	: 17296                                      // You are in a grid of rooms tha...
 2640 	: 27349                                      
 2641 	: 27352                                      
 2642 	: 4201                                       
 2643 	: 17436                                      // "Vault"
-2644 	: 17442                                      
+2644 	: 17442                                      // This vault contains incredible...
 2645 	: 27355                                      
 2646 	: 27357                                      
 2647 	: 4690                                       
-2648 	: 17661                                      
-2649 	: 17693                                      
+2648 	: 17661                                      // "Fumbling around in the darkness"
+2649 	: 17693                                      // Without a source of light, you...
 2650 	: 27359                                      
 2651 	: 27362                                      
 2652 	: halt                                            
-2653 	: 17806                                      
-2654 	: 17838                                      
+2653 	: 17806                                      // "Fumbling around in the darkness" 2
+2654 	: 17838                                      // You can't seem to find your wa...
 2655 	: 27365                                      
 2656 	: 27368                                      
 2657 	: halt                                            
-2658 	: 17949                                      
-2659 	: 17967                                      
+2658 	: 17949                                      // "Panicked and lost"
+2659 	: 17967                                      // The growling is getting louder...
 2660 	: 27371                                      
 2661 	: 27375                                      
 2662 	: halt                                            
-2663 	: 18055                                      
-2664 	: 18061                                      
+2663 	: 18055                                      // "eaten"
+2664 	: 18061                                      // ...
 2665 	: 27379                                      
 2666 	: 27380                                      
 2667 	: 3701                                       
@@ -1765,7 +1765,7 @@
 3651 	: pop                                 (reg:1)     
 3653 	: pop                                 (reg:0)     
 3655 	: ret                                             
-3656 	: push                                (reg:0)     
+3656 	: push                                (reg:0)     // function: enter_twisty_passages_6 
 3658 	: push                                (reg:1)     
 3660 	: push                                (reg:2)     
 3662 	: set                            (reg:0) 2680     
@@ -1782,7 +1782,7 @@
 3696 	: pop                                 (reg:1)     
 3698 	: pop                                 (reg:0)     
 3700 	: ret                                             
-3701 	: push                                (reg:0)     
+3701 	: push                                (reg:0)     // function: enter_eaten 
 3703 	: push                                (reg:1)     
 3705 	: push                                (reg:2)     
 3707 	: set                           (reg:0) 28204     
@@ -1794,50 +1794,50 @@
 3723 	: pop                                 (reg:0)     
 3725 	: halt                                            
 3726 	: halt                                            
-3727 	: push                                (reg:1)     // function: ???lantern??? 
+3727 	: push                                (reg:1)     // function: twisty_passage_wrapper 
 3729 	: rmem                           (reg:1) 3726     
 3732 	: or                  (reg:1) (reg:1) (reg:0)     
 3736 	: wmem                           3726 (reg:1)     
 3739 	: pop                                 (reg:1)     
 3741 	: ret                                             
-3742 	: wmem                                 3726 0     
+3742 	: wmem                                 3726 0     // function: enter_twisty_passages 
 3745 	: ret                                             
-3746 	: push                                (reg:0)     
+3746 	: push                                (reg:0)     // function: enter_twisty_passages_2 
 3748 	: set                               (reg:0) 1     
-3751 	: call                                   3727     ???lantern???     
+3751 	: call                                   3727     twisty_passage_wrapper     
 3753 	: pop                                 (reg:0)     
 3755 	: ret                                             
-3756 	: push                                (reg:0)     
+3756 	: push                                (reg:0)     // function: enter_twisty_passages_3 
 3758 	: set                               (reg:0) 2     
-3761 	: call                                   3727     ???lantern???     
+3761 	: call                                   3727     twisty_passage_wrapper     
 3763 	: pop                                 (reg:0)     
 3765 	: ret                                             
-3766 	: push                                (reg:0)     
+3766 	: push                                (reg:0)     // function: enter_twisty_passages_4 
 3768 	: set                               (reg:0) 4     
-3771 	: call                                   3727     ???lantern???     
+3771 	: call                                   3727     twisty_passage_wrapper     
 3773 	: pop                                 (reg:0)     
 3775 	: ret                                             
-3776 	: push                                (reg:0)     
+3776 	: push                                (reg:0)     // function: enter_twisty_passages_7 
 3778 	: set                               (reg:0) 8     
-3781 	: call                                   3727     ???lantern???     
+3781 	: call                                   3727     twisty_passage_wrapper     
 3783 	: pop                                 (reg:0)     
 3785 	: ret                                             
-3786 	: push                                (reg:0)     
+3786 	: push                                (reg:0)     // function: enter_twisty_passages_8 
 3788 	: set                              (reg:0) 16     
-3791 	: call                                   3727     ???lantern???     
+3791 	: call                                   3727     twisty_passage_wrapper     
 3793 	: pop                                 (reg:0)     
 3795 	: ret                                             
-3796 	: push                                (reg:0)     
+3796 	: push                                (reg:0)     // function: enter_twisty_passages_5 
 3798 	: set                              (reg:0) 32     
-3801 	: call                                   3727     ???lantern???     
+3801 	: call                                   3727     twisty_passage_wrapper     
 3803 	: pop                                 (reg:0)     
 3805 	: ret                                             
-3806 	: push                                (reg:0)     
+3806 	: push                                (reg:0)     // function: enter_twisty_passages_9 
 3808 	: push                                (reg:1)     
 3810 	: push                                (reg:2)     
 3812 	: push                                (reg:3)     
 3814 	: set                              (reg:0) 64     
-3817 	: call                                   3727     ???lantern???     
+3817 	: call                                   3727     twisty_passage_wrapper     
 3819 	: push                                (reg:0)     
 3821 	: push                                (reg:1)     
 3823 	: push                                (reg:2)     
@@ -1869,7 +1869,7 @@
 3888 	: pop                                 (reg:1)     
 3890 	: pop                                 (reg:0)     
 3892 	: ret                                             
-3893 	: push                                (reg:0)     
+3893 	: push                                (reg:0)     // function: enter_ruins_4 
 3895 	: push                                (reg:1)     
 3897 	: rmem                           (reg:0) 2462     
 3900 	: rmem                          (reg:1) 27101     
@@ -1903,7 +1903,7 @@
 3955 	: halt                                            
 3956 	: halt                                            
 3957 	: halt                                            
-3958 	: push                                (reg:0)     
+3958 	: push                                (reg:0)     // function: enter_vault_lock_3 
 3960 	: push                                (reg:1)     
 3962 	: set                               (reg:0) 2     
 3965 	: set                               (reg:1) 0     
@@ -1911,7 +1911,7 @@
 3970 	: pop                                 (reg:1)     
 3972 	: pop                                 (reg:0)     
 3974 	: ret                                             
-3975 	: push                                (reg:0)     
+3975 	: push                                (reg:0)     // function: enter_vault_lock_4 
 3977 	: push                                (reg:1)     
 3979 	: set                               (reg:0) 8     
 3982 	: set                               (reg:1) 1     
@@ -1919,7 +1919,7 @@
 3987 	: pop                                 (reg:1)     
 3989 	: pop                                 (reg:0)     
 3991 	: ret                                             
-3992 	: push                                (reg:0)     
+3992 	: push                                (reg:0)     // function: enter_vault_lock_5 
 3994 	: push                                (reg:1)     
 3996 	: set                               (reg:0) 1     
 3999 	: set                               (reg:1) 2     
@@ -1927,7 +1927,7 @@
 4004 	: pop                                 (reg:1)     
 4006 	: pop                                 (reg:0)     
 4008 	: ret                                             
-4009 	: push                                (reg:0)     
+4009 	: push                                (reg:0)     // function: enter_vault_door 
 4011 	: push                                (reg:1)     
 4013 	: set                               (reg:0) 1     
 4016 	: set                               (reg:1) 3     
@@ -1936,7 +1936,7 @@
 4023 	: pop                                 (reg:1)     
 4025 	: pop                                 (reg:0)     
 4027 	: ret                                             
-4028 	: push                                (reg:0)     
+4028 	: push                                (reg:0)     // function: enter_vault_lock_2 
 4030 	: push                                (reg:1)     
 4032 	: set                               (reg:0) 4     
 4035 	: set                               (reg:1) 4     
@@ -1944,7 +1944,7 @@
 4040 	: pop                                 (reg:1)     
 4042 	: pop                                 (reg:0)     
 4044 	: ret                                             
-4045 	: push                                (reg:0)     
+4045 	: push                                (reg:0)     // function: enter_vault_lock_12 
 4047 	: push                                (reg:1)     
 4049 	: set                               (reg:0) 2     
 4052 	: set                               (reg:1) 5     
@@ -1952,7 +1952,7 @@
 4057 	: pop                                 (reg:1)     
 4059 	: pop                                 (reg:0)     
 4061 	: ret                                             
-4062 	: push                                (reg:0)     
+4062 	: push                                (reg:0)     // function: enter_vault_lock_11 
 4064 	: push                                (reg:1)     
 4066 	: set                              (reg:0) 11     
 4069 	: set                               (reg:1) 6     
@@ -1960,7 +1960,7 @@
 4074 	: pop                                 (reg:1)     
 4076 	: pop                                 (reg:0)     
 4078 	: ret                                             
-4079 	: push                                (reg:0)     
+4079 	: push                                (reg:0)     // function: enter_vault_lock_6 
 4081 	: push                                (reg:1)     
 4083 	: set                               (reg:0) 2     
 4086 	: set                               (reg:1) 7     
@@ -1968,7 +1968,7 @@
 4091 	: pop                                 (reg:1)     
 4093 	: pop                                 (reg:0)     
 4095 	: ret                                             
-4096 	: push                                (reg:0)     
+4096 	: push                                (reg:0)     // function: enter_vault_lock 
 4098 	: push                                (reg:1)     
 4100 	: set                               (reg:0) 0     
 4103 	: set                               (reg:1) 8     
@@ -1976,7 +1976,7 @@
 4108 	: pop                                 (reg:1)     
 4110 	: pop                                 (reg:0)     
 4112 	: ret                                             
-4113 	: push                                (reg:0)     
+4113 	: push                                (reg:0)     // function: enter_vault_lock_13 
 4115 	: push                                (reg:1)     
 4117 	: set                               (reg:0) 4     
 4120 	: set                               (reg:1) 9     
@@ -1984,7 +1984,7 @@
 4125 	: pop                                 (reg:1)     
 4127 	: pop                                 (reg:0)     
 4129 	: ret                                             
-4130 	: push                                (reg:0)     
+4130 	: push                                (reg:0)     // function: enter_vault_lock_10 
 4132 	: push                                (reg:1)     
 4134 	: set                               (reg:0) 1     
 4137 	: set                              (reg:1) 10     
@@ -1992,7 +1992,7 @@
 4142 	: pop                                 (reg:1)     
 4144 	: pop                                 (reg:0)     
 4146 	: ret                                             
-4147 	: push                                (reg:0)     
+4147 	: push                                (reg:0)     // function: enter_vault_lock_7 
 4149 	: push                                (reg:1)     
 4151 	: set                              (reg:0) 18     
 4154 	: set                              (reg:1) 11     
@@ -2000,9 +2000,9 @@
 4159 	: pop                                 (reg:1)     
 4161 	: pop                                 (reg:0)     
 4163 	: ret                                             
-4164 	: call                                   4611     unknown 8     
+4164 	: call                                   4611     unknown 8     // function: enter_vault_antechamber 
 4166 	: ret                                             
-4167 	: push                                (reg:0)     
+4167 	: push                                (reg:0)     // function: enter_vault_lock_14 
 4169 	: push                                (reg:1)     
 4171 	: set                               (reg:0) 1     
 4174 	: set                              (reg:1) 12     
@@ -2010,7 +2010,7 @@
 4179 	: pop                                 (reg:1)     
 4181 	: pop                                 (reg:0)     
 4183 	: ret                                             
-4184 	: push                                (reg:0)     
+4184 	: push                                (reg:0)     // function: enter_vault_lock_9 
 4186 	: push                                (reg:1)     
 4188 	: set                               (reg:0) 9     
 4191 	: set                              (reg:1) 13     
@@ -2018,7 +2018,7 @@
 4196 	: pop                                 (reg:1)     
 4198 	: pop                                 (reg:0)     
 4200 	: ret                                             
-4201 	: push                                (reg:0)     
+4201 	: push                                (reg:0)     // function: enter_vault_lock_8 
 4203 	: push                                (reg:1)     
 4205 	: set                               (reg:0) 2     
 4208 	: set                              (reg:1) 14     
@@ -2207,7 +2207,7 @@
 4684 	: wmem                           (reg:0) 2623     
 4687 	: pop                                 (reg:0)     
 4689 	: ret                                             
-4690 	: push                                (reg:0)     
+4690 	: push                                (reg:0)     // function: enter_vault 
 4692 	: add                          (reg:0) 2716 2     
 4696 	: rmem                        (reg:0) (reg:0)     
 4699 	: eq                    (reg:0) (reg:0) 32767     

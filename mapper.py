@@ -25,13 +25,30 @@ def read_vec(address):
 
 class room:
 
-    def __init__(self, start, addr_keyed_collection):
+    def var_unique_name(self):
+        return self.unique_name.replace(' ', '_').replace('"', '').replace('!', '').lower()
+
+    def __init__(self, start, addr_keyed_collection, name_set):
         self.addr = start
 
         addr_keyed_collection[self.addr] = self
 
         name_ptr = data[start]
         self.name = read_str(name_ptr)
+
+        base_unique_name = '"%s"' % self.name
+        if base_unique_name not in name_set:
+            self.unique_name = base_unique_name
+            name_set.add(self.unique_name)
+        else:
+            name = base_unique_name
+            j = 1
+            while name in name_set:
+                j += 1
+                name = base_unique_name + " " + str(j)
+            self.unique_name = name
+            name_set.add(name)
+
         desc_ptr = data[start + 1]
         self.description = read_str(desc_ptr)
         exit_vec_ptr = data[start + 2]
@@ -44,20 +61,48 @@ class room:
             if dest_addr in addr_keyed_collection:
                 self.dest_vec.append(addr_keyed_collection[dest_addr])
             else:
-                child_room = room(dest_addr, addr_keyed_collection)
+                child_room = room(dest_addr, addr_keyed_collection, name_set)
                 self.dest_vec.append(child_room)
+
+        self.fn_ptr = data[start + 4]
 
     def children_names(self):
         return zip(self.exit_vec, [room.name for room in self.dest_vec])
 
 collection = dict()
-foothills = room(2553, collection)
+name_set = set()
 
-# for addr in collection:
+for addr in range(2322, 2462, 5) + range(2463, 2666, 5):
+    if addr in collection:
+        continue
+    room(addr, collection, name_set)
+
+
+# for code annotation
+# for addr in sorted(collection.keys()):
 #     room = collection[addr]
-#     print room.name, room.children_names()
+#     print "%d:%s" % (addr, room.unique_name)
+#     print "%d:%s" % (addr + 1, room.description[:30] + '...')
+
+#     if room.fn_ptr > 0:
+#         print "%d:enter_%s" % (room.fn_ptr, room.var_unique_name())
 
 
-for addr in collection:
+formatted_names = []
+arrows = []
+for addr in sorted(collection.keys()):
     room = collection[addr]
-    print "%d:\"%s\"" % (addr, room.name)
+    room_name = room.var_unique_name()
+    formatted_names.append(room_name)
+
+    for child_room in room.dest_vec:
+        child_room_name = child_room.var_unique_name()
+        arrows.append('%s -> %s[label = ""]' % (room_name, child_room_name))
+
+print "digraph map {"
+print "  rankdir=LR;"
+print "  size=\"50,50\""
+print '  node [shape = circle, fontsize = 25]; %s;' % ' '.join(formatted_names)
+for arrow in arrows:
+    print'  ', arrow
+print '}'
