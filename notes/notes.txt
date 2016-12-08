@@ -182,10 +182,8 @@
 3157:r0=<<<2732>+2>>
 3160:r0 = num_exits
 
-#3400
-
-#3665
-
+3825:Chiseled on the wall of.....
+3852:////////
 
 4246:As you enter the room, the symbol on the floor briefly flashes
 4256:. The orb begins subtly glowing 
@@ -196,6 +194,20 @@
 4740:(28369,1531,2148)
 4761:(4242,25866,32767,28397)
 4778:(28401,1531,12513)
+
+4907:You light your lantern
+4953:You douse your lantern
+
+#use_coin
+4997:You're not sure what to do with the coin.
+
+5078:You place the 
+
+5460:"Unusual setting detected...
+
+5504:You wake up on a sandy beach...
+
+5611:You activate the teleporter...
 
 #5823
 5825:count and return how many of vector

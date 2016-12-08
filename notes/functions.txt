@@ -22,7 +22,7 @@
 3245:?????
 3400:unknown(a,b,c)
 3568:unknown 1
-3727:unknown 2
+3727:???lantern???
 4218:unknown 3
 4279:unknown 4
 4405:unknown 5
@@ -31,7 +31,17 @@
 4611:unknown 8
 4660:unknown 9
 4720:use_tablet
-4977:unknown 11
+4799:use_can
+4885:use_lantern
+4931:use_lit_lantern
+4977:use_coin
+5360:use_red_coin
+5394:use_shiny_coin
+5377:use_corroded_coin
+5411:use_concave_coin
+5428:use_blue_coin
+5445:use_teleporter
+5721:use_mirror
 5814:print_string_2(start_ptr)
 5823:count_num_items_present
 5846:increment_c_if_<2732>=<a+2>(a,b,c)

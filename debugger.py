@@ -27,6 +27,7 @@ class terminal:
         if self.debugger.is_debugging():
             sys.stdout.write('\n')
 
+
 class debugger:
 
     def __init__(self, vm):
@@ -74,8 +75,21 @@ class debugger:
         def stop(args):
             self.__debugging = False
 
-        commands = {'!dump': dump, '!start': start, '!stop': stop}
+        def hijack(arb):
+            str_in = args[1]
+            in_codes = map(int, str_in.split(','))
+            for offset, code in enumerate(in_codes):
+                self.vm.memory.write(offset + 30100, code)
+            self.vm.pointer = 30100
+
+        commands = {'!dump': dump, '!start': start,
+                    '!stop': stop, '!hijack': hijack}
         args = input_str.split(' ')
+
+        if args[0] not in commands:
+            print 'invalid command'
+            return
+
         commands[args[0]](args)
 
     def print_current(self):
@@ -95,7 +109,7 @@ class debugger:
 
         style_op = {'call': call}
 
-        print ' '*len(self.__call_stack) +str(pointer) + ': ' + style_op[op_name](args)
+        print ' ' * len(self.__call_stack) + str(pointer) + ': ' + style_op[op_name](args)
 
     def is_debugging(self):
         return self.__debugging
@@ -104,10 +118,9 @@ class debugger:
         if self.__debugging and self.vm.memory.read(self.vm.pointer) == 17:
             self.print_current()
 
-
         # update depth after display
         if self.vm.memory.read(self.vm.pointer) == 17:
-            self.__call_stack.append(self.vm.memory.read(self.vm.pointer+1))
+            self.__call_stack.append(self.vm.memory.read(self.vm.pointer + 1))
         if self.vm.memory.read(self.vm.pointer) == 18:
             self.__call_stack.pop()
 

@@ -1794,7 +1794,7 @@
 3723 	: pop                                 (reg:0)     
 3725 	: halt                                            
 3726 	: halt                                            
-3727 	: push                                (reg:1)     // function: unknown 2 
+3727 	: push                                (reg:1)     // function: ???lantern??? 
 3729 	: rmem                           (reg:1) 3726     
 3732 	: or                  (reg:1) (reg:1) (reg:0)     
 3736 	: wmem                           3726 (reg:1)     
@@ -1804,32 +1804,32 @@
 3745 	: ret                                             
 3746 	: push                                (reg:0)     
 3748 	: set                               (reg:0) 1     
-3751 	: call                                   3727     unknown 2     
+3751 	: call                                   3727     ???lantern???     
 3753 	: pop                                 (reg:0)     
 3755 	: ret                                             
 3756 	: push                                (reg:0)     
 3758 	: set                               (reg:0) 2     
-3761 	: call                                   3727     unknown 2     
+3761 	: call                                   3727     ???lantern???     
 3763 	: pop                                 (reg:0)     
 3765 	: ret                                             
 3766 	: push                                (reg:0)     
 3768 	: set                               (reg:0) 4     
-3771 	: call                                   3727     unknown 2     
+3771 	: call                                   3727     ???lantern???     
 3773 	: pop                                 (reg:0)     
 3775 	: ret                                             
 3776 	: push                                (reg:0)     
 3778 	: set                               (reg:0) 8     
-3781 	: call                                   3727     unknown 2     
+3781 	: call                                   3727     ???lantern???     
 3783 	: pop                                 (reg:0)     
 3785 	: ret                                             
 3786 	: push                                (reg:0)     
 3788 	: set                              (reg:0) 16     
-3791 	: call                                   3727     unknown 2     
+3791 	: call                                   3727     ???lantern???     
 3793 	: pop                                 (reg:0)     
 3795 	: ret                                             
 3796 	: push                                (reg:0)     
 3798 	: set                              (reg:0) 32     
-3801 	: call                                   3727     unknown 2     
+3801 	: call                                   3727     ???lantern???     
 3803 	: pop                                 (reg:0)     
 3805 	: ret                                             
 3806 	: push                                (reg:0)     
@@ -1837,11 +1837,11 @@
 3810 	: push                                (reg:2)     
 3812 	: push                                (reg:3)     
 3814 	: set                              (reg:0) 64     
-3817 	: call                                   3727     unknown 2     
+3817 	: call                                   3727     ???lantern???     
 3819 	: push                                (reg:0)     
 3821 	: push                                (reg:1)     
 3823 	: push                                (reg:2)     
-3825 	: set                           (reg:0) 28236     
+3825 	: set                           (reg:0) 28236     // Chiseled on the wall of.....
 3828 	: set                            (reg:1) 1531     
 3831 	: add                     (reg:2) 11498 13836     
 3835 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -1851,7 +1851,7 @@
 3843 	: rmem                           (reg:0) 3726     
 3846 	: set                           (reg:1) 25866     
 3849 	: set                           (reg:2) 32767     
-3852 	: set                           (reg:3) 28299     
+3852 	: set                           (reg:3) 28299     // ////////
 3855 	: call                                   1841     print_decrypted(a,b,c,d)     
 3857 	: push                                (reg:0)     
 3859 	: push                                (reg:1)     
@@ -2252,7 +2252,7 @@
 4794 	: pop                                 (reg:1)     
 4796 	: pop                                 (reg:0)     
 4798 	: ret                                             
-4799 	: push                                (reg:0)     
+4799 	: push                                (reg:0)     // function: use_can 
 4801 	: add                          (reg:0) 2672 2     
 4805 	: rmem                        (reg:0) (reg:0)     
 4808 	: jt                             (reg:0) 4858     
@@ -2285,7 +2285,7 @@
 4880 	: pop                                 (reg:0)     
 4882 	: pop                                 (reg:0)     
 4884 	: ret                                             
-4885 	: push                                (reg:0)     
+4885 	: push                                (reg:0)     // function: use_lantern 
 4887 	: add                          (reg:0) 2676 2     
 4891 	: wmem                          (reg:0) 32767     
 4894 	: add                          (reg:0) 2680 2     
@@ -2293,7 +2293,7 @@
 4901 	: push                                (reg:0)     
 4903 	: push                                (reg:1)     
 4905 	: push                                (reg:2)     
-4907 	: set                           (reg:0) 28569     
+4907 	: set                           (reg:0) 28569     // You light your lantern
 4910 	: set                            (reg:1) 1531     
 4913 	: add                         (reg:2) 5980 20     
 4917 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -2303,7 +2303,7 @@
 4925 	: wmem                                 2733 0     
 4928 	: pop                                 (reg:0)     
 4930 	: ret                                             
-4931 	: push                                (reg:0)     
+4931 	: push                                (reg:0)     // function: use_lit_lantern 
 4933 	: add                          (reg:0) 2676 2     
 4937 	: wmem                              (reg:0) 0     
 4940 	: add                          (reg:0) 2680 2     
@@ -2311,7 +2311,7 @@
 4947 	: push                                (reg:0)     
 4949 	: push                                (reg:1)     
 4951 	: push                                (reg:2)     
-4953 	: set                           (reg:0) 28595     
+4953 	: set                           (reg:0) 28595     // You douse your lantern
 4956 	: set                            (reg:1) 1531     
 4959 	: add                     (reg:2) 10542 18250     
 4963 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -2321,7 +2321,7 @@
 4971 	: wmem                                 2733 0     
 4974 	: pop                                 (reg:0)     
 4976 	: ret                                             
-4977 	: push                                (reg:2)     // function: unknown 11 
+4977 	: push                                (reg:2)     // function: use_coin 
 4979 	: push                                (reg:3)     
 4981 	: rmem                           (reg:2) 2732     
 4984 	: eq                     (reg:2) (reg:2) 2457     
@@ -2329,7 +2329,7 @@
 4991 	: push                                (reg:0)     
 4993 	: push                                (reg:1)     
 4995 	: push                                (reg:2)     
-4997 	: set                           (reg:0) 28621     
+4997 	: set                           (reg:0) 28621     // You're not sure what to do with the coin.
 5000 	: set                            (reg:1) 1531     
 5003 	: add                        (reg:2) 499 1800     
 5007 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -2356,7 +2356,7 @@
 5072 	: push                                (reg:0)     
 5074 	: push                                (reg:1)     
 5076 	: push                                (reg:2)     
-5078 	: set                           (reg:0) 28664     
+5078 	: set                           (reg:0) 28664     // You place the
 5081 	: set                            (reg:1) 1531     
 5084 	: add                      (reg:2) 13551 3583     
 5088 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -2454,54 +2454,54 @@
 5354 	: wmem                             (reg:2) 95     
 5357 	: pop                                 (reg:2)     
 5359 	: ret                                             
-5360 	: push                                (reg:0)     
+5360 	: push                                (reg:0)     // function: use_red_coin 
 5362 	: push                                (reg:1)     
 5364 	: set                            (reg:0) 2688     
 5367 	: set                               (reg:1) 2     
-5370 	: call                                   4977     unknown 11     
+5370 	: call                                   4977     use_coin     
 5372 	: pop                                 (reg:1)     
 5374 	: pop                                 (reg:0)     
 5376 	: ret                                             
-5377 	: push                                (reg:0)     
+5377 	: push                                (reg:0)     // function: use_corroded_coin 
 5379 	: push                                (reg:1)     
 5381 	: set                            (reg:0) 2692     
 5384 	: set                               (reg:1) 3     
-5387 	: call                                   4977     unknown 11     
+5387 	: call                                   4977     use_coin     
 5389 	: pop                                 (reg:1)     
 5391 	: pop                                 (reg:0)     
 5393 	: ret                                             
-5394 	: push                                (reg:0)     
+5394 	: push                                (reg:0)     // function: use_shiny_coin 
 5396 	: push                                (reg:1)     
 5398 	: set                            (reg:0) 2696     
 5401 	: set                               (reg:1) 5     
-5404 	: call                                   4977     unknown 11     
+5404 	: call                                   4977     use_coin     
 5406 	: pop                                 (reg:1)     
 5408 	: pop                                 (reg:0)     
 5410 	: ret                                             
-5411 	: push                                (reg:0)     
+5411 	: push                                (reg:0)     // function: use_concave_coin 
 5413 	: push                                (reg:1)     
 5415 	: set                            (reg:0) 2700     
 5418 	: set                               (reg:1) 7     
-5421 	: call                                   4977     unknown 11     
+5421 	: call                                   4977     use_coin     
 5423 	: pop                                 (reg:1)     
 5425 	: pop                                 (reg:0)     
 5427 	: ret                                             
-5428 	: push                                (reg:0)     
+5428 	: push                                (reg:0)     // function: use_blue_coin 
 5430 	: push                                (reg:1)     
 5432 	: set                            (reg:0) 2704     
 5435 	: set                               (reg:1) 9     
-5438 	: call                                   4977     unknown 11     
+5438 	: call                                   4977     use_coin     
 5440 	: pop                                 (reg:1)     
 5442 	: pop                                 (reg:0)     
 5444 	: ret                                             
-5445 	: push                                (reg:0)     
+5445 	: push                                (reg:0)     // function: use_teleporter 
 5447 	: push                                (reg:1)     
 5449 	: push                                (reg:2)     
 5451 	: jf                             (reg:7) 5605     
 5454 	: push                                (reg:0)     
 5456 	: push                                (reg:1)     
 5458 	: push                                (reg:2)     
-5460 	: set                           (reg:0) 28844     
+5460 	: set                           (reg:0) 28844     // "Unusual setting detected...
 5463 	: set                            (reg:1) 1531     
 5466 	: add                       (reg:2) 986 12834     
 5470 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -2521,7 +2521,7 @@
 5498 	: push                                (reg:0)     
 5500 	: push                                (reg:1)     
 5502 	: push                                (reg:2)     
-5504 	: set                           (reg:0) 29014     
+5504 	: set                           (reg:0) 29014     // You wake up on a sandy beach...
 5507 	: set                            (reg:1) 1531     
 5510 	: add                       (reg:2) 2501 4637     
 5514 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -2564,7 +2564,7 @@
 5605 	: push                                (reg:0)     
 5607 	: push                                (reg:1)     
 5609 	: push                                (reg:2)     
-5611 	: set                           (reg:0) 29545     
+5611 	: set                           (reg:0) 29545     // You activate the teleporter...
 5614 	: set                            (reg:1) 1531     
 5617 	: add                       (reg:2) 269 24427     
 5621 	: call                                   1458     call_repeatedly(start_ptr,fn_ptr)     
@@ -2605,7 +2605,7 @@
 5716 	: pop                                 (reg:1)     
 5718 	: pop                                 (reg:0)     
 5720 	: ret                                             
-5721 	: push                                (reg:0)     
+5721 	: push                                (reg:0)     // function: use_mirror 
 5723 	: push                                (reg:1)     
 5725 	: push                                (reg:2)     
 5727 	: push                                (reg:3)     
@@ -2746,7 +2746,9 @@
 6065 	: call                                   6027     unknown     
 6067 	: ret                                             // start string
 Test string#self-test complete, all tests pass
-complete               
+complete
+6125 	: 3                                          // start string
+               
 6142 	: 9                                          // start string
 Foothills
 6152 	: 183                                        // start string
@@ -3317,7 +3319,9 @@ Day 144: We are abandoning the mission.  None of us can work out the solution to
 27403 	: 25960                                      
 27404 	: 25965                                      
 27405 	: 25970                                      
-27406 	: jt                                3245 2964     
+27406 	: 7                                          
+27407 	: 3245                                       
+27408 	: 2964                                       
 27409 	: 3333                                       
 27410 	: 3362                                       
 27411 	: 3400                                       
