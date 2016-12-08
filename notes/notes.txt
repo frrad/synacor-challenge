@@ -62,11 +62,18 @@
 1823:if so, jump
 1830:restore registers
 
+# 1841
+1847:(a,b,c,d,e,  f,g)
+1849:(a,b,c,d,e,  f,1)
+1852:(a,b,c,d,d+1,f,1)
+1856:(a,b,c,d,rmem(d+1),f,1)
+
+
 #XOR
 2129:(x,y,x&y)
-2133:(x,y,^(x&y))
-2136:(x|y,y,^(x&y))
-2140:((x|y) & ^(x&y),y,^(x&y))
+2133:(x,y,~(x&y))
+2136:(x|y,y,~(x&y))
+2140:((x|y) & ~(x&y),y,~(x&y))
 
 #
 2252:return safely
@@ -85,6 +92,16 @@
 2312:restore registers
 2309:MAX_INT
 
+#2964
+3114:r0=num_items
+3123:"Things of interest here" address
+3126:address of xor_print(x, ,y)
+3129:"Things of interest here" key
+3148:r0 from stack
+3150:r0=s+2
+3157:r0=rmem(rmem(s+2))
+3160:r0 = num_exits
+
 #3400
 
 4246:As you enter the room, the symbol on the floor briefly flashes
@@ -99,6 +116,9 @@
 5860:(a,b,c,rmem(2732)=rmem(c+2),rmem(c+2))
 5864:if rmem(2732)!=rmem(c+2) return noop
 5867:(a,b,c+1,rmem(2732)=rmem(c+2),rmem(c+2))
+
+
+5883:print_string(<27381>) if r2 = <27383>
 
 #5893
 5895:(a,b,c,a+2)

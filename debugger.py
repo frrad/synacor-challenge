@@ -24,7 +24,8 @@ class terminal:
 
     def print_char(self, character):
         sys.stdout.write(character)
-
+        if self.debugger.is_debugging():
+            sys.stdout.write('\n')
 
 class debugger:
 
@@ -38,6 +39,7 @@ class debugger:
                 a = line.strip().split(':')
                 self.__function_names[int(a[0])] = a[1]
 
+        self.__call_stack = []
         self.__debugging = False
         self.op_names = {0: ['halt', 0],
                          1: ['set ', 2],
@@ -93,11 +95,22 @@ class debugger:
 
         style_op = {'call': call}
 
-        print str(pointer) + ': ' + style_op[op_name](args)
+        print ' '*len(self.__call_stack) +str(pointer) + ': ' + style_op[op_name](args)
+
+    def is_debugging(self):
+        return self.__debugging
 
     def step(self):
         if self.__debugging and self.vm.memory.read(self.vm.pointer) == 17:
             self.print_current()
+
+
+        # update depth after display
+        if self.vm.memory.read(self.vm.pointer) == 17:
+            self.__call_stack.append(self.vm.memory.read(self.vm.pointer+1))
+        if self.vm.memory.read(self.vm.pointer) == 18:
+            self.__call_stack.pop()
+
 
 terminal = terminal()
 in_fn = terminal.get_char

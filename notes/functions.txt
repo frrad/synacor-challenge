@@ -2,7 +2,7 @@
 1458:call_repeatedly(start_ptr,fn_ptr)
 1518:print_string(start_ptr)
 1528:print_char(char_ptr)
-1531:unknown
+1531:print_xor(x, ,y) ->(x^y, ,y)
 1543:call_repeatedly_sentinel(start_ptr,fn_ptr,worked_val)
 1571:repeatedly_cmp_sentinel( ,worked_val, )
 1588:unknown
@@ -12,28 +12,30 @@
 1667:unknown(a,b)_a_is_a_pointer
 1723:unknown
 1767:user_input(max_len,out_start)
-1841:unknown
-2001:unknown
+1841:decrypt?
+2001:print_num_exits(?)
 2125:XOR(x,y)
 2248:x_plus_2_count(x,count)
 2281:two_x_plus_1_max_14(input)
 25061:unknown
-2964:unknown
+2964:print_room_state?
 3245:?????
 3400:unknown(a,b,c)
-3727:unknown
-4218:unknown
-4279:unknown
-4405:unknown
-4515:unknown
-4533:unknown
-4611:unknown
-4660:unknown
+3568:unknown 1
+3727:unknown 2
+4218:unknown 3
+4279:unknown 4
+4405:unknown 5
+4515:unknown 6
+4533:unknown 7
+4611:unknown 8
+4660:unknown 9
+4720:unknown 10
 4977:unknown
 5814:print_string_2(start_ptr)
 5823:unknown
 5846:location_smth(a,b,c)
-5876:unknown
+5876:print_str_loc_from_mem_after_check(r2)
 5893:maybe_print(<a>)
 5921:unknown(a,b,c)
 5964:unknown(a,b,c)
