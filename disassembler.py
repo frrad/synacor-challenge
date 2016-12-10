@@ -79,19 +79,20 @@ for i in function_names:
     notes[i] = 'function: ' + function_names[i] + ' ' + notes.get(i, '')
 
 
-def disp_out(arg):
+def disp_out(arg, emit):
     if arg[0] > 256:
-        return
+        return emit
     out = chr(arg[0])
     if out == '\n':
         out = '\\n'
-    print out,
+    return emit + '    ' + out
 
 
-def disp_call(arg):
+def disp_call(arg, emit):
     address = arg[0]
     if address in function_names:
-        print '    ' + function_names[address],
+        return emit + '    ' + function_names[address]
+    return emit
 
 
 def decode_registers(arg, i):
@@ -126,8 +127,10 @@ opcodes = {0: ['halt', 0],
            20: ['in  ', 1],
            21: ['noop', 0]}
 
+
 i = 0
 while i < len(contents) and i < 30050:
+    to_print = ''
     here = contents[i]
 
     if i in decode_lines and (here ^ decode_lines[i]) < 256:
@@ -139,29 +142,29 @@ while i < len(contents) and i < 30050:
         print 'ERROR:', i
         sys.exit(i)
     if i - 1 in decode_lines:
-        print ''
+        to_print += '\n'
 
-    print i, "\t:",
-
-    suffix = ''
-    if i in notes:
-        suffix = '// ' + notes[i]
+    to_print += "%-6s" % (str(i) + ':')
 
     if here < 22 and i not in data_lines:
         op = opcodes[here]
-        print op[0],
+        to_print += op[0]
         args = []
         for j in xrange(op[1]):
             i += 1
             args.append(contents[i])
         names = [decode_registers(arg, i + k - op[1] + 1)
                  for k, arg in enumerate(args)]
-        print "%38s" % ' '.join(names),
+        to_print += "%40s" % ' '.join(names)
         if len(op) > 2:
-            op[2](args)
+            to_print = op[2](args, to_print)
     else:
-        print "%-38d" % here,
+        to_print += "%-40d" % here
 
-    print '    ' + suffix
+    suffix = ''
+    if i in notes:
+        suffix = '// ' + notes[i]
+    to_print = to_print + '    ' + suffix
+    sys.stdout.write(to_print.rstrip(' ') + '\n')
 
     i += 1
