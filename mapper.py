@@ -95,14 +95,16 @@ for addr in sorted(collection.keys()):
     room_name = room.var_unique_name()
     formatted_names.append(room_name)
 
-    for child_room in room.dest_vec:
+    for exit_name, child_room in zip(room.exit_vec, room.dest_vec):
         child_room_name = child_room.var_unique_name()
-        arrows.append('%s -> %s[label = ""]' % (room_name, child_room_name))
+        arrows.append('%s -> %s[label = "%s"]' %
+                      (room_name, child_room_name, exit_name))
 
 print "digraph map {"
 print "  rankdir=LR;"
 print "  size=\"50,50\""
 print '  node [shape = circle, fontsize = 25]; %s;' % ' '.join(formatted_names)
+print '  edge [ fontsize = 30];'
 for arrow in arrows:
     print'  ', arrow
 print '}'
