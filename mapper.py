@@ -5,6 +5,10 @@ with open('logs/boot.log', 'r') as f:
 data = [int(line.strip().split(':')[1]) for line in data[7:]]
 
 
+def read_val(address):
+    return data[address]
+
+
 def read_str(address):
     length = data[address]
     answer = ''
@@ -26,7 +30,8 @@ def read_vec(address):
 class room:
 
     def var_unique_name(self):
-        return self.unique_name.replace(' ', '_').replace('"', '').replace('!', '').lower()
+        answer = self.unique_name.replace(' ', '_')
+        return answer.replace('"', '').replace('!', '').lower()
 
     def __init__(self, start, addr_keyed_collection, name_set):
         self.addr = start
@@ -69,6 +74,14 @@ class room:
     def children_names(self):
         return zip(self.exit_vec, [room.name for room in self.dest_vec])
 
+
+class item:
+
+    def __init__(self, pointer):
+        name_ptr = read_val(pointer)
+        self.name = read_str(name_ptr)
+
+
 collection = dict()
 name_set = set()
 
@@ -83,28 +96,35 @@ for addr in range(2322, 2462, 5) + range(2463, 2666, 5):
 #     room = collection[addr]
 #     print "%d:%s" % (addr, room.unique_name)
 #     print "%d:%s" % (addr + 1, room.description[:30] + '...')
-
 #     if room.fn_ptr > 0:
 #         print "%d:enter_%s" % (room.fn_ptr, room.var_unique_name())
 
 
-formatted_names = []
-arrows = []
-for addr in sorted(collection.keys()):
-    room = collection[addr]
-    room_name = room.var_unique_name()
-    formatted_names.append(room_name)
+item_pointers = read_vec(27381)
+for pointer in item_pointers:
+    itemz = item(pointer)
 
-    for exit_name, child_room in zip(room.exit_vec, room.dest_vec):
-        child_room_name = child_room.var_unique_name()
-        arrows.append('%s -> %s[label = "%s"]' %
-                      (room_name, child_room_name, exit_name))
 
-print "digraph map {"
-print "  rankdir=LR;"
-print "  size=\"50,50\""
-print '  node [shape = circle, fontsize = 25]; %s;' % ' '.join(formatted_names)
-print '  edge [ fontsize = 30];'
-for arrow in arrows:
-    print'  ', arrow
-print '}'
+def print_graphviz():
+    formatted_names = []
+    arrows = []
+    for addr in sorted(collection.keys()):
+        room = collection[addr]
+        room_name = room.var_unique_name()
+        formatted_names.append(room_name)
+
+        for exit_name, child_room in zip(room.exit_vec, room.dest_vec):
+            child_room_name = child_room.var_unique_name()
+            arrows.append('%s -> %s[label = "%s"]' %
+                          (room_name, child_room_name, exit_name))
+
+    print "digraph map {"
+    print "  rankdir=LR;"
+    print "  size=\"50,50\""
+    print '  node [shape = circle, fontsize = 25]; %s;' % ' '.join(formatted_names)
+    print '  edge [ fontsize = 30];'
+    for arrow in arrows:
+        print'  ', arrow
+    print '}'
+
+print_graphviz()

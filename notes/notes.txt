@@ -379,6 +379,7 @@
 5973:(rmem(a),c,c)
 
 
-27381:item vector?
+27381:item vector
 26900:vector of exit names from Foothills
 26903:vector of exits ptrs Foothills
+27398:command vector
