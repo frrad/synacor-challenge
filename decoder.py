@@ -11,7 +11,8 @@ print 'size: ', size
 data = contents[start + 1:start + size + 1]
 
 keys = set()
-valid_set = [10] + range(32, 128)
+valid_set = [10] + range(32, 60) + range(61, 64) + \
+    range(65, 96) + range(97, 123)
 for j, datum in enumerate(data):
     these_keys = set([i ^ datum for i in valid_set])
 
@@ -28,8 +29,11 @@ else:
         print key
         print ''.join(map(chr, decode))
 
-    if len(keys) != 1:
-        answer = int(raw_input("answer please").strip())
-    else:
+    if len(keys) == 1:
         answer = list(keys)[0]
+    elif 0 in keys:
+        answer = 0
+    else:
+        answer = int(raw_input("answer please").strip())
+
     print "%d:%d:%d" % (start + 1, start + size, answer)
