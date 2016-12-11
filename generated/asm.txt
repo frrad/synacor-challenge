@@ -3519,9 +3519,15 @@ use                                 greenredyellow?As you enter the room, the
 
 
 26440:43                                          // start string
-the number on the vault door flashes white!c  The hourglass has already run out.  It flashes black and flips over, restarting the flow of sand.„  The hourglass is still running!  It flashes white!  You hear a click from the vault door.  The orb evaporates out of hour hands.
+the number on the vault door flashes white!
+26484:99                                          // start string
+  The hourglass has already run out.  It flashes black and flips over, restarting the flow of sand.
+26584:132                                         // start string
+  The hourglass is still running!  It flashes white!  You hear a click from the vault door.  The orb evaporates out of hour hands.
 
-As you 
+
+26717:7                                           // start string
+As you 
 26725:5                                           // start string
 leaveenterV the room, the orb evaporates out of your hands!  It rematerializes on its pedestal.
 
