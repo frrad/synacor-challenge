@@ -69,6 +69,9 @@ class debugger:
         def dump(args):
             self.vm.dump_state(args[1])
 
+        def load(args):
+            self.vm.load_dump(args[1])
+
         def start(args):
             self.__debugging = True
 
@@ -83,7 +86,8 @@ class debugger:
             self.vm.pointer = 30100
 
         commands = {'!dump': dump, '!start': start,
-                    '!stop': stop, '!hijack': hijack}
+                    '!stop': stop, '!hijack': hijack,
+                    '!load': load}
         args = input_str.split(' ')
 
         if args[0] not in commands:
@@ -121,7 +125,7 @@ class debugger:
         # update depth after display
         if self.vm.memory.read(self.vm.pointer) == 17:
             self.__call_stack.append(self.vm.memory.read(self.vm.pointer + 1))
-        if self.vm.memory.read(self.vm.pointer) == 18:
+        if self.vm.memory.read(self.vm.pointer) == 18 and len(self.__call_stack) > 0:
             self.__call_stack.pop()
 
 
@@ -135,7 +139,9 @@ debugger = debugger(emulator)
 # terminal needs reference for access in cheatmode
 terminal.debugger = debugger
 
-emulator.load_binary("challenge.bin")
+# emulator.load_binary("challenge.bin")
+emulator.load_dump('logs/boot.log')
+
 
 while True:
     emulator.step()

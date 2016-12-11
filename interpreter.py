@@ -12,6 +12,9 @@ class stack:
     def __init__(self):
         self.__stack = list()
 
+    def set_from_list(self, data):
+        self.__stack = data
+
     def push(self, value):
         self.__stack.append(value)
 
@@ -111,6 +114,22 @@ class vm:
             error("opcode %d not in opcode table" % opcode)
         op = self.__ops[opcode]
         op()
+
+    def load_dump(self, path):
+        with open(path, 'r') as f:
+            raw_data = f.readlines()
+
+        register_str = raw_data[1].strip('][\n')
+        self.registers = [int(x.strip()) for x in register_str.split(',')]
+
+        self.pointer = int(raw_data[3].strip())
+
+        stack_str = raw_data[5].strip('][\n')
+        self.stack.set_from_list([int(x.strip())
+                                  for x in stack_str.split(',')])
+
+        mem = [map(int, x.strip().split(':'))[1] for x in raw_data[7:]]
+        self.memory.load_list(mem)
 
     def load_binary(self, path):
         self.memory.load_file(path)
