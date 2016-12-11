@@ -8,7 +8,12 @@ with open('logs/boot.log', 'r') as f:
 contents = [int(line.strip().split(':')[1]) for line in contents[7:]]
 
 
+var_names = {}
 notes = {}
+decode_lines = {}
+data_lines = set()
+function_names = {}
+
 with open('notes/notes.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
@@ -17,8 +22,6 @@ with open('notes/notes.txt', 'r') as f:
         notes[int(a[0])] = a[1]
 
 
-decode_lines = {}
-data_lines = set()
 with open('notes/text.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
@@ -51,7 +54,6 @@ with open('notes/data.txt', 'r') as f:
             data_lines.add(a[0])
 
 
-function_names = {}
 with open('notes/functions.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
@@ -60,7 +62,6 @@ with open('notes/functions.txt', 'r') as f:
         function_names[int(a[0])] = a[1]
 
 
-var_names = {}
 with open('notes/vars.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
@@ -75,10 +76,11 @@ with open('notes/vars.txt', 'r') as f:
                 var_names[x] = {}
             var_names[x][reg] = name
 
-
 for i in function_names:
     notes[i] = 'function: ' + function_names[i] + ' ' + notes.get(i, '')
 
+
+# end prep
 
 def disp_out(arg, emit):
     if arg[0] > 256:
@@ -131,10 +133,12 @@ opcodes = {0: ['halt', 0],
 
 i = 0
 while i < len(contents) and i < 30050:
+    beginning_i = i
+
     to_print = ''
     here = contents[i]
 
-    if i in decode_lines and (here ^ decode_lines[i]) < 256:
+    if i in decode_lines and (here ^ decode_lines[i]) < 128:
         sys.stdout.write(chr(here ^ decode_lines[i]))
         i += 1
         continue
@@ -163,8 +167,8 @@ while i < len(contents) and i < 30050:
         to_print += "%-40d" % here
 
     suffix = ''
-    if i in notes:
-        suffix = '// ' + notes[i]
+    if beginning_i in notes:
+        suffix = '// ' + notes[beginning_i]
     to_print = to_print + '    ' + suffix
     sys.stdout.write(to_print.rstrip(' ') + '\n')
 

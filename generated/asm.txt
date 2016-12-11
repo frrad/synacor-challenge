@@ -450,7 +450,7 @@
 1033: add                        (reg:0) (reg:0) 1
 1037: wmem                            6080 (reg:0)
 1040: wmem                                 6099 44
-1043: set                             (reg:0) 6080
+1043: set                             (reg:0) 6080    // self-test complete, all tests pass
 1046: call                                    1518    print_string(start_ptr)
 1048: push                                 (reg:0)
 1050: push                                 (reg:1)
@@ -573,7 +573,7 @@
 1280: out                                      112    p
 1282: out                                       10    \n
 1284: halt
-1285: jmp                                      708
+1285: jmp                                      708    // function: unknown
 1287: jmp                                      731
 1289: out                                      110    n
 1291: out                                      111    o
@@ -662,55 +662,55 @@
 1453: out                                      112    p
 1455: out                                       10    \n
 1457: halt
-1458: push                           (start_ptr:0)
-1460: push                             (count+1:3)
+1458: push                           (start_ptr:0)    // function: call_repeatedly(start_ptr,fn_ptr)
+1460: push                             (count+1:3)    // input starts at (reg0) len, i,n,p,u,t,...
 1462: push                                 (reg:4)
 1464: push                                 (reg:5)
-1466: push                           (start_ptr:6)
+1466: push                           (start_ptr:6)    // end save registers
 1468: set              (start_ptr:6) (start_ptr:0)
 1471: set                    (fn_ptr:5) (fn_ptr:1)
 1474: rmem                   (max:4) (start_ptr:0)
 1477: set                              (count:1) 0
-1480: add                  (count+1:3) 1 (count:1)
+1480: add                  (count+1:3) 1 (count:1)    // while
 1484: gt               (reg:0) (count+1:3) (max:4)
-1488: jt                              (reg:0) 1507
+1488: jt                              (reg:0) 1507    // return safely
 1491: add (current_ptr:3) (count+1:3) (start_ptr:6)
 1495: rmem                 (reg:0) (current_ptr:3)
 1498: call                              (fn_ptr:5)
 1500: add                    (count:1) (count:1) 1
-1504: jt                            (count:1) 1480
-1507: pop                            (start_ptr:6)
+1504: jt                            (count:1) 1480    // end while
+1507: pop                            (start_ptr:6)    // restore registers
 1509: pop                               (fn_ptr:5)
 1511: pop                                  (max:4)
 1513: pop                          (current_ptr:3)
-1515: pop                                  (reg:0)
+1515: pop                                  (reg:0)    //  return (_,count)
 1517: ret
-1518: push                                 (reg:1)
+1518: push                                 (reg:1)    // function: print_string(start_ptr)
 1520: set                          (fn_ptr:1) 1528
 1523: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
 1525: pop                                  (reg:1)
 1527: ret
-1528: out                                  (reg:0)
+1528: out                                  (reg:0)    // function: print_char(char_ptr)
 1530: ret
-1531: push                                 (reg:1)
+1531: push                                 (reg:1)    // function: print_xor(x, ,y) ->(x^y, ,y)
 1533: set                          (reg:1) (reg:2)
 1536: call                                    2125    XOR(x,y)
 1538: out                                  (reg:0)
 1540: pop                                  (reg:1)
 1542: ret
-1543: push                              (fn_ptr:1)
+1543: push                              (fn_ptr:1)    // function: call_repeatedly_sentinel(start_ptr,fn_ptr,worked_val)
 1545: push                                 (reg:3)
-1547: rmem                   (reg:3) (start_ptr:0)
-1550: jf                              (reg:3) 1563
+1547: rmem                   (reg:3) (start_ptr:0)    // if input len 0
+1550: jf                              (reg:3) 1563    // return -1
 1553: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
-1555: jt                            (count:1) 1563
+1555: jt                            (count:1) 1563    // if(count) return -1
 1558: set                   (out:0) (worked_val:2)
-1561: jmp                                     1566
-1563: set                            (out:0) 32767
-1566: pop                                  (reg:3)
+1561: jmp                                     1566    // return safely
+1563: set                            (out:0) 32767    // return -1
+1566: pop                                  (reg:3)    // return safely
 1568: pop                                (count:1)
 1570: ret                                             // return
-1571: push                                 (reg:1)
+1571: push                                 (reg:1)    // function: repeatedly_cmp_sentinel( ,worked_val, )
 1573: push                                 (reg:2)
 1575: set                          (reg:2) (reg:1)
 1578: set                             (reg:1) 1605
@@ -718,7 +718,7 @@
 1583: pop                                  (reg:2)
 1585: pop                                  (reg:1)
 1587: ret
-1588: push                                 (reg:1)
+1588: push                                 (reg:1)    // function: unknown
 1590: push                                 (reg:2)
 1592: set                          (reg:2) (reg:1)
 1595: set                             (reg:1) 1648
@@ -726,52 +726,52 @@
 1600: pop                                  (reg:2)
 1602: pop                                  (reg:1)
 1604: ret
-1605: eq                   (reg:0) (reg:0) (reg:2)
-1609: jf                              (reg:0) 1618
-1612: set                          (reg:2) (reg:1)
-1615: set                            (reg:1) 32767
+1605: eq                   (reg:0) (reg:0) (reg:2)    // function: cmp_0_2(x,y,z)
+1609: jf                              (reg:0) 1618    // return (0,y,z)
+1612: set                          (reg:2) (reg:1)    // (1,y,y)
+1615: set                            (reg:1) 32767    // return (1,-1,y)
 1618: ret
-1619: push                                 (reg:3)
-1621: add                        (reg:3) (reg:2) 1
-1625: add                  (reg:3) (reg:3) (reg:1)
-1629: rmem                         (reg:3) (reg:3)
-1632: eq                   (reg:3) (reg:0) (reg:3)
-1636: jt                              (reg:3) 1645
-1639: set                          (reg:2) (reg:1)
-1642: set                            (reg:1) 32767
+1619: push                                 (reg:3)    // function: memory_based_rearrange(a,b,c)
+1621: add                        (reg:3) (reg:2) 1    // (a,b,c,c+1)
+1625: add                  (reg:3) (reg:3) (reg:1)    // (a,b,c,a+c+1)
+1629: rmem                         (reg:3) (reg:3)    // (a,b,c,rmem(a+c+1))
+1632: eq                   (reg:3) (reg:0) (reg:3)    // (a,b,c,a=rmem(a+c+1))
+1636: jt                              (reg:3) 1645    // if a=rmem(a+c+1) return noop
+1639: set                          (reg:2) (reg:1)    // (a,b,b,a=rmem(a+c+1))
+1642: set                            (reg:1) 32767    // (a,-1,b,a=rmem(a+c+1))
 1645: pop                                  (reg:3)
 1647: ret                                             // returns (a,-1,b) if a!=rmem(a+c+1) else nothing
-1648: push                                 (reg:1)
-1650: set                          (reg:1) (reg:2)
+1648: push                                 (reg:1)    // function: ?(a,b,c)
+1650: set                          (reg:1) (reg:2)    // (a,c,c)
 1653: call                                    1667    unknown(a,b)_a_is_a_pointer
 1655: pop                                  (reg:1)
 1657: jf                              (reg:0) 1666
 1660: set                          (reg:2) (reg:1)
 1663: set                            (reg:1) 32767
 1666: ret
-1667: push                                 (reg:1)
+1667: push                                 (reg:1)    // function: unknown(a,b)_a_is_a_pointer
 1669: push                                 (reg:2)
 1671: push                                 (reg:3)
 1673: push                                 (reg:4)
-1675: rmem                         (reg:3) (reg:0)
-1678: rmem                         (reg:4) (reg:1)
-1681: eq                   (reg:2) (reg:3) (reg:4)
-1685: jf                              (reg:2) 1711
-1688: or                   (reg:2) (reg:3) (reg:4)
-1692: jf                              (reg:2) 1706
-1695: set                          (reg:2) (reg:1)
-1698: set                             (reg:1) 1619
+1675: rmem                         (reg:3) (reg:0)    // (a,b,c,rmem(a),e)
+1678: rmem                         (reg:4) (reg:1)    // (a,b,c,rmem(a),rmem(b))
+1681: eq                   (reg:2) (reg:3) (reg:4)    // (a,b,rmem(a)=rmem(b),rmem(a),rmem(b))
+1685: jf                              (reg:2) 1711    // if rmem(a)!=rmem(b) return 0
+1688: or                   (reg:2) (reg:3) (reg:4)    // (a,b,rmem(a)|rmem(b),rmem(a),rmem(b))
+1692: jf                              (reg:2) 1706    // if rmem(a)=rmem(b)=0 return 1
+1695: set                          (reg:2) (reg:1)    // (a,b,b,rmem(a),rmem(b))
+1698: set                             (reg:1) 1619    // (a,1619,b,rmem(a),rmem(b))
 1701: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
 1703: jf                              (reg:1) 1711
-1706: set                                (reg:0) 1
+1706: set                                (reg:0) 1    // return 1
 1709: jmp                                     1714
-1711: set                                (reg:0) 0
+1711: set                                (reg:0) 0    // return 0
 1714: pop                                  (reg:4)
 1716: pop                                  (reg:3)
 1718: pop                                  (reg:2)
 1720: pop                                  (reg:1)
 1722: ret
-1723: push                                 (reg:0)
+1723: push                                 (reg:0)    // function: unknown
 1725: push                                 (reg:1)
 1727: set                             (reg:1) 6068
 1730: rmem                         (reg:0) (reg:1)
@@ -788,11 +788,11 @@
 1762: pop                                  (reg:1)
 1764: pop                                  (reg:0)
 1766: ret
-1767: push                             (max_len:0)
-1769: push                                 (reg:2)
+1767: push                             (max_len:0)    // function: user_input(max_len,out_start)
+1769: push                                 (reg:2)    // output starts at (reg1) len, o,u,t,p,u,t,...
 1771: push                                 (reg:3)
 1773: push                                 (reg:4)
-1775: push                                 (reg:5)
+1775: push                                 (reg:5)    // end save registers
 1777: add   (max_addr:2) (out_start:1) (max_len:0)
 1781: set                (out_ptr:0) (out_start:1)
 1784: set                             (in_len:5) 0
@@ -800,29 +800,29 @@
 1791: gt          (reg:3) (out_ptr:0) (max_addr:2)
 1795: jt                              (reg:3) 1816
 1798: in                                   (reg:4)
-1800: eq                        (reg:3) (reg:4) 10
-1804: jt                              (reg:3) 1816
-1807: wmem                     (out_ptr:0) (reg:4)
+1800: eq                        (reg:3) (reg:4) 10    // is input a newline?
+1804: jt                              (reg:3) 1816    // if so, jump
+1807: wmem                     (out_ptr:0) (reg:4)    // store user input
 1810: add                  (in_len:5) (in_len:5) 1
 1814: jmp                                     1787
 1816: wmem                (out_start:1) (in_len:5)
-1819: eq                        (reg:3) (reg:4) 10
-1823: jt                              (reg:3) 1830
+1819: eq                        (reg:3) (reg:4) 10    // was last input char a newline?
+1823: jt                              (reg:3) 1830    // if so, jump
 1826: in                                   (reg:4)
 1828: jmp                                     1819
-1830: pop                               (in_len:5)
+1830: pop                               (in_len:5)    // restore registers
 1832: pop                                  (reg:4)
 1834: pop                                  (reg:3)
 1836: pop                             (max_addr:2)
 1838: pop                              (out_ptr:0)
 1840: ret
-1841: push                                   (d:3)
+1841: push                                   (d:3)    // function: print_decrypted(a,b,c,d)
 1843: push                                   (e:4)
 1845: push                                   (f:5)
-1847: push                                   (g:6)
-1849: set                                  (g:6) 1
-1852: add                        (e:4) (d:3) (g:6)
-1856: rmem                             (e:4) (e:4)
+1847: push                                   (g:6)    // (a,b,c,d,e,  f,g)
+1849: set                                  (g:6) 1    // (a,b,c,d,e,  f,1)
+1852: add                        (e:4) (d:3) (g:6)    // (a,b,c,d,d+1,f,1)
+1856: rmem                             (e:4) (e:4)    // (a,b,c,d,rmem(d+1),f,1)
 1859: add                         (f:5) 6125 (g:6)
 1863: wmem                             (f:5) (e:4)
 1866: add                            (g:6) (g:6) 1
@@ -870,7 +870,7 @@
 1996: pop                                    (e:4)
 1998: pop                                    (d:3)
 2000: ret
-2001: push                                 (reg:0)
+2001: push                                 (reg:0)    // function: print_num_exits(?)
 2003: push                                 (reg:1)
 2005: push                                 (reg:2)
 2007: push                                 (reg:3)
@@ -914,12 +914,12 @@
 2120: pop                                  (reg:1)
 2122: pop                                  (reg:0)
 2124: ret
-2125: push                                 (reg:1)
+2125: push                                 (reg:1)    // function: XOR(x,y)
 2127: push                                 (reg:2)
-2129: and                  (reg:2) (reg:0) (reg:1)
-2133: not                          (reg:2) (reg:2)
-2136: or                   (reg:0) (reg:0) (reg:1)
-2140: and                  (reg:0) (reg:0) (reg:2)
+2129: and                  (reg:2) (reg:0) (reg:1)    // (x,y,x&y)
+2133: not                          (reg:2) (reg:2)    // (x,y,~(x&y))
+2136: or                   (reg:0) (reg:0) (reg:1)    // (x|y,y,~(x&y))
+2140: and                  (reg:0) (reg:0) (reg:2)    // ((x|y) & ~(x&y),y,~(x&y))
 2144: pop                                  (reg:2)
 2146: pop                                  (reg:1)
 2148: ret
@@ -958,29 +958,29 @@
 2241: set                                (reg:0) 0
 2244: set                                (reg:1) 0
 2247: ret
-2248: push                                   (x:1)
+2248: push                                   (x:1)    // function: x_plus_2_count(x,count)
 2250: push                                 (reg:2)
-2252: jf                                (x:1) 2276
-2255: add                        (x:1) (x:1) 32767
-2259: and                    (reg:2) (reg:0) 16384
+2252: jf                                (x:1) 2276    // return safely
+2255: add                        (x:1) (x:1) 32767    // -1
+2259: and                    (reg:2) (reg:0) 16384    // 16384 = 1<<15
 2263: add                        (reg:0) (reg:0) 2
-2267: jf                              (reg:2) 2252
+2267: jf                              (reg:2) 2252    // if top bit unset, continue
 2270: or                         (reg:0) (reg:0) 1
 2274: jmp                                     2252
-2276: pop                                  (reg:2)
+2276: pop                                  (reg:2)    // return safely
 2278: pop                                  (reg:1)
 2280: ret
-2281: push                                 (reg:1)
-2283: gt                      (reg:1) (input:0) 14
-2287: jt                              (reg:1) 2309
+2281: push                                 (reg:1)    // function: two_x_plus_1_max_14(input)
+2283: gt                      (reg:1) (input:0) 14    // if input <=14 return 2*input+1. otherwise return MAX_INT. in place.
+2287: jt                              (reg:1) 2309    // return MAX_INT
 2290: set                      (count:1) (input:0)
 2293: set                             (output:0) 1
-2296: jf                            (count:1) 2312
-2299: add                (count:1) (count:1) 32767
+2296: jf                            (count:1) 2312    // return safely
+2299: add                (count:1) (count:1) 32767    // -1
 2303: add                  (output:0) (output:0) 2
 2307: jmp                                     2296
-2309: set                         (output:0) 32767
-2312: pop                                  (reg:1)
+2309: set                         (output:0) 32767    // MAX_INT
+2312: pop                                  (reg:1)    // restore registers
 2314: ret
 2315: jmp                                     2734
 2317: 6142                                        // "Foothills" 2
@@ -1474,14 +1474,14 @@
 2942: jmp                                     2950
 2944: set                            (reg:0) 25974
 2947: wmem                               (reg:0) 0
-2950: call                                 (reg:1)
+2950: call                                 (reg:1)    // do what user input
 2952: jt                              (reg:1) 2742
 2955: pop                                  (reg:3)
 2957: pop                                  (reg:2)
 2959: pop                                  (reg:1)
 2961: pop                                  (reg:0)
 2963: ret
-2964: push                                 (reg:0)
+2964: push                                 (reg:0)    // function: print_room_state?
 2966: push                                 (reg:1)
 2968: push                                 (reg:2)
 2970: rmem                         (reg:1) (reg:0)
@@ -1509,57 +1509,57 @@
 3026: pop                                  (reg:1)
 3028: pop                                  (reg:0)
 3030: jmp                                     3238
-3032: rmem                            (reg:0) 2732
-3035: push                                 (reg:0)
+3032: rmem                            (reg:0) 2732    // (<2732>
+3035: push                                 (reg:0)    // <2732> top of stack
 3037: out                                       61    =
 3039: out                                       61    =
 3041: out                                       32
-3043: add                        (reg:0) (reg:0) 0
-3047: rmem                         (reg:0) (reg:0)
+3043: add                        (reg:0) (reg:0) 0    // suspicious?
+3047: rmem                         (reg:0) (reg:0)    // <<2732>> = name of location string addr
 3050: call                                    1518    print_string(start_ptr)
 3052: out                                       32
 3054: out                                       61    =
 3056: out                                       61    =
 3058: out                                       10    \n
-3060: pop                                  (reg:0)
-3062: push                                 (reg:0)
-3064: add                        (reg:0) (reg:0) 1
-3068: rmem                         (reg:0) (reg:0)
-3071: rmem                         (reg:1) (reg:0)
-3074: eq                         (reg:1) (reg:1) 2
-3078: jf                              (reg:1) 3104
-3081: push                                 (reg:0)
+3060: pop                                  (reg:0)    // r0 = <2732>
+3062: push                                 (reg:0)    // <2732> top of stack
+3064: add                        (reg:0) (reg:0) 1    // (<2732>+1
+3068: rmem                         (reg:0) (reg:0)    // (<<2732>+1>
+3071: rmem                         (reg:1) (reg:0)    // (<<2732>+1>, <<<2732>+1>>
+3074: eq                         (reg:1) (reg:1) 2    // (<<2732>+1>,
+3078: jf                              (reg:1) 3104    // IF <<<2732>+1>> != 2
+3081: push                                 (reg:0)    // {
 3083: set                             (reg:0) 2680
 3086: call                                    5990    compare_xplus2_2732(<a>)
 3088: set                          (reg:1) (reg:0)
-3091: pop                                  (reg:0)
+3091: pop                                  (reg:0)    // }
 3093: add                        (reg:0) (reg:0) 1
 3097: add                  (reg:0) (reg:0) (reg:1)
 3101: rmem                         (reg:0) (reg:0)
-3104: call                                    1518    print_string(start_ptr)
+3104: call                                    1518    print_string(start_ptr)    // ENDIF
 3106: out                                       10    \n
-3108: pop                                  (reg:0)
-3110: push                                 (reg:0)
+3108: pop                                  (reg:0)    // r0 = <2732>
+3110: push                                 (reg:0)    // <2732> top of stack
 3112: call                                    5823    count_num_items_present
-3114: jf                              (reg:0) 3146
+3114: jf                              (reg:0) 3146    // r0=num_items
 3117: push                                 (reg:0)
 3119: push                                 (reg:1)
-3121: push                                 (reg:2)
-3123: set                            (reg:0) 27455
-3126: set                             (reg:1) 1531
-3129: add                       (reg:2) 4301 28446
+3121: push                                 (reg:2)    // {
+3123: set                            (reg:0) 27455    // "Things of interest here" address
+3126: set                             (reg:1) 1531    // address of print_xor(x, ,y)
+3129: add                       (reg:2) 4301 28446    // key
 3133: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
-3135: pop                                  (reg:2)
+3135: pop                                  (reg:2)    // }
 3137: pop                                  (reg:1)
 3139: pop                                  (reg:0)
 3141: rmem                            (reg:2) 2732
 3144: call                                    5876    print_item_list?(r2=<2732>)
 3146: pop                                  (reg:0)
-3148: push                                 (reg:0)
-3150: add                        (reg:0) (reg:0) 2
+3148: push                                 (reg:0)    // r0 = <2732>
+3150: add                        (reg:0) (reg:0) 2    // r0=<2732>+2
 3154: rmem                         (reg:0) (reg:0)
-3157: rmem                         (reg:0) (reg:0)
-3160: eq                         (reg:2) (reg:0) 1
+3157: rmem                         (reg:0) (reg:0)    // r0=<<<2732>+2>>
+3160: eq                         (reg:2) (reg:0) 1    // r0 = num_exits
 3164: out                                       10    \n
 3166: out                                       84    T
 3168: out                                      104    h
@@ -1597,7 +1597,7 @@
 3240: pop                                  (reg:1)
 3242: pop                                  (reg:0)
 3244: ret
-3245: push                                 (reg:0)
+3245: push                                 (reg:0)    // function: ?????
 3247: push                                 (reg:1)
 3249: push                                 (reg:2)
 3251: set                          (reg:1) (reg:0)
@@ -1660,7 +1660,7 @@
 3395: pop                                  (reg:2)
 3397: pop                                  (reg:0)
 3399: ret
-3400: push                                 (reg:0)
+3400: push                                 (reg:0)    // function: unknown(a,b,c)
 3402: push                                 (reg:1)
 3404: push                                 (reg:2)
 3406: call                                    5921    unknown(a,b,c)
@@ -1729,7 +1729,7 @@
 3563: pop                                  (reg:1)
 3565: pop                                  (reg:0)
 3567: ret
-3568: push                                 (reg:0)
+3568: push                                 (reg:0)    // function: unknown 1
 3570: push                                 (reg:1)
 3572: call                                    5921    unknown(a,b,c)
 3574: jf                              (reg:0) 3601
@@ -1739,7 +1739,7 @@
 3587: add                        (reg:1) (reg:0) 3
 3591: rmem                         (reg:1) (reg:1)
 3594: jf                              (reg:1) 3627
-3597: call                                 (reg:1)
+3597: call                                 (reg:1)    // use item
 3599: jmp                                     3651
 3601: push                                 (reg:0)
 3603: push                                 (reg:1)
@@ -1765,7 +1765,7 @@
 3651: pop                                  (reg:1)
 3653: pop                                  (reg:0)
 3655: ret
-3656: push                                 (reg:0)
+3656: push                                 (reg:0)    // function: enter_twisty_passages_6
 3658: push                                 (reg:1)
 3660: push                                 (reg:2)
 3662: set                             (reg:0) 2680
@@ -1782,7 +1782,7 @@
 3696: pop                                  (reg:1)
 3698: pop                                  (reg:0)
 3700: ret
-3701: push                                 (reg:0)
+3701: push                                 (reg:0)    // function: enter_eaten
 3703: push                                 (reg:1)
 3705: push                                 (reg:2)
 3707: set                            (reg:0) 28204
@@ -1794,45 +1794,45 @@
 3723: pop                                  (reg:0)
 3725: halt
 3726: halt
-3727: push                                 (reg:1)
+3727: push                                 (reg:1)    // function: twisty_passage_wrapper
 3729: rmem                            (reg:1) 3726
 3732: or                   (reg:1) (reg:1) (reg:0)
 3736: wmem                            3726 (reg:1)
 3739: pop                                  (reg:1)
 3741: ret
-3742: wmem                                  3726 0
+3742: wmem                                  3726 0    // function: enter_twisty_passages
 3745: ret
-3746: push                                 (reg:0)
+3746: push                                 (reg:0)    // function: enter_twisty_passages_2
 3748: set                                (reg:0) 1
 3751: call                                    3727    twisty_passage_wrapper
 3753: pop                                  (reg:0)
 3755: ret
-3756: push                                 (reg:0)
+3756: push                                 (reg:0)    // function: enter_twisty_passages_3
 3758: set                                (reg:0) 2
 3761: call                                    3727    twisty_passage_wrapper
 3763: pop                                  (reg:0)
 3765: ret
-3766: push                                 (reg:0)
+3766: push                                 (reg:0)    // function: enter_twisty_passages_4
 3768: set                                (reg:0) 4
 3771: call                                    3727    twisty_passage_wrapper
 3773: pop                                  (reg:0)
 3775: ret
-3776: push                                 (reg:0)
+3776: push                                 (reg:0)    // function: enter_twisty_passages_7
 3778: set                                (reg:0) 8
 3781: call                                    3727    twisty_passage_wrapper
 3783: pop                                  (reg:0)
 3785: ret
-3786: push                                 (reg:0)
+3786: push                                 (reg:0)    // function: enter_twisty_passages_8
 3788: set                               (reg:0) 16
 3791: call                                    3727    twisty_passage_wrapper
 3793: pop                                  (reg:0)
 3795: ret
-3796: push                                 (reg:0)
+3796: push                                 (reg:0)    // function: enter_twisty_passages_5
 3798: set                               (reg:0) 32
 3801: call                                    3727    twisty_passage_wrapper
 3803: pop                                  (reg:0)
 3805: ret
-3806: push                                 (reg:0)
+3806: push                                 (reg:0)    // function: enter_twisty_passages_9
 3808: push                                 (reg:1)
 3810: push                                 (reg:2)
 3812: push                                 (reg:3)
@@ -1841,7 +1841,7 @@
 3819: push                                 (reg:0)
 3821: push                                 (reg:1)
 3823: push                                 (reg:2)
-3825: set                            (reg:0) 28236
+3825: set                            (reg:0) 28236    // Chiseled on the wall of.....
 3828: set                             (reg:1) 1531
 3831: add                      (reg:2) 11498 13836
 3835: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -1851,7 +1851,7 @@
 3843: rmem                            (reg:0) 3726
 3846: set                            (reg:1) 25866
 3849: set                            (reg:2) 32767
-3852: set                            (reg:3) 28299
+3852: set                            (reg:3) 28299    // ////////
 3855: call                                    1841    print_decrypted(a,b,c,d)
 3857: push                                 (reg:0)
 3859: push                                 (reg:1)
@@ -1869,7 +1869,7 @@
 3888: pop                                  (reg:1)
 3890: pop                                  (reg:0)
 3892: ret
-3893: push                                 (reg:0)
+3893: push                                 (reg:0)    // function: enter_ruins_4
 3895: push                                 (reg:1)
 3897: rmem                            (reg:0) 2462
 3900: rmem                           (reg:1) 27101
@@ -1903,7 +1903,7 @@
 3955: halt
 3956: halt
 3957: halt
-3958: push                                 (reg:0)
+3958: push                                 (reg:0)    // function: enter_vault_lock_3
 3960: push                                 (reg:1)
 3962: set                                (reg:0) 2
 3965: set                                (reg:1) 0
@@ -1911,7 +1911,7 @@
 3970: pop                                  (reg:1)
 3972: pop                                  (reg:0)
 3974: ret
-3975: push                                 (reg:0)
+3975: push                                 (reg:0)    // function: enter_vault_lock_4
 3977: push                                 (reg:1)
 3979: set                                (reg:0) 8
 3982: set                                (reg:1) 1
@@ -1919,7 +1919,7 @@
 3987: pop                                  (reg:1)
 3989: pop                                  (reg:0)
 3991: ret
-3992: push                                 (reg:0)
+3992: push                                 (reg:0)    // function: enter_vault_lock_5
 3994: push                                 (reg:1)
 3996: set                                (reg:0) 1
 3999: set                                (reg:1) 2
@@ -1927,7 +1927,7 @@
 4004: pop                                  (reg:1)
 4006: pop                                  (reg:0)
 4008: ret
-4009: push                                 (reg:0)
+4009: push                                 (reg:0)    // function: enter_vault_door
 4011: push                                 (reg:1)
 4013: set                                (reg:0) 1
 4016: set                                (reg:1) 3
@@ -1936,7 +1936,7 @@
 4023: pop                                  (reg:1)
 4025: pop                                  (reg:0)
 4027: ret
-4028: push                                 (reg:0)
+4028: push                                 (reg:0)    // function: enter_vault_lock_2
 4030: push                                 (reg:1)
 4032: set                                (reg:0) 4
 4035: set                                (reg:1) 4
@@ -1944,7 +1944,7 @@
 4040: pop                                  (reg:1)
 4042: pop                                  (reg:0)
 4044: ret
-4045: push                                 (reg:0)
+4045: push                                 (reg:0)    // function: enter_vault_lock_12
 4047: push                                 (reg:1)
 4049: set                                (reg:0) 2
 4052: set                                (reg:1) 5
@@ -1952,7 +1952,7 @@
 4057: pop                                  (reg:1)
 4059: pop                                  (reg:0)
 4061: ret
-4062: push                                 (reg:0)
+4062: push                                 (reg:0)    // function: enter_vault_lock_11
 4064: push                                 (reg:1)
 4066: set                               (reg:0) 11
 4069: set                                (reg:1) 6
@@ -1960,7 +1960,7 @@
 4074: pop                                  (reg:1)
 4076: pop                                  (reg:0)
 4078: ret
-4079: push                                 (reg:0)
+4079: push                                 (reg:0)    // function: enter_vault_lock_6
 4081: push                                 (reg:1)
 4083: set                                (reg:0) 2
 4086: set                                (reg:1) 7
@@ -1968,7 +1968,7 @@
 4091: pop                                  (reg:1)
 4093: pop                                  (reg:0)
 4095: ret
-4096: push                                 (reg:0)
+4096: push                                 (reg:0)    // function: enter_vault_lock
 4098: push                                 (reg:1)
 4100: set                                (reg:0) 0
 4103: set                                (reg:1) 8
@@ -1976,7 +1976,7 @@
 4108: pop                                  (reg:1)
 4110: pop                                  (reg:0)
 4112: ret
-4113: push                                 (reg:0)
+4113: push                                 (reg:0)    // function: enter_vault_lock_13
 4115: push                                 (reg:1)
 4117: set                                (reg:0) 4
 4120: set                                (reg:1) 9
@@ -1984,7 +1984,7 @@
 4125: pop                                  (reg:1)
 4127: pop                                  (reg:0)
 4129: ret
-4130: push                                 (reg:0)
+4130: push                                 (reg:0)    // function: enter_vault_lock_10
 4132: push                                 (reg:1)
 4134: set                                (reg:0) 1
 4137: set                               (reg:1) 10
@@ -1992,7 +1992,7 @@
 4142: pop                                  (reg:1)
 4144: pop                                  (reg:0)
 4146: ret
-4147: push                                 (reg:0)
+4147: push                                 (reg:0)    // function: enter_vault_lock_7
 4149: push                                 (reg:1)
 4151: set                               (reg:0) 18
 4154: set                               (reg:1) 11
@@ -2000,9 +2000,9 @@
 4159: pop                                  (reg:1)
 4161: pop                                  (reg:0)
 4163: ret
-4164: call                                    4611    unknown 8
+4164: call                                    4611    unknown 8    // function: enter_vault_antechamber
 4166: ret
-4167: push                                 (reg:0)
+4167: push                                 (reg:0)    // function: enter_vault_lock_14
 4169: push                                 (reg:1)
 4171: set                                (reg:0) 1
 4174: set                               (reg:1) 12
@@ -2010,7 +2010,7 @@
 4179: pop                                  (reg:1)
 4181: pop                                  (reg:0)
 4183: ret
-4184: push                                 (reg:0)
+4184: push                                 (reg:0)    // function: enter_vault_lock_9
 4186: push                                 (reg:1)
 4188: set                                (reg:0) 9
 4191: set                               (reg:1) 13
@@ -2018,7 +2018,7 @@
 4196: pop                                  (reg:1)
 4198: pop                                  (reg:0)
 4200: ret
-4201: push                                 (reg:0)
+4201: push                                 (reg:0)    // function: enter_vault_lock_8
 4203: push                                 (reg:1)
 4205: set                                (reg:0) 2
 4208: set                               (reg:1) 14
@@ -2026,7 +2026,7 @@
 4213: pop                                  (reg:1)
 4215: pop                                  (reg:0)
 4217: ret
-4218: push                                 (reg:0)
+4218: push                                 (reg:0)    // function: unknown 3
 4220: push                                 (reg:1)
 4222: push                                 (reg:2)
 4224: add                           (reg:2) 2716 2
@@ -2036,11 +2036,11 @@
 4236: wmem                            3951 (reg:0)
 4239: add                     (reg:1) (reg:0) 3945
 4243: rmem                         (reg:1) (reg:1)
-4246: set                            (reg:0) 26024
+4246: set                            (reg:0) 26024    // As you enter the room, the symbol on the floor briefly flashes
 4249: call                                    1518    print_string(start_ptr)
 4251: set                          (reg:0) (reg:1)
 4254: call                                    1518    print_string(start_ptr)
-4256: set                            (reg:0) 26088
+4256: set                            (reg:0) 26088    // . The orb begins subtly glowing
 4259: call                                    1518    print_string(start_ptr)
 4261: set                          (reg:0) (reg:1)
 4264: call                                    1518    print_string(start_ptr)
@@ -2051,7 +2051,7 @@
 4274: pop                                  (reg:1)
 4276: pop                                  (reg:0)
 4278: ret
-4279: push                                 (reg:0)
+4279: push                                 (reg:0)    // function: unknown 4
 4281: push                                 (reg:1)
 4283: push                                 (reg:2)
 4285: add                           (reg:2) 2716 2
@@ -2100,7 +2100,7 @@
 4400: pop                                  (reg:1)
 4402: pop                                  (reg:0)
 4404: ret
-4405: push                                 (reg:0)
+4405: push                                 (reg:0)    // function: unknown 5
 4407: push                                 (reg:1)
 4409: push                                 (reg:2)
 4411: push                                 (reg:3)
@@ -2140,7 +2140,7 @@
 4510: pop                                  (reg:1)
 4512: pop                                  (reg:0)
 4514: ret
-4515: push                                 (reg:0)
+4515: push                                 (reg:0)    // function: unknown 6
 4517: rmem                         (reg:0) (reg:0)
 4520: call                                    2248    x_plus_2_count(x,count)
 4522: set                          (reg:1) (reg:2)
@@ -2148,7 +2148,7 @@
 4527: pop                                  (reg:1)
 4529: wmem                         (reg:1) (reg:0)
 4532: ret
-4533: push                                 (reg:0)
+4533: push                                 (reg:0)    // function: unknown 7
 4535: add                           (reg:0) 2716 2
 4539: rmem                         (reg:0) (reg:0)
 4542: jt                              (reg:0) 4608
@@ -2157,13 +2157,13 @@
 4550: rmem                            (reg:0) 3952
 4553: eq                        (reg:0) (reg:0) 30
 4557: jt                              (reg:0) 4574
-4560: set                            (reg:0) 26354
+4560: set                            (reg:0) 26354    // the number on the vault door flashes black
 4563: call                                    1518    print_string(start_ptr)
 4565: set                            (reg:0) 26398
 4568: call                                    1518    print_string(start_ptr)
 4570: call                                    4660    set_codes(x)
 4572: jmp                                     4608
-4574: set                            (reg:0) 26440
+4574: set                            (reg:0) 26440    // the number on the vault door flashes white
 4577: call                                    1518    print_string(start_ptr)
 4579: rmem                            (reg:0) 3954
 4582: add                        (reg:0) (reg:0) 1
@@ -2177,7 +2177,7 @@
 4605: wmem                           (reg:0) 32767
 4608: pop                                  (reg:0)
 4610: ret
-4611: push                                 (reg:0)
+4611: push                                 (reg:0)    // function: unknown 8
 4613: add                           (reg:0) 2716 2
 4617: rmem                         (reg:0) (reg:0)
 4620: jt                              (reg:0) 4657
@@ -2186,7 +2186,7 @@
 4628: rmem                            (reg:0) 2732
 4631: eq                      (reg:0) (reg:0) 2623
 4635: jt                              (reg:0) 4645
-4638: set                            (reg:0) 26725
+4638: set                            (reg:0) 26725    // leave
 4641: call                                    1518    print_string(start_ptr)
 4643: jmp                                     4650
 4645: set                            (reg:0) 26731
@@ -2196,7 +2196,7 @@
 4655: call                                    4660    set_codes(x)
 4657: pop                                  (reg:0)
 4659: ret
-4660: push                                 (reg:0)
+4660: push                                 (reg:0)    // function: set_codes(x)
 4662: wmem                                 3952 22
 4665: wmem                                  3953 0
 4668: wmem                                  3954 0
@@ -2207,7 +2207,7 @@
 4684: wmem                            (reg:0) 2623
 4687: pop                                  (reg:0)
 4689: ret
-4690: push                                 (reg:0)
+4690: push                                 (reg:0)    // function: enter_vault
 4692: add                           (reg:0) 2716 2
 4696: rmem                         (reg:0) (reg:0)
 4699: eq                     (reg:0) (reg:0) 32767
@@ -2218,7 +2218,7 @@
 4714: wmem                               2733 2578
 4717: pop                                  (reg:0)
 4719: ret
-4720: push                                 (reg:0)
+4720: push                                 (reg:0)    // function: use_tablet
 4722: push                                 (reg:1)
 4724: push                                 (reg:2)
 4726: push                                 (reg:3)
@@ -2227,7 +2227,7 @@
 4732: push                                 (reg:2)
 4734: set                            (reg:0) 28369
 4737: set                             (reg:1) 1531
-4740: add                         (reg:2) 414 1734
+4740: add                         (reg:2) 414 1734    // (28369,1531,2148)
 4744: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
 4746: pop                                  (reg:2)
 4748: pop                                  (reg:1)
@@ -2235,14 +2235,14 @@
 4752: set                             (reg:0) 4242
 4755: set                            (reg:1) 25866
 4758: set                            (reg:2) 32767
-4761: set                            (reg:3) 28397
+4761: set                            (reg:3) 28397    // (4242,25866,32767,28397)
 4764: call                                    1841    print_decrypted(a,b,c,d)
 4766: push                                 (reg:0)
 4768: push                                 (reg:1)
 4770: push                                 (reg:2)
 4772: set                            (reg:0) 28401
 4775: set                             (reg:1) 1531
-4778: add                        (reg:2) 6428 6085
+4778: add                        (reg:2) 6428 6085    // (28401,1531,12513)
 4782: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
 4784: pop                                  (reg:2)
 4786: pop                                  (reg:1)
@@ -2252,7 +2252,7 @@
 4794: pop                                  (reg:1)
 4796: pop                                  (reg:0)
 4798: ret
-4799: push                                 (reg:0)
+4799: push                                 (reg:0)    // function: use_can
 4801: add                           (reg:0) 2672 2
 4805: rmem                         (reg:0) (reg:0)
 4808: jt                              (reg:0) 4858
@@ -2285,7 +2285,7 @@
 4880: pop                                  (reg:0)
 4882: pop                                  (reg:0)
 4884: ret
-4885: push                                 (reg:0)
+4885: push                                 (reg:0)    // function: use_lantern
 4887: add                           (reg:0) 2676 2
 4891: wmem                           (reg:0) 32767
 4894: add                           (reg:0) 2680 2
@@ -2293,7 +2293,7 @@
 4901: push                                 (reg:0)
 4903: push                                 (reg:1)
 4905: push                                 (reg:2)
-4907: set                            (reg:0) 28569
+4907: set                            (reg:0) 28569    // You light your lantern
 4910: set                             (reg:1) 1531
 4913: add                          (reg:2) 5980 20
 4917: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2303,7 +2303,7 @@
 4925: wmem                                  2733 0
 4928: pop                                  (reg:0)
 4930: ret
-4931: push                                 (reg:0)
+4931: push                                 (reg:0)    // function: use_lit_lantern
 4933: add                           (reg:0) 2676 2
 4937: wmem                               (reg:0) 0
 4940: add                           (reg:0) 2680 2
@@ -2311,7 +2311,7 @@
 4947: push                                 (reg:0)
 4949: push                                 (reg:1)
 4951: push                                 (reg:2)
-4953: set                            (reg:0) 28595
+4953: set                            (reg:0) 28595    // You douse your lantern
 4956: set                             (reg:1) 1531
 4959: add                      (reg:2) 10542 18250
 4963: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2321,7 +2321,7 @@
 4971: wmem                                  2733 0
 4974: pop                                  (reg:0)
 4976: ret
-4977: push                                 (reg:2)
+4977: push                                 (reg:2)    // function: use_coin
 4979: push                                 (reg:3)
 4981: rmem                            (reg:2) 2732
 4984: eq                      (reg:2) (reg:2) 2457
@@ -2329,7 +2329,7 @@
 4991: push                                 (reg:0)
 4993: push                                 (reg:1)
 4995: push                                 (reg:2)
-4997: set                            (reg:0) 28621
+4997: set                            (reg:0) 28621    // You're not sure what to do with the coin.
 5000: set                             (reg:1) 1531
 5003: add                         (reg:2) 499 1800
 5007: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2356,7 +2356,7 @@
 5072: push                                 (reg:0)
 5074: push                                 (reg:1)
 5076: push                                 (reg:2)
-5078: set                            (reg:0) 28664
+5078: set                            (reg:0) 28664    // You place the
 5081: set                             (reg:1) 1531
 5084: add                       (reg:2) 13551 3583
 5088: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2454,7 +2454,7 @@
 5354: wmem                              (reg:2) 95
 5357: pop                                  (reg:2)
 5359: ret
-5360: push                                 (reg:0)
+5360: push                                 (reg:0)    // function: use_red_coin
 5362: push                                 (reg:1)
 5364: set                             (reg:0) 2688
 5367: set                                (reg:1) 2
@@ -2462,7 +2462,7 @@
 5372: pop                                  (reg:1)
 5374: pop                                  (reg:0)
 5376: ret
-5377: push                                 (reg:0)
+5377: push                                 (reg:0)    // function: use_corroded_coin
 5379: push                                 (reg:1)
 5381: set                             (reg:0) 2692
 5384: set                                (reg:1) 3
@@ -2470,7 +2470,7 @@
 5389: pop                                  (reg:1)
 5391: pop                                  (reg:0)
 5393: ret
-5394: push                                 (reg:0)
+5394: push                                 (reg:0)    // function: use_shiny_coin
 5396: push                                 (reg:1)
 5398: set                             (reg:0) 2696
 5401: set                                (reg:1) 5
@@ -2478,7 +2478,7 @@
 5406: pop                                  (reg:1)
 5408: pop                                  (reg:0)
 5410: ret
-5411: push                                 (reg:0)
+5411: push                                 (reg:0)    // function: use_concave_coin
 5413: push                                 (reg:1)
 5415: set                             (reg:0) 2700
 5418: set                                (reg:1) 7
@@ -2486,7 +2486,7 @@
 5423: pop                                  (reg:1)
 5425: pop                                  (reg:0)
 5427: ret
-5428: push                                 (reg:0)
+5428: push                                 (reg:0)    // function: use_blue_coin
 5430: push                                 (reg:1)
 5432: set                             (reg:0) 2704
 5435: set                                (reg:1) 9
@@ -2494,14 +2494,14 @@
 5440: pop                                  (reg:1)
 5442: pop                                  (reg:0)
 5444: ret
-5445: push                                 (reg:0)
+5445: push                                 (reg:0)    // function: use_teleporter
 5447: push                                 (reg:1)
 5449: push                                 (reg:2)
 5451: jf                              (reg:7) 5605
 5454: push                                 (reg:0)
 5456: push                                 (reg:1)
 5458: push                                 (reg:2)
-5460: set                            (reg:0) 28844
+5460: set                            (reg:0) 28844    // "Unusual setting detected...
 5463: set                             (reg:1) 1531
 5466: add                        (reg:2) 986 12834
 5470: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2521,7 +2521,7 @@
 5498: push                                 (reg:0)
 5500: push                                 (reg:1)
 5502: push                                 (reg:2)
-5504: set                            (reg:0) 29014
+5504: set                            (reg:0) 29014    // You wake up on a sandy beach...
 5507: set                             (reg:1) 1531
 5510: add                        (reg:2) 2501 4637
 5514: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2564,7 +2564,7 @@
 5605: push                                 (reg:0)
 5607: push                                 (reg:1)
 5609: push                                 (reg:2)
-5611: set                            (reg:0) 29545
+5611: set                            (reg:0) 29545    // You activate the teleporter...
 5614: set                             (reg:1) 1531
 5617: add                        (reg:2) 269 24427
 5621: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2605,7 +2605,7 @@
 5716: pop                                  (reg:1)
 5718: pop                                  (reg:0)
 5720: ret
-5721: push                                 (reg:0)
+5721: push                                 (reg:0)    // function: use_mirror
 5723: push                                 (reg:1)
 5725: push                                 (reg:2)
 5727: push                                 (reg:3)
@@ -2645,55 +2645,55 @@
 5809: pop                                  (reg:1)
 5811: pop                                  (reg:0)
 5813: ret
-5814: out                                       45    -
+5814: out                                       45    -    // function: print_string_2(start_ptr)
 5816: out                                       32
 5818: call                                    1518    print_string(start_ptr)
 5820: out                                       10    \n
 5822: ret
-5823: push                                 (reg:1)
-5825: push                                 (reg:2)
-5827: set                            (reg:0) 27381
+5823: push                                 (reg:1)    // function: count_num_items_present
+5825: push                                 (reg:2)    // count and return how many of vector
+5827: set                            (reg:0) 27381    // starting 27381 have <2732> = <x+2>
 5830: set                             (reg:1) 5846
-5833: set                                (reg:2) 0
+5833: set                                (reg:2) 0    // (27381,5846,0)
 5836: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
 5838: set                          (reg:0) (reg:2)
 5841: pop                                  (reg:2)
 5843: pop                                  (reg:1)
 5845: ret
-5846: push                                 (reg:3)
+5846: push                                 (reg:3)    // function: increment_c_if_<2732>=<a+2>(a,b,c)
 5848: push                                 (reg:4)
-5850: rmem                            (reg:3) 2732
-5853: add                        (reg:4) (reg:0) 2
-5857: rmem                         (reg:4) (reg:4)
-5860: eq                   (reg:3) (reg:3) (reg:4)
-5864: jf                              (reg:3) 5871
-5867: add                        (reg:2) (reg:2) 1
-5871: pop                                  (reg:4)
+5850: rmem                            (reg:3) 2732    // (a,b,c,<2732>)
+5853: add                        (reg:4) (reg:0) 2    // (a,b,c,<2732>,a+2)
+5857: rmem                         (reg:4) (reg:4)    // (a,b,c,<2732>,<a+2>)
+5860: eq                   (reg:3) (reg:3) (reg:4)    // (a,b,c,<2732>=<a+2>,<a+2>)
+5864: jf                              (reg:3) 5871    // if <2732>!=<a+2> return noop
+5867: add                        (reg:2) (reg:2) 1    // (a,b,c+1,<2732>=<a+2>,<a+2>)
+5871: pop                                  (reg:4)    // return (a,b,c+1)
 5873: pop                                  (reg:3)
 5875: ret
-5876: push                                 (reg:0)
+5876: push                                 (reg:0)    // function: print_item_list?(r2=<2732>)
 5878: push                                 (reg:1)
 5880: set                            (reg:0) 27381
-5883: set                             (reg:1) 5893
+5883: set                             (reg:1) 5893    // print_string(<27381>) if r2 = <27383>
 5886: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
 5888: pop                                  (reg:1)
 5890: pop                                  (reg:0)
 5892: ret
-5893: push                                 (reg:3)
-5895: add                        (reg:3) (reg:0) 2
-5899: rmem                         (reg:3) (reg:3)
-5902: eq                   (reg:3) (reg:2) (reg:3)
-5906: jf                              (reg:3) 5918
-5909: add                        (reg:0) (reg:0) 0
-5913: rmem                         (reg:0) (reg:0)
+5893: push                                 (reg:3)    // function: maybe_print(<a>)
+5895: add                        (reg:3) (reg:0) 2    // (a,b,c,a+2)
+5899: rmem                         (reg:3) (reg:3)    // (a,b,c,rmem(a+2))
+5902: eq                   (reg:3) (reg:2) (reg:3)    // (a,b,c,c=rmem(a+2))
+5906: jf                              (reg:3) 5918    // if c!=rmem(a+2) return NOOP
+5909: add                        (reg:0) (reg:0) 0    // !!! weird
+5913: rmem                         (reg:0) (reg:0)    // (rmem(a),b,c,c=rmem(a+2))
 5916: call                                    5814    print_string_2(start_ptr)
 5918: pop                                  (reg:3)
 5920: ret
-5921: push                                 (reg:1)
+5921: push                                 (reg:1)    // function: unknown(a,b,c)
 5923: push                                 (reg:2)
-5925: set                          (reg:2) (reg:0)
-5928: set                            (reg:0) 27381
-5931: set                             (reg:1) 5964
+5925: set                          (reg:2) (reg:0)    // (a,b,a)
+5928: set                            (reg:0) 27381    // (27381,b,a)
+5931: set                             (reg:1) 5964    // (27381,5964,a)
 5934: call                                    1543    call_repeatedly_sentinel(start_ptr,fn_ptr,worked_val)
 5936: eq                     (reg:1) (reg:0) 32767
 5940: jt                              (reg:1) 5956
@@ -2705,31 +2705,31 @@
 5959: pop                                  (reg:2)
 5961: pop                                  (reg:1)
 5963: ret
-5964: push                                 (reg:1)
-5966: set                          (reg:1) (reg:2)
-5969: add                        (reg:0) (reg:0) 0
-5973: rmem                         (reg:0) (reg:0)
+5964: push                                 (reg:1)    // function: unknown(a,b,c)
+5966: set                          (reg:1) (reg:2)    // (a,c,c)
+5969: add                        (reg:0) (reg:0) 0    // !!! self modifying? why is this here?
+5973: rmem                         (reg:0) (reg:0)    // (rmem(a),c,c)
 5976: call                                    1667    unknown(a,b)_a_is_a_pointer
 5978: pop                                  (reg:1)
 5980: jf                              (reg:0) 5989
 5983: set                          (reg:2) (reg:1)
 5986: set                            (reg:1) 32767
 5989: ret
-5990: push                                 (reg:1)
+5990: push                                 (reg:1)    // function: compare_xplus2_2732(<a>)
 5992: push                                 (reg:2)
-5994: add                        (reg:0) (reg:0) 2
-5998: rmem                         (reg:0) (reg:0)
-6001: jf                              (reg:0) 6019
-6004: rmem                            (reg:1) 2732
-6007: eq                   (reg:1) (reg:0) (reg:1)
-6011: jt                              (reg:1) 6019
-6014: set                                (reg:0) 0
+5994: add                        (reg:0) (reg:0) 2    // (a+2,b)
+5998: rmem                         (reg:0) (reg:0)    // (<a+2>,b)
+6001: jf                              (reg:0) 6019    // if <a+2> = 0 return 1
+6004: rmem                            (reg:1) 2732    // (<a+2>, <2732>)
+6007: eq                   (reg:1) (reg:0) (reg:1)    // (<a+2>,<a+2>=<2732>)
+6011: jt                              (reg:1) 6019    // if <a+2>=<2732> return 1
+6014: set                                (reg:0) 0    // return 0
 6017: jmp                                     6022
-6019: set                                (reg:0) 1
+6019: set                                (reg:0) 1    // return 1
 6022: pop                                  (reg:2)
 6024: pop                                  (reg:1)
 6026: ret
-6027: jt                              (reg:0) 6035
+6027: jt                              (reg:0) 6035    // function: unknown
 6030: add                        (reg:0) (reg:1) 1
 6034: ret
 6035: jt                              (reg:1) 6048
