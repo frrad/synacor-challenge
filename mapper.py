@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+
 with open('logs/boot.log', 'r') as f:
     data = f.readlines()
 data = [int(line.strip().split(':')[1]) for line in data[7:]]
@@ -152,12 +153,24 @@ def print_code_notes():
 
 
 def print_graphviz():
-    formatted_names = []
+    formatted_names_no_items = []
+    formatted_names_items = []
     arrows = []
     for addr in sorted(collection.keys()):
         room = collection[addr]
         room_name = room.var_unique_name()
-        formatted_names.append(room_name)
+        if len(room.item_set) == 0:
+            formatted_names_no_items.append(room_name)
+        else:
+            node = room_name
+
+            thing_list = ''
+            for thing in room.item_set:
+                thing_list += '\n' + thing.name
+
+            node += "[label=\"%s\"]" % (room_name + ':' + thing_list)
+
+            formatted_names_items.append(node)
 
         for exit_name, child_room in zip(room.exit_vec, room.dest_vec):
             child_room_name = child_room.var_unique_name()
@@ -165,12 +178,15 @@ def print_graphviz():
                           (room_name, child_room_name, exit_name))
 
     print "digraph map {"
-    print "  rankdir=LR;"
+    print "  rankdir=UD;"
     print "  size=\"50,50\""
-    print '  node [shape = circle, fontsize = 25]; %s;' % ' '.join(formatted_names)
+    print '  node [shape = ellipse, fontsize = 25]; %s;' % ' '.join(formatted_names_no_items)
+    print '  node [shape = rectangle, fontsize = 25]; %s;' % ' '.join(formatted_names_items)
     print '  edge [ fontsize = 30];'
     for arrow in arrows:
         print'  ', arrow
+    print '  edge [ fontsize = 30, style = dashed];'
+    print '  passage_2 -> fumbling_around_in_the_darkness[label = "continue"]'
     print '}'
 
 print_graphviz()
