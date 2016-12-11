@@ -350,8 +350,8 @@
 
 #use_coin
 4997:You're not sure what to do with the coin.
-
 5078:You place the 
+5119:into the leftmost open slot.
 
 5460:"Unusual setting detected...
 

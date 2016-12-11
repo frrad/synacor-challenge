@@ -2321,7 +2321,7 @@
 4971: wmem                                  2733 0
 4974: pop                                  (reg:0)
 4976: ret
-4977: push                                 (reg:2)    // function: use_coin
+4977: push                                 (reg:2)    // function: use_coin_wrapper
 4979: push                                 (reg:3)
 4981: rmem                            (reg:2) 2732
 4984: eq                      (reg:2) (reg:2) 2457
@@ -2373,7 +2373,7 @@
 5113: push                                 (reg:0)
 5115: push                                 (reg:1)
 5117: push                                 (reg:2)
-5119: set                            (reg:0) 28679
+5119: set                            (reg:0) 28679    // into the leftmost open slot.
 5122: set                             (reg:1) 1531
 5125: add                      (reg:2) 11546 18642
 5129: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2458,7 +2458,7 @@
 5362: push                                 (reg:1)
 5364: set                             (reg:0) 2688
 5367: set                                (reg:1) 2
-5370: call                                    4977    use_coin
+5370: call                                    4977    use_coin_wrapper
 5372: pop                                  (reg:1)
 5374: pop                                  (reg:0)
 5376: ret
@@ -2466,7 +2466,7 @@
 5379: push                                 (reg:1)
 5381: set                             (reg:0) 2692
 5384: set                                (reg:1) 3
-5387: call                                    4977    use_coin
+5387: call                                    4977    use_coin_wrapper
 5389: pop                                  (reg:1)
 5391: pop                                  (reg:0)
 5393: ret
@@ -2474,7 +2474,7 @@
 5396: push                                 (reg:1)
 5398: set                             (reg:0) 2696
 5401: set                                (reg:1) 5
-5404: call                                    4977    use_coin
+5404: call                                    4977    use_coin_wrapper
 5406: pop                                  (reg:1)
 5408: pop                                  (reg:0)
 5410: ret
@@ -2482,7 +2482,7 @@
 5413: push                                 (reg:1)
 5415: set                             (reg:0) 2700
 5418: set                                (reg:1) 7
-5421: call                                    4977    use_coin
+5421: call                                    4977    use_coin_wrapper
 5423: pop                                  (reg:1)
 5425: pop                                  (reg:0)
 5427: ret
@@ -2490,7 +2490,7 @@
 5430: push                                 (reg:1)
 5432: set                             (reg:0) 2704
 5435: set                                (reg:1) 9
-5438: call                                    4977    use_coin
+5438: call                                    4977    use_coin_wrapper
 5440: pop                                  (reg:1)
 5442: pop                                  (reg:0)
 5444: ret
