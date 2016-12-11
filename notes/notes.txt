@@ -349,9 +349,19 @@
 4953:You douse your lantern
 
 #use_coin
+4984:check if current room == ruins_3
 4997:You're not sure what to do with the coin.
+5017:passed in-ruins_3 check
 5078:You place the 
 5119:into the leftmost open slot.
+5237:if true, unlock door
+5278:vector with offsets of underscores ruin_3 desc
+5281:ruin_3_desc_underscore(offset)
+5292:As you place the last coin, they are all released onto the floor.
+5318:As you place the last coin, you hear a click from the north door.
+5343:2458 is the address of ruin_3 desc pointer
+5347:r2 = address of ruin_3 desc 
+5354:95 = '_'
 
 5460:"Unusual setting detected...
 

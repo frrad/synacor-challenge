@@ -2324,7 +2324,7 @@
 4977: push                                 (reg:2)    // function: use_coin_wrapper
 4979: push                                 (reg:3)
 4981: rmem                            (reg:2) 2732
-4984: eq                      (reg:2) (reg:2) 2457
+4984: eq                      (reg:2) (reg:2) 2457    // check if current room == ruins_3
 4988: jt                              (reg:2) 5017
 4991: push                                 (reg:0)
 4993: push                                 (reg:1)
@@ -2337,7 +2337,7 @@
 5011: pop                                  (reg:1)
 5013: pop                                  (reg:0)
 5015: jmp                                     5336
-5017: add                        (reg:2) (reg:0) 2
+5017: add                        (reg:2) (reg:0) 2    // passed in-ruins_3 check
 5021: wmem                           (reg:2) 32767
 5024: rmem                            (reg:2) 2462
 5027: add                    (reg:2) (reg:2) 27095
@@ -2408,7 +2408,7 @@
 5225: add                    (reg:1) (reg:1) 32767
 5229: add                  (reg:0) (reg:0) (reg:1)
 5233: eq                       (reg:1) (reg:0) 399
-5237: jt                              (reg:1) 5312
+5237: jt                              (reg:1) 5312    // if true, unlock door
 5240: add                           (reg:2) 2688 2
 5244: wmem                            (reg:2) 2457
 5247: add                           (reg:2) 2692 2
@@ -2420,13 +2420,13 @@
 5268: add                           (reg:2) 2704 2
 5272: wmem                            (reg:2) 2457
 5275: wmem                                  2462 0
-5278: set                            (reg:0) 27095
-5281: set                             (reg:1) 5341
+5278: set                            (reg:0) 27095    // vector with offsets of underscores ruin_3 desc
+5281: set                             (reg:1) 5341    // ruin_3_desc_underscore(offset)
 5284: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
 5286: push                                 (reg:0)
 5288: push                                 (reg:1)
 5290: push                                 (reg:2)
-5292: set                            (reg:0) 28710
+5292: set                            (reg:0) 28710    // As you place the last coin, they are all released onto the floor.
 5295: set                             (reg:1) 1531
 5298: add                       (reg:2) 3965 28261
 5302: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2437,7 +2437,7 @@
 5312: push                                 (reg:0)
 5314: push                                 (reg:1)
 5316: push                                 (reg:2)
-5318: set                            (reg:0) 28777
+5318: set                            (reg:0) 28777    // As you place the last coin, you hear a click from the north door.
 5321: set                             (reg:1) 1531
 5324: add                       (reg:2) 12960 7509
 5328: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2447,11 +2447,11 @@
 5336: pop                                  (reg:3)
 5338: pop                                  (reg:2)
 5340: ret
-5341: push                                 (reg:2)
-5343: add                           (reg:2) 2457 1
-5347: rmem                         (reg:2) (reg:2)
-5350: add                  (reg:2) (reg:2) (reg:0)
-5354: wmem                              (reg:2) 95
+5341: push                                 (reg:2)    // function: ruin_3_desc_underscore(offset)
+5343: add                           (reg:2) 2457 1    // 2458 is the address of ruin_3 desc pointer
+5347: rmem                         (reg:2) (reg:2)    // r2 = address of ruin_3 desc
+5350: add               (reg:2) (reg:2) (offset:0)
+5354: wmem                              (reg:2) 95    // 95 = '_'
 5357: pop                                  (reg:2)
 5359: ret
 5360: push                                 (reg:0)    // function: use_red_coin

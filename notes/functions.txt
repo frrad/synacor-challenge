@@ -73,6 +73,7 @@
 4885:use_lantern
 4931:use_lit_lantern
 4977:use_coin_wrapper
+5341:ruin_3_desc_underscore(offset)
 5360:use_red_coin
 5377:use_corroded_coin
 5394:use_shiny_coin
