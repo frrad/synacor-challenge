@@ -326,7 +326,7 @@
 3597:use item
 
 3825:Chiseled on the wall of.....
-3852:////////
+3881:move to "Twisty Passages 10"
 
 4246:As you enter the room, the symbol on the floor briefly flashes
 4256:. The orb begins subtly glowing 

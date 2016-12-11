@@ -1851,7 +1851,7 @@
 3843: rmem                            (reg:0) 3726
 3846: set                            (reg:1) 25866
 3849: set                            (reg:2) 32767
-3852: set                            (reg:3) 28299    // ////////
+3852: set                            (reg:3) 28299
 3855: call                                    1841    print_decrypted(a,b,c,d)
 3857: push                                 (reg:0)
 3859: push                                 (reg:1)
@@ -1863,7 +1863,7 @@
 3875: pop                                  (reg:2)
 3877: pop                                  (reg:1)
 3879: pop                                  (reg:0)
-3881: wmem                               2732 2417
+3881: wmem                               2732 2417    // move to "Twisty Passages 10"
 3884: pop                                  (reg:3)
 3886: pop                                  (reg:2)
 3888: pop                                  (reg:1)

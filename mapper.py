@@ -187,6 +187,7 @@ def print_graphviz():
         print'  ', arrow
     print '  edge [ fontsize = 30, style = dashed];'
     print '  passage_2 -> fumbling_around_in_the_darkness[label = "continue"]'
+    print '  twisty_passages_9 -> twisty_passages_10'
     print '}'
 
 print_graphviz()
