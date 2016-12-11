@@ -34,11 +34,13 @@ class room:
         return answer.replace('"', '').replace('!', '').lower()
 
     def __init__(self, start, addr_keyed_collection, name_set):
+        self.item_set = set()
+
         self.addr = start
 
         addr_keyed_collection[self.addr] = self
 
-        name_ptr = data[start]
+        name_ptr = data[self.addr]
         self.name = read_str(name_ptr)
 
         base_unique_name = '"%s"' % self.name
@@ -54,7 +56,7 @@ class room:
             self.unique_name = name
             name_set.add(name)
 
-        desc_ptr = data[start + 1]
+        desc_ptr = data[self.addr + 1]
         self.description = read_str(desc_ptr)
         exit_vec_ptr = data[start + 2]
         self.exit_vec = map(read_str, read_vec(exit_vec_ptr))
@@ -76,10 +78,31 @@ class room:
 
 
 class item:
+    all_items = set()
 
-    def __init__(self, pointer):
+    def var_name(self):
+        answer = self.name.replace(' ', '_')
+        return answer.replace('"', '').replace('!', '').lower()
+
+    def __init__(self, pointer, room_collection):
+        item.all_items.add(self)
+
+        self.addr = pointer
+
         name_ptr = read_val(pointer)
         self.name = read_str(name_ptr)
+
+        desc_ptr = read_val(pointer + 1)
+        self.description = read_str(desc_ptr)
+
+        room_ptr = read_val(pointer + 2)
+        self.has_room = False
+        if room_ptr < 32767:  # -1 is "unset"
+            self.has_room = True
+            room_collection[room_ptr].item_set.add(self)
+            self.room = room_collection[room_ptr]
+
+        self.fn_ptr = read_val(pointer + 3)
 
 
 collection = dict()
@@ -91,18 +114,41 @@ for addr in range(2322, 2462, 5) + range(2463, 2666, 5):
     room(addr, collection, name_set)
 
 
-# for code annotation
-# for addr in sorted(collection.keys()):
-#     room = collection[addr]
-#     print "%d:%s" % (addr, room.unique_name)
-#     print "%d:%s" % (addr + 1, room.description[:30] + '...')
-#     if room.fn_ptr > 0:
-#         print "%d:enter_%s" % (room.fn_ptr, room.var_unique_name())
+for pointer in read_vec(27381):
+    item(pointer, collection)
 
 
-item_pointers = read_vec(27381)
-for pointer in item_pointers:
-    itemz = item(pointer)
+def print_code_notes():
+    fn_lines = []
+    note_lines = []
+
+    fn_lines += ['# enter room functions']
+    note_lines += ['# room notes']
+    for addr in sorted(collection.keys()):
+        room = collection[addr]
+        note_lines.append("%d:%s" % (addr, room.unique_name))
+        note_lines.append("%d:%s" % (addr + 1, room.description[:30] + '...'))
+        if room.fn_ptr > 0:
+            fn_lines.append("%d:enter_%s" %
+                            (room.fn_ptr, room.var_unique_name()))
+
+    fn_lines += ['# use object functions']
+    note_lines += ['# object notes']
+    for thing in item.all_items:
+        note_lines.append("%d:\"%s\"" % (thing.addr, thing.name))
+        note_lines.append("%d:%s" %
+                          (thing.addr + 1, thing.description[:30] + "..."))
+        if thing.has_room:
+            note_lines.append("%d:room=%s" %
+                              (thing.addr + 2, thing.room.unique_name))
+
+        if thing.fn_ptr:
+            fn_lines.append("%d:use_%s" % (thing.fn_ptr, thing.var_name()))
+
+    print '\n'
+    print '\n'.join(note_lines)
+    print '\n'
+    print '\n'.join(fn_lines)
 
 
 def print_graphviz():
@@ -128,3 +174,4 @@ def print_graphviz():
     print '}'
 
 print_graphviz()
+# print_code_notes()

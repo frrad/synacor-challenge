@@ -1335,68 +1335,68 @@
 2666: 27380
 2667: 3701
 2668: 18062                                       // "tablet"
-2669: 18069                                       // tablet description
-2670: 2317                                        // tablet location?
+2669: 18069                                       // The tablet seems appropriate f...
+2670: 2317                                        // room="Foothills" 2
 2671: 4720
 2672: 18206                                       // "empty lantern"
-2673: 18220                                       // empty lantern description
-2674: 2357
+2673: 18220                                       // The lantern seems to have quit...
+2674: 2357                                        // room="Moss cavern" 3
 2675: halt
 2676: 18344                                       // "lantern"
-2677: 18352
+2677: 18352                                       // The lantern seems to have quit...
 2678: 32767
 2679: 4885
 2680: 18468                                       // "lit lantern"
-2681: 18480
+2681: 18480                                       // The lantern seems to have quit...
 2682: 32767
 2683: 4931
 2684: 18568                                       // "can"
-2685: 18572
-2686: 2417
+2685: 18572                                       // This can is full of high-quali...
+2686: 2417                                        // room="Twisty passages" 10
 2687: 4799
 2688: 18618                                       // "red coin"
-2689: 18627
-2690: 2452
+2689: 18627                                       // This coin is made of a red met...
+2690: 2452                                        // room="Ruins" 2
 2691: 5360
 2692: 18691                                       // "corroded coin"
-2693: 18705
-2694: 2473
+2693: 18705                                       // This coin is somewhat corroded...
+2694: 2473                                        // room="Ruins" 6
 2695: 5377
 2696: 18769                                       // "shiny coin"
-2697: 18780                                       // shiny coin description
-2698: 2483
+2697: 18780                                       // This coin is somehow still qui...
+2698: 2483                                        // room="Ruins" 8
 2699: 5394
 2700: 18852                                       // "concave coin"
-2701: 18865
-2702: 2468
+2701: 18865                                       // This coin is slightly rounded,...
+2702: 2468                                        // room="Ruins" 5
 2703: 5411
 2704: 18953                                       // "blue coin"
-2705: 18963
-2706: 2478
+2705: 18963                                       // This coin is made of a blue me...
+2706: 2478                                        // room="Ruins" 7
 2707: 5428
 2708: 19029                                       // "teleporter"
-2709: 19040
-2710: 2463
+2709: 19040                                       // This small device has a button...
+2710: 2463                                        // room="Ruins" 4
 2711: 5445
 2712: 19113                                       // "business card"
-2713: 19127
-2714: 2488
+2713: 19127                                       // This business card has "synaco...
+2714: 2488                                        // room="Synacor Headquarters"
 2715: halt
 2716: 19192                                       // "orb"
-2717: 19196
-2718: 2623
+2717: 19196                                       // This is a clear glass sphere a...
+2718: 2623                                        // room="Vault Antechamber"
 2719: halt
 2720: 19258                                       // "mirror"
-2721: 19265
-2722: 2643
+2721: 19265                                       // This is a rather mundane hand-...
+2722: 2643                                        // room="Vault"
 2723: 5721
 2724: 19384                                       // "strange book"
-2725: 19397
-2726: 2488
+2725: 19397                                       // The cover of this book subtly ...
+2726: 2488                                        // room="Synacor Headquarters"
 2727: halt
 2728: 22093                                       // "journal"
-2729: 22101
-2730: 2553
+2729: 22101                                       // Fireflies were using this dust...
+2730: 2553                                        // room="Tropical Cave Alcove"
 2731: halt
 2732: 2317                                        // pointer to current location
 2733: 2317

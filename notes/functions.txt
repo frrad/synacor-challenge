@@ -1,5 +1,3 @@
-80:unknown
-86:unknown
 1285:unknown
 1458:call_repeatedly(start_ptr,fn_ptr)
 1518:print_string(start_ptr)
@@ -24,6 +22,8 @@
 3245:?????
 3400:unknown(a,b,c)
 3568:unknown 1
+
+# enter room functions
 3656:enter_dark_passage
 3656:enter_dark_passage_2
 3656:enter_dark_passage_3
@@ -56,6 +56,7 @@
 4167:enter_vault_lock_14
 4184:enter_vault_lock_9
 4201:enter_vault_lock_8
+
 4218:unknown 3
 4279:unknown 4
 4405:unknown 5
@@ -65,6 +66,8 @@
 4611:unknown 8
 4660:set_codes(x)
 4690:enter_vault
+
+# use object functions
 4720:use_tablet
 4799:use_can
 4885:use_lantern
@@ -77,6 +80,7 @@
 5428:use_blue_coin
 5445:use_teleporter
 5721:use_mirror
+
 5814:print_string_2(start_ptr)
 5823:count_num_items_present
 5846:increment_c_if_<2732>=<a+2>(a,b,c)

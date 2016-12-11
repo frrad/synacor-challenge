@@ -239,31 +239,59 @@
 2664:...
 
 
+# object notes
+2668:"tablet"
+2669:The tablet seems appropriate f...
+2670:room="Foothills" 2
+2672:"empty lantern"
+2673:The lantern seems to have quit...
+2674:room="Moss cavern" 3
+2676:"lantern"
+2677:The lantern seems to have quit...
+2680:"lit lantern"
+2681:The lantern seems to have quit...
+2684:"can"
+2685:This can is full of high-quali...
+2686:room="Twisty passages" 10
+2688:"red coin"
+2689:This coin is made of a red met...
+2690:room="Ruins" 2
+2692:"corroded coin"
+2693:This coin is somewhat corroded...
+2694:room="Ruins" 6
+2696:"shiny coin"
+2697:This coin is somehow still qui...
+2698:room="Ruins" 8
+2700:"concave coin"
+2701:This coin is slightly rounded,...
+2702:room="Ruins" 5
+2704:"blue coin"
+2705:This coin is made of a blue me...
+2706:room="Ruins" 7
+2708:"teleporter"
+2709:This small device has a button...
+2710:room="Ruins" 4
+2712:"business card"
+2713:This business card has "synaco...
+2714:room="Synacor Headquarters"
+2716:"orb"
+2717:This is a clear glass sphere a...
+2718:room="Vault Antechamber"
+2720:"mirror"
+2721:This is a rather mundane hand-...
+2722:room="Vault"
+2724:"strange book"
+2725:The cover of this book subtly ...
+2726:room="Synacor Headquarters"
+2728:"journal"
+2729:Fireflies were using this dust...
+2730:room="Tropical Cave Alcove"
 
 
 
 2732:pointer to current location
 
-2668:"tablet"
-2669:tablet description
-2670:tablet location?
-2672:"empty lantern"
-2673:empty lantern description
-2676:"lantern"
-2680:"lit lantern"
-2684:"can"
-2688:"red coin"
-2692:"corroded coin"
-2696:"shiny coin"
-2697:shiny coin description
-2700:"concave coin"
-2704:"blue coin"
-2708:"teleporter"
-2712:"business card"
-2716:"orb"
-2720:"mirror"
-2724:"strange book"
-2728:"journal"
+
 
 2950:do what user input
 
