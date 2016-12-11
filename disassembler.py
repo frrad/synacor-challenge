@@ -18,6 +18,7 @@ with open('notes/notes.txt', 'r') as f:
 
 
 decode_lines = {}
+data_lines = set()
 with open('notes/text.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':
@@ -25,6 +26,7 @@ with open('notes/text.txt', 'r') as f:
         a = [int(j) for j in line.strip().split(':')]
 
         line_before = a[0] - 1
+        data_lines.add(line_before)
         if a[2] != 0:
             notes[line_before] = notes.get(
                 line_before, "") + "string XOR with %d" % int(a[2])
@@ -36,7 +38,6 @@ with open('notes/text.txt', 'r') as f:
             decode_lines[i] = int(a[2])
 
 
-data_lines = set()
 with open('notes/data.txt', 'r') as f:
     for line in f:
         if len(line) == 0 or line[0] == '#' or line == '\n':

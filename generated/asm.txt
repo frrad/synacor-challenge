@@ -2744,7 +2744,7 @@
 6059: pop                                  (reg:0)
 6061: add                    (reg:0) (reg:0) 32767
 6065: call                                    6027    unknown
-6067: ret                                             // start string
+6067: 18                                          // start string
 Test string#self-test complete, all tests pass
 complete
 6125: 3                                           // start string
@@ -2764,66 +2764,634 @@ As you begin to leave, you feel the urge for adventure pulling you back...
 6435: 5                                           // start string
 north
 6441: 9                                           // start string
-Dark caveÖThis seems to be the mouth of a deep cave.  As you peer north into the darkness, you think you hear the echoes of bats deeper within.northsouth	Dark cave[The cave is somewhat narrow here, and the light from the doorway to the south is quite dim.northsouth	Dark caveªThe cave acoustics dramatically change as you find yourself at a legde above a large chasm.  There is barely enough light here to notice a rope bridge leading out into the dark emptiness.bridgesouthRope bridgeyThis rope bridge creaks as you walk along it.  You aren't sure how old it is, or whether it can even support your weight.continuebackFalling through the air!©As you continue along the bridge, it snaps!  You try to grab the bridge, but it evades your grasp in the darkness.  You are plummeting quickly downward into the chasm...downMoss cavern—You are standing in a large cavern full of bioluminescent moss.  It must have broken your fall!  The cavern extends to the east and west; at the west end, you think you see a passage leading out of the cavern.westeastMoss cavern`You are standing in a large cavern full of bioluminescent moss.  The cavern extends to the west.westMoss cavernùYou are standing in a large cavern full of bioluminescent moss.  The cavern extends to the east.  There is a crevise in the rocks which opens into a passage.eastpassagePassage∞You are in a crevise on the west wall of the moss cavern.  A dark passage leads further west.  There is a ladder here which leads down into a smaller, moss-filled cavern below.cavernladderdarknessPassage9It is pitch black.  You are likely to be eaten by a grue.KYou feel that your light source is more than sufficient to keep grues away.continuebackTwisty passages{You are in a maze of twisty little passages, all dimly lit by more bioluminescent moss.  There is a ladder here leading up.laddernorthsoutheastwestTwisty passages7You are in a twisty maze of little passages, all alike.northsouthwestTwisty passages7You are in a maze of little twisty passages, all alike.northsoutheastTwisty passages|You are in a maze of alike little passages, all twisty.
+Dark cave
+6451: 133                                         // start string
+This seems to be the mouth of a deep cave.  As you peer north into the darkness, you think you hear the echoes of bats deeper within.
+6585: 5                                           // start string
+north
+6591: 5                                           // start string
+south
+6597: 9                                           // start string
+Dark cave
+6607: 91                                          // start string
+The cave is somewhat narrow here, and the light from the doorway to the south is quite dim.
+6699: 5                                           // start string
+north
+6705: 5                                           // start string
+south
+6711: 9                                           // start string
+Dark cave
+6721: 187                                         // start string
+The cave acoustics dramatically change as you find yourself at a legde above a large chasm.  There is barely enough light here to notice a rope bridge leading out into the dark emptiness.
+6909: 6                                           // start string
+bridge
+6916: 5                                           // start string
+south
+6922: 11                                          // start string
+Rope bridge
+6934: 121                                         // start string
+This rope bridge creaks as you walk along it.  You aren't sure how old it is, or whether it can even support your weight.
+7056: 8                                           // start string
+continue
+7065: 4                                           // start string
+back
+7070: 24                                          // start string
+Falling through the air!
+7095: 169                                         // start string
+As you continue along the bridge, it snaps!  You try to grab the bridge, but it evades your grasp in the darkness.  You are plummeting quickly downward into the chasm...
+7265: 4                                           // start string
+down
+7270: 11                                          // start string
+Moss cavern
+7282: 209                                         // start string
+You are standing in a large cavern full of bioluminescent moss.  It must have broken your fall!  The cavern extends to the east and west; at the west end, you think you see a passage leading out of the cavern.
+7492: 4                                           // start string
+west
+7497: 4                                           // start string
+east
+7502: 11                                          // start string
+Moss cavern
+7514: 96                                          // start string
+You are standing in a large cavern full of bioluminescent moss.  The cavern extends to the west.
+7611: 4                                           // start string
+west
+7616: 11                                          // start string
+Moss cavern
+7628: 157                                         // start string
+You are standing in a large cavern full of bioluminescent moss.  The cavern extends to the east.  There is a crevise in the rocks which opens into a passage.
+7786: 4                                           // start string
+east
+7791: 7                                           // start string
+passage
+7799: 7                                           // start string
+Passage
+7807: 176                                         // start string
+You are in a crevise on the west wall of the moss cavern.  A dark passage leads further west.  There is a ladder here which leads down into a smaller, moss-filled cavern below.
+7984: 6                                           // start string
+cavern
+7991: 6                                           // start string
+ladder
+7998: 8                                           // start string
+darkness
+8007: 7                                           // start string
+Passage
+8015: 57                                          // start string
+It is pitch black.  You are likely to be eaten by a grue.
+8073: 75                                          // start string
+You feel that your light source is more than sufficient to keep grues away.
+8149: 8                                           // start string
+continue
+8158: 4                                           // start string
+back
+8163: 15                                          // start string
+Twisty passages
+8179: 123                                         // start string
+You are in a maze of twisty little passages, all dimly lit by more bioluminescent moss.  There is a ladder here leading up.
+8303: 6                                           // start string
+ladder
+8310: 5                                           // start string
+north
+8316: 5                                           // start string
+south
+8322: 4                                           // start string
+east
+8327: 4                                           // start string
+west
+8332: 15                                          // start string
+Twisty passages
+8348: 55                                          // start string
+You are in a twisty maze of little passages, all alike.
+8404: 5                                           // start string
+north
+8410: 5                                           // start string
+south
+8416: 4                                           // start string
+west
+8421: 15                                          // start string
+Twisty passages
+8437: 55                                          // start string
+You are in a maze of little twisty passages, all alike.
+8493: 5                                           // start string
+north
+8499: 5                                           // start string
+south
+8505: 4                                           // start string
+east
+8510: 15                                          // start string
+Twisty passages
+8526: 124                                         // start string
+You are in a maze of alike little passages, all twisty.
 
-The passage to the east looks very dark; you think you hear a Grue.northsouthwesteastTwisty passages7You are in a little maze of twisty passages, all alike.northsoutheastTwisty passagesÉYou are in a twisty alike of little passages, all maze.
+The passage to the east looks very dark; you think you hear a Grue.
+8651: 5                                           // start string
+north
+8657: 5                                           // start string
+south
+8663: 4                                           // start string
+west
+8668: 4                                           // start string
+east
+8673: 15                                          // start string
+Twisty passages
+8689: 55                                          // start string
+You are in a little maze of twisty passages, all alike.
+8745: 5                                           // start string
+north
+8751: 5                                           // start string
+south
+8757: 4                                           // start string
+east
+8762: 15                                          // start string
+Twisty passages
+8778: 131                                         // start string
+You are in a twisty alike of little passages, all maze.
 
-The east passage appears very dark; you feel likely to be eaten by a Grue.northsouthwesteastTwisty passages7You are in a maze of alike twisty passages, all little.northeastsouthTwisty passages7You are in a maze of twisty little passages, all alike.westTwisty passages7You are in a maze of twisty little passages, all alike.westTwisty passages7You are in a twisty maze of little passages, all alike.northsouthDark passagerYou are in a narrow passage.  There is darkness to the west, but you can barely see a glowing opening to the east.westeastDark passage"You are in a dark, narrow passage.eastwestDark passage"You are in a dark, narrow passage.eastwestDark passagedYou are in a dark, narrow passage.  To the west, you spot some vegetation where the passage expands.eastwestRuins¯You stand in a large cavern with a huge ruin to the north, overgrown by plant life.  There is a large stone archway to the north acting as the doorway to the ruined complex.  A crevice in the rock to the east leads to an alarmingly dark passageway.eastnorthRuinsµYou are in the once-opulent foyer of a massive ruined complex.  There is a door to the south leading to the overgrowth outside and stairs to the north which lead into a larger hall.northsouthRuins
+The east passage appears very dark; you feel likely to be eaten by a Grue.
+8910: 5                                           // start string
+north
+8916: 5                                           // start string
+south
+8922: 4                                           // start string
+west
+8927: 4                                           // start string
+east
+8932: 15                                          // start string
+Twisty passages
+8948: 55                                          // start string
+You are in a maze of alike twisty passages, all little.
+9004: 5                                           // start string
+north
+9010: 4                                           // start string
+east
+9015: 5                                           // start string
+south
+9021: 15                                          // start string
+Twisty passages
+9037: 55                                          // start string
+You are in a maze of twisty little passages, all alike.
+9093: 4                                           // start string
+west
+9098: 15                                          // start string
+Twisty passages
+9114: 55                                          // start string
+You are in a maze of twisty little passages, all alike.
+9170: 4                                           // start string
+west
+9175: 15                                          // start string
+Twisty passages
+9191: 55                                          // start string
+You are in a twisty maze of little passages, all alike.
+9247: 5                                           // start string
+north
+9253: 5                                           // start string
+south
+9259: 12                                          // start string
+Dark passage
+9272: 114                                         // start string
+You are in a narrow passage.  There is darkness to the west, but you can barely see a glowing opening to the east.
+9387: 4                                           // start string
+west
+9392: 4                                           // start string
+east
+9397: 12                                          // start string
+Dark passage
+9410: 34                                          // start string
+You are in a dark, narrow passage.
+9445: 4                                           // start string
+east
+9450: 4                                           // start string
+west
+9455: 12                                          // start string
+Dark passage
+9468: 34                                          // start string
+You are in a dark, narrow passage.
+9503: 4                                           // start string
+east
+9508: 4                                           // start string
+west
+9513: 12                                          // start string
+Dark passage
+9526: 100                                         // start string
+You are in a dark, narrow passage.  To the west, you spot some vegetation where the passage expands.
+9627: 4                                           // start string
+east
+9632: 4                                           // start string
+west
+9637: 5                                           // start string
+Ruins
+9643: 248                                         // start string
+You stand in a large cavern with a huge ruin to the north, overgrown by plant life.  There is a large stone archway to the north acting as the doorway to the ruined complex.  A crevice in the rock to the east leads to an alarmingly dark passageway.
+9892: 4                                           // start string
+east
+9897: 5                                           // start string
+north
+9903: 5                                           // start string
+Ruins
+9909: 181                                         // start string
+You are in the once-opulent foyer of a massive ruined complex.  There is a door to the south leading to the overgrowth outside and stairs to the north which lead into a larger hall.
+10091:5                                           // start string
+north
+10097:5                                           // start string
+south
+10103:5                                           // start string
+Ruins
 10109:293                                         // start string
 You stand in the massive central hall of these ruins.  The walls are crumbling, and vegetation has clearly taken over.  Rooms are attached in all directions.  There is a strange monument in the center of the hall with circular slots and unusual symbols.  It reads:
 
-_ + _ * _^2 + _^3 - _ = 399northsoutheastwestRuinsßBecause it has been so well-protected, this room hardly shows signs of decay.  The walls are covered in elaborate murals and decorated with precious metals and stones.southRuinsäYou stand in what seems to have once been a dining hall; broken tables and pottery are scattered everywhere.  A staircase here leads down.downwestRuinszThis seems to be a kitchen; there are brick stoves and shelves along the wall.  Everything here has fallen into disrepair.upRuins≥You find yourself in what was once the living quarters for the complex.  Many smaller rooms which once had walls to divide them now lay in disarray.  There is a staircase up here.upeastRuins©This was long ago a lavish throne room.  Dried-up fountains and crumbling statues line the walls, and the carved stone throne in the center of the room is falling apart.downSynacor HeadquartersˇYou stand in the lobby of what appears to be a really fun place to work!  Sadly, there doesn't seem to be anyone around at the moment, so you make a note to call them later.  The bookshelf here looks like it might have something interesting in it, though.outsideSynacor HeadquartersëIt's a warm, sunny day!  While the breeze from Lake Erie is certainly refreshing, you don't see anything here that will help you with your quest.insideBeach™This is a sandy beach in a cove on some tropical island.  It is raining.  The ocean is to your south, and heavy foliage is to your north; the beach extends west and east.westeastnorthBeach
+_ + _ * _^2 + _^3 - _ = 399
+10403:5                                           // start string
+north
+10409:5                                           // start string
+south
+10415:4                                           // start string
+east
+10420:4                                           // start string
+west
+10425:5                                           // start string
+Ruins
+10431:167                                         // start string
+Because it has been so well-protected, this room hardly shows signs of decay.  The walls are covered in elaborate murals and decorated with precious metals and stones.
+10599:5                                           // start string
+south
+10605:5                                           // start string
+Ruins
+10611:138                                         // start string
+You stand in what seems to have once been a dining hall; broken tables and pottery are scattered everywhere.  A staircase here leads down.
+10750:4                                           // start string
+down
+10755:4                                           // start string
+west
+10760:5                                           // start string
+Ruins
+10766:122                                         // start string
+This seems to be a kitchen; there are brick stoves and shelves along the wall.  Everything here has fallen into disrepair.
+10889:2                                           // start string
+up
+10892:5                                           // start string
+Ruins
+10898:179                                         // start string
+You find yourself in what was once the living quarters for the complex.  Many smaller rooms which once had walls to divide them now lay in disarray.  There is a staircase up here.
+11078:2                                           // start string
+up
+11081:4                                           // start string
+east
+11086:5                                           // start string
+Ruins
+11092:169                                         // start string
+This was long ago a lavish throne room.  Dried-up fountains and crumbling statues line the walls, and the carved stone throne in the center of the room is falling apart.
+11262:4                                           // start string
+down
+11267:20                                          // start string
+Synacor Headquarters
+11288:255                                         // start string
+You stand in the lobby of what appears to be a really fun place to work!  Sadly, there doesn't seem to be anyone around at the moment, so you make a note to call them later.  The bookshelf here looks like it might have something interesting in it, though.
+11544:7                                           // start string
+outside
+11552:20                                          // start string
+Synacor Headquarters
+11573:145                                         // start string
+It's a warm, sunny day!  While the breeze from Lake Erie is certainly refreshing, you don't see anything here that will help you with your quest.
+11719:6                                           // start string
+inside
+11726:5                                           // start string
+Beach
+11732:170                                         // start string
+This is a sandy beach in a cove on some tropical island.  It is raining.  The ocean is to your south, and heavy foliage is to your north; the beach extends west and east.
+11903:4                                           // start string
+west
+11908:4                                           // start string
+east
+11913:5                                           // start string
+north
+11919:5                                           // start string
+Beach
 11925:262                                         // start string
-This is a sandy beach in a cove on some tropical island.  It is raining.  To your west is an embankment of the cove which looks too steep to climb.  The beach extends to the east, and there is dense foliage to the north.  The ocean to the south seems uninviting.eastnorthBeachÚThis is a sandy beach in a cove on some tropical island.  It is raining.  The steep cove embankment to your east blocks your path, and the ocean waters here look unsafe.  The beach extends to the west, and there is dense foliage to the north.westnorthTropical Island∆The large trees here seem to be protecting you from the rain.  As you push through the undergrowth, you can hear birds chirping overhead.  There is a steep rock face to your west blocking your path.northsoutheastTropical IslandzThe east embankment of the cove towers over you.  It produces a small waterfall here which cascades excitedly into a pool.northsouthwestTropical IslandÊThe embankment of the cove come toegher here to your east and west.  Between these tall rock faces, there is a narrow, overgrown path leading north.  You hear waves lapping up on a beach through the dense vegetation to your south.northsouthTropical Island
+This is a sandy beach in a cove on some tropical island.  It is raining.  To your west is an embankment of the cove which looks too steep to climb.  The beach extends to the east, and there is dense foliage to the north.  The ocean to the south seems uninviting.
+12188:4                                           // start string
+east
+12193:5                                           // start string
+north
+12199:5                                           // start string
+Beach
+12205:242                                         // start string
+This is a sandy beach in a cove on some tropical island.  It is raining.  The steep cove embankment to your east blocks your path, and the ocean waters here look unsafe.  The beach extends to the west, and there is dense foliage to the north.
+12448:4                                           // start string
+west
+12453:5                                           // start string
+north
+12459:15                                          // start string
+Tropical Island
+12475:198                                         // start string
+The large trees here seem to be protecting you from the rain.  As you push through the undergrowth, you can hear birds chirping overhead.  There is a steep rock face to your west blocking your path.
+12674:5                                           // start string
+north
+12680:5                                           // start string
+south
+12686:4                                           // start string
+east
+12691:15                                          // start string
+Tropical Island
+12707:122                                         // start string
+The east embankment of the cove towers over you.  It produces a small waterfall here which cascades excitedly into a pool.
+12830:5                                           // start string
+north
+12836:5                                           // start string
+south
+12842:4                                           // start string
+west
+12847:15                                          // start string
+Tropical Island
+12863:230                                         // start string
+The embankment of the cove come toegher here to your east and west.  Between these tall rock faces, there is a narrow, overgrown path leading north.  You hear waves lapping up on a beach through the dense vegetation to your south.
+13094:5                                           // start string
+north
+13100:5                                           // start string
+south
+13106:15                                          // start string
+Tropical Island
 13122:285                                         // start string
-You are on a narrow path between two steep rock faces which look like they have been here for thousands of years.  Rain trickles down through the vegetation and moss, and through the leaves you can occasionally see a sliver of light hundreds of feet above you where the rock walls end.northsouthTropical IslandıThe narrow path slopes downward to the north and leads to the mouth of a small cave.  A sign nearby reads "Treasure Vault Access", but different handwriting has crossed this out and written "Lair of Horrible Monster!  All non-pirates keep out!".northsouthTropical Cave‹You stand at the entrance to a natural cave which looks like it hasn't been visited in quite some time.  Light pours in through the opening to the south, while fireflies light the path further into the cave to the north.northsouthTropical CavezFireflies slowly drift around you and light the tunnel, which seems to get brighter to the south, but dimmer to the north.northsouthTropical Cave
+You are on a narrow path between two steep rock faces which look like they have been here for thousands of years.  Rain trickles down through the vegetation and moss, and through the leaves you can occasionally see a sliver of light hundreds of feet above you where the rock walls end.
+13408:5                                           // start string
+north
+13414:5                                           // start string
+south
+13420:15                                          // start string
+Tropical Island
+13436:245                                         // start string
+The narrow path slopes downward to the north and leads to the mouth of a small cave.  A sign nearby reads "Treasure Vault Access", but different handwriting has crossed this out and written "Lair of Horrible Monster!  All non-pirates keep out!".
+13682:5                                           // start string
+north
+13688:5                                           // start string
+south
+13694:13                                          // start string
+Tropical Cave
+13708:220                                         // start string
+You stand at the entrance to a natural cave which looks like it hasn't been visited in quite some time.  Light pours in through the opening to the south, while fireflies light the path further into the cave to the north.
+13929:5                                           // start string
+north
+13935:5                                           // start string
+south
+13941:13                                          // start string
+Tropical Cave
+13955:122                                         // start string
+Fireflies slowly drift around you and light the tunnel, which seems to get brighter to the south, but dimmer to the north.
+14078:5                                           // start string
+north
+14084:5                                           // start string
+south
+14090:13                                          // start string
+Tropical Cave
 14104:322                                         // start string
-The cave is a little wider here.  You find the cobweb-encrusted remains of a small camp, and although you don't suspect the broken pieces of tables and chairs will prove useful to your quest, the fireflies seem to like using the debris as a shelter.  A passageway leads north and south, and there is an alcove to the east.northsoutheastTropical Cave Alcove£At the back of this alcove, there is a small table, a chair, and a broken lantern.  It looks like this space was used much more recently than the camp to the west.westTropical CavehThis tunnel slopes deeper underground to the north, but the fireflies are all around to light your path.northsouth
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The cave is a little wider here.  You find the cobweb-encrusted remains of a small camp, and although you don't suspect the broken pieces of tables and chairs will prove useful to your quest, the fireflies seem to like using the debris as a shelter.  A passageway leads north and south, and there is an alcove to the east.
+14427:5                                           // start string
+north
+14433:5                                           // start string
+south
+14439:4                                           // start string
+east
+14444:20                                          // start string
+Tropical Cave Alcove
+14465:163                                         // start string
+At the back of this alcove, there is a small table, a chair, and a broken lantern.  It looks like this space was used much more recently than the camp to the west.
+14629:4                                           // start string
+west
+14634:13                                          // start string
+Tropical Cave
+14648:104                                         // start string
+This tunnel slopes deeper underground to the north, but the fireflies are all around to light your path.
+14753:5                                           // start string
+north
+14759:5                                           // start string
+south
+14765:10                                          // start string
+Vault Lock
+14776:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '*' symbol.eastsouth
-Vault LockÇYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting a '*' symbol.
+14905:4                                           // start string
+east
+14910:5                                           // start string
+south
+14916:10                                          // start string
+Vault Lock
+14927:130                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting the number '8'.eastsouthwest
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting the number '8'.
+15058:4                                           // start string
+east
+15063:5                                           // start string
+south
+15069:4                                           // start string
+west
+15074:10                                          // start string
+Vault Lock
+15085:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '-' symbol.eastsouthwest
-Vault DoorˆYou stand before the door to the vault; it has a large '30' carved into it.  Affixed to the wall near the door, there is a running hourglass which never seems to run out of sand.
+The floor of this room is a large mosaic depicting a '-' symbol.
+15214:4                                           // start string
+east
+15219:5                                           // start string
+south
+15225:4                                           // start string
+west
+15230:10                                          // start string
+Vault Door
+15241:246                                         // start string
+You stand before the door to the vault; it has a large '30' carved into it.  Affixed to the wall near the door, there is a running hourglass which never seems to run out of sand.
 
-The floor of this room is a large mosaic depicting the number '1'.southwestvault
-Vault LockÇYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting the number '1'.
+15488:5                                           // start string
+south
+15494:4                                           // start string
+west
+15499:5                                           // start string
+vault
+15505:10                                          // start string
+Vault Lock
+15516:130                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting the number '4'.northeastsouth
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting the number '4'.
+15647:5                                           // start string
+north
+15653:4                                           // start string
+east
+15658:5                                           // start string
+south
+15664:10                                          // start string
+Vault Lock
+15675:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '*' symbol.northeastsouthwest
-Vault LockÉYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting a '*' symbol.
+15804:5                                           // start string
+north
+15810:4                                           // start string
+east
+15815:5                                           // start string
+south
+15821:4                                           // start string
+west
+15826:10                                          // start string
+Vault Lock
+15837:131                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting the number '11'.northeastsouthwest
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting the number '11'.
+15969:5                                           // start string
+north
+15975:4                                           // start string
+east
+15980:5                                           // start string
+south
+15986:4                                           // start string
+west
+15991:10                                          // start string
+Vault Lock
+16002:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '*' symbol.northsouthwest
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting a '*' symbol.
+16131:5                                           // start string
+north
+16137:5                                           // start string
+south
+16143:4                                           // start string
+west
+16148:10                                          // start string
+Vault Lock
+16159:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '+' symbol.northeastsouth
-Vault LockÇYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting a '+' symbol.
+16288:5                                           // start string
+north
+16294:4                                           // start string
+east
+16299:5                                           // start string
+south
+16305:10                                          // start string
+Vault Lock
+16316:130                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting the number '4'.northeastsouthwest
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting the number '4'.
+16447:5                                           // start string
+north
+16453:4                                           // start string
+east
+16458:5                                           // start string
+south
+16464:4                                           // start string
+west
+16469:10                                          // start string
+Vault Lock
+16480:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '-' symbol.northeastsouthwest
-Vault LockÉYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting a '-' symbol.
+16609:5                                           // start string
+north
+16615:4                                           // start string
+east
+16620:5                                           // start string
+south
+16626:4                                           // start string
+west
+16631:10                                          // start string
+Vault Lock
+16642:131                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting the number '18'.northsouthwestVault AntechamberêYou are in the antechamber to a grid of rooms that control the door to the vault.  You notice the number '22' is carved into the orb's pedestal.northeastsouth
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting the number '18'.
+16774:5                                           // start string
+north
+16780:5                                           // start string
+south
+16786:4                                           // start string
+west
+16791:17                                          // start string
+Vault Antechamber
+16809:144                                         // start string
+You are in the antechamber to a grid of rooms that control the door to the vault.  You notice the number '22' is carved into the orb's pedestal.
+16954:5                                           // start string
+north
+16960:4                                           // start string
+east
+16965:5                                           // start string
+south
+16971:10                                          // start string
+Vault Lock
+16982:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '-' symbol.northeastwest
-Vault LockÇYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting a '-' symbol.
+17111:5                                           // start string
+north
+17117:4                                           // start string
+east
+17122:4                                           // start string
+west
+17127:10                                          // start string
+Vault Lock
+17138:130                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting the number '9'.northeastwest
-Vault LockÄYou are in a grid of rooms that control the door to the vault.
+The floor of this room is a large mosaic depicting the number '9'.
+17269:5                                           // start string
+north
+17275:4                                           // start string
+east
+17280:4                                           // start string
+west
+17285:10                                          // start string
+Vault Lock
+17296:128                                         // start string
+You are in a grid of rooms that control the door to the vault.
 
-The floor of this room is a large mosaic depicting a '*' symbol.northwestVault‘This vault contains incredible riches!  Piles of gold and platinum coins surround you, and the walls are adorned with topazes, rubies, sapphires, emeralds, opals, dilithium crystals, elerium-115, and unobtainium.leaveFumbling around in the darknesscWithout a source of light, you have become hopelessly lost and are fumbling around in the darkness.forwardbackFumbling around in the darkness^You can't seem to find your way.  However, you do think you hear low growling in the distance.runinvestigatePanicked and lostIThe growling is getting louder.  Did I mention there are Grues down here?runwaithideeaten 
+The floor of this room is a large mosaic depicting a '*' symbol.
+17425:5                                           // start string
+north
+17431:4                                           // start string
+west
+17436:5                                           // start string
+Vault
+17442:212                                         // start string
+This vault contains incredible riches!  Piles of gold and platinum coins surround you, and the walls are adorned with topazes, rubies, sapphires, emeralds, opals, dilithium crystals, elerium-115, and unobtainium.
+17655:5                                           // start string
+leave
+17661:31                                          // start string
+Fumbling around in the darkness
+17693:99                                          // start string
+Without a source of light, you have become hopelessly lost and are fumbling around in the darkness.
+17793:7                                           // start string
+forward
+17801:4                                           // start string
+back
+17806:31                                          // start string
+Fumbling around in the darkness
+17838:94                                          // start string
+You can't seem to find your way.  However, you do think you hear low growling in the distance.
+17933:3                                           // start string
+run
+17937:11                                          // start string
+investigate
+17949:17                                          // start string
+Panicked and lost
+17967:73                                          // start string
+The growling is getting louder.  Did I mention there are Grues down here?
+18041:3                                           // start string
+run
+18045:4                                           // start string
+wait
+18050:4                                           // start string
+hide
+18055:5                                           // start string
+eaten
+18061:halt
 18062:6                                           // start string
 tablet
 18069:136                                         // start string
@@ -3503,17 +4071,17 @@ drop
 use
   You may activate or otherwise apply an item with 'use <item>'.
 
-28037:wmem                               4896 4886
-ur inventory:
+28037:16                                          // string XOR with 4985
+Your inventory:
 
-28054:jt                                 2739 2694
-ken.
+28054:7                                           // string XOR with 2791
+Taken.
 
 28062:27                                          // string XOR with 12264
 You see no such item here.
 
-28090:add                        12706 12692 12681
-pped.
+28090:9                                           // string XOR with 12774
+Dropped.
 
 28100:34                                          // string XOR with 26224
 You can't find that in your pack.
@@ -3540,7 +4108,7 @@ Chiseled on the wall of one of the passageways, you see:
 You take note of this and keep walking.
 
 
-28347:noop                                            // string XOR with 22894
+28347:21                                          // string XOR with 22894
 That door is locked.
 
 28369:27                                          // string XOR with 2148
@@ -3571,8 +4139,8 @@ You douse your lantern.
 28621:42                                          // string XOR with 2299
 You're not sure what to do with the coin.
 
-28664:not                              17079 17025
-u place the 
+28664:14                                          // string XOR with 17134
+You place the 
 28679:30                                          // string XOR with 30188
  into the leftmost open slot.
 
