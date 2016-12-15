@@ -90,4 +90,4 @@
 5921:unknown(a,b,c)
 5964:unknown(a,b,c)
 5990:compare_xplus2_2732(<a>)
-6027:unknown
+6027:verify_teleporter_calibration

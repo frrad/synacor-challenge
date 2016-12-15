@@ -2515,7 +2515,7 @@
 5482: noop
 5483: set                                (reg:0) 4
 5486: set                                (reg:1) 1
-5489: call                                    6027    unknown
+5489: call                                    6027    verify_teleporter_calibration
 5491: eq                         (reg:1) (reg:0) 6
 5495: jf                              (reg:1) 5579
 5498: push                                 (reg:0)
@@ -2553,7 +2553,7 @@
 5579: push                                 (reg:0)
 5581: push                                 (reg:1)
 5583: push                                 (reg:2)
-5585: set                            (reg:0) 29400
+5585: set                            (reg:0) 29400    // Miscalibration detected!  Aborting...
 5588: set                             (reg:1) 1531
 5591: add                       (reg:2) 1480 14255
 5595: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2591,7 +2591,7 @@
 5682: push                                 (reg:0)
 5684: push                                 (reg:1)
 5686: push                                 (reg:2)
-5688: set                            (reg:0) 29667
+5688: set                            (reg:0) 29667    // After a few moments, you find yourself back on solid...
 5691: set                             (reg:1) 1531
 5694: add                       (reg:2) 8184 17258
 5698: call                                    1458    call_repeatedly(start_ptr,fn_ptr)
@@ -2729,24 +2729,29 @@
 6022: pop                                  (reg:2)
 6024: pop                                  (reg:1)
 6026: ret
-6027: jt                              (reg:0) 6035    // function: unknown
+6027: jt                              (reg:0) 6035    // function: verify_teleporter_calibration
 6030: add                        (reg:0) (reg:1) 1
 6034: ret
 6035: jt                              (reg:1) 6048
 6038: add                    (reg:0) (reg:0) 32767
 6042: set                          (reg:1) (reg:7)
-6045: call                                    6027    unknown
+6045: call                                    6027    verify_teleporter_calibration
 6047: ret
 6048: push                                 (reg:0)
 6050: add                    (reg:1) (reg:1) 32767
-6054: call                                    6027    unknown
+6054: call                                    6027    verify_teleporter_calibration
 6056: set                          (reg:1) (reg:0)
 6059: pop                                  (reg:0)
 6061: add                    (reg:0) (reg:0) 32767
-6065: call                                    6027    unknown
-6067: 18                                          // start string
-Test string#self-test complete, all tests pass
-complete
+6065: call                                    6027    verify_teleporter_calibration
+6067: ret
+6068: 11                                          // start string
+Test string
+6080: 35                                          // start string
+self-test complete, all tests pass
+
+6116: 8                                           // start string
+complete
 6125: 3
 6126: 0
 6127: 0

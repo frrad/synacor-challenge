@@ -81,6 +81,10 @@ class debugger:
         def hijack(arb):
             str_in = args[1]
             in_codes = map(int, str_in.split(','))
+
+            # so we can end hijack code with a ret
+            self.vm.stack.push(self.vm.pointer)
+
             for offset, code in enumerate(in_codes):
                 self.vm.memory.write(offset + 30100, code)
             self.vm.pointer = 30100
