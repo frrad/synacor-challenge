@@ -115,15 +115,22 @@ class debugger:
             name = self.__function_names.get(callee, '')
             return 'call %d %s' % (callee, name)
 
-        style_op = {'call': call}
+        def wmem(args):
+            data = self.vm.resolve(args[1])
+            addr = self.vm.resolve(args[0])
 
-        print ' ' * len(self.__call_stack) + str(pointer) + ': ' + style_op[op_name](args)
+            return 'wmem %d %d' % (addr, data)
+
+        style_op = {'call': call, 'wmem': wmem}
+
+        if op_name in style_op:
+            print ' ' * len(self.__call_stack) + str(pointer) + ': ' + style_op[op_name](args)
 
     def is_debugging(self):
         return self.__debugging
 
     def step(self):
-        if self.__debugging and self.vm.memory.read(self.vm.pointer) == 17:
+        if self.__debugging:
             self.print_current()
 
         # update depth after display
